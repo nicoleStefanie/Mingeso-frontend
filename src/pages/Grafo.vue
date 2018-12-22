@@ -8,7 +8,9 @@
 </template>
 <script src="d3.legend.js"></script>
 <script>
-
+//fjkakhfjsdhfksjfhkas
+// hjashfadsjkfhaskjfkfa
+//HDSHDSKJFHDSKJ
 export default{
   data: function () {
     return {
@@ -251,3 +253,4 @@ text {
   font-size: 13px;
 }
 </style>
+

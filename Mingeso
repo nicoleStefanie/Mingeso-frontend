@@ -1,0 +1,40 @@
+Servidor 1: 
+root ssh@209.97.155.48
+
+tingesomingeso
+
+Servidor 2:
+ssh root@159.203.94.72
+
+tingesomingeso
+
+JENKINS
+http://209.97.155.48:8080
+user: nicole
+pass: tingeso123
+
+MySQL
+user: root
+pass: tingeso
+IP: 209.97.155.48
+Port: 3306
+
+Sonarqube
+159.203.94.72:9000
+user: admin
+pass: tingesomingeso
+
+TestLink
+159.203.94.72:8085
+
+
+pluggins:
+            git
+            selenium
+            mantis
+            maven
+            Junit
+            Testlink
+
+
+

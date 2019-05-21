@@ -1,18 +1,25 @@
 import DashboardLayout from '@/pages/Layout/DashboardLayout.vue'
 
 import Dashboard from '@/pages/Dashboard.vue'
+// No pescar
 import UserProfile from '@/pages/UserProfile.vue'
 import TableList from '@/pages/cuenta/TableList.vue'
 import Home from '@/pages/Home.vue'
-import Icons from '@/pages/Icons.vue'
+
+/*##############################################################*/ 
+import Reservas from '@/pages/Reservas.vue'
+import ReservaSimple from '@/pages/ReservaSimple.vue'
+import ReservaMultiple from '@/pages/ReservaMultiple.vue'
+import ReservaEntradas from '@/pages/ReservaEntradas.vue'
+import Login from '@/pages/Login.vue'
+/*##############################################################*/ 
+
+// No pescar
 import Grafo from '@/pages/Grafo.vue'
 import Maps from '@/pages/Maps.vue'
 import Mapa from '@/pages/Mapa.vue'
-import Santiago from '@/pages/Santiago.vue'
+import Rack from '@/pages/Rack.vue'
 import Notifications from '@/pages/Notifications.vue'
-import Ministro from '@/pages/ministro/Ministro.vue'
-import Error from '@/pages/Error.vue'
-import Iniciar from '@/pages/IniciarSesion.vue'
 import Agregar from '@/pages/UserProfile/AddPolitico.vue'
 import Editar from '@/pages/UserProfile/EditPolitico.vue'
 
@@ -24,26 +31,41 @@ const routes = [
     redirect: '/Home',
     children: [
       {
-        path: 'Gabinete',
-        name: 'Gabinete',
-        component: Dashboard
+        path: 'reservaSimple',
+        name: 'ReservaSimple',
+        component: ReservaSimple
+      },
+      {
+        path: 'reservaMultiple',
+        name: 'ReservaMultiple',
+        component: ReservaMultiple
+      },
+      {
+        path: 'reservaEntradas',
+        name: 'ReservaEntradas',
+        component: ReservaEntradas
+      },
+      {
+        path: 'reservas',
+        name: 'Reservas',
+        component: Reservas
+      },
+      {
+        path: 'rack',
+        name: 'Rack',
+        component: Rack
+      },
+      {
+        path: 'login',
+        name: 'Login',
+        component: Login
       },
       {
         path: 'user',
         name: 'User Profile',
         component: UserProfile
       },
-      {
-        path: 'Iniciar',
-        name: 'Iniciar',
-        component: Iniciar
-      },
 
-      {
-        path: 'Grafo',
-        name: 'Grafo',
-        component: Grafo
-      },
       {
         path: 'Agregar',
         name: 'Agregar Politico',
@@ -58,31 +80,11 @@ const routes = [
         path: 'table',
         name: 'Table List',
         component: TableList
-      },
-      {
-        path: 'Mapa',
-        name: 'Mapa',
-        component: Mapa
-      },
-      {
-        path: 'Santiago',
-        name: 'Santiago',
-        component: Santiago
-      },            
+      },           
       {
         path: 'Home',
         name: 'Home',
         component: Home
-      },
-      {
-        path: 'general',
-        name: 'General',
-        component: Icons
-      },
-      {
-        path: 'ministro/:id',
-        name: 'ministro',
-        component: Ministro
       },
       {
         path: 'maps',
@@ -93,17 +95,6 @@ const routes = [
         component: Maps
 
       },
-      {
-        path: 'notifications',
-        name: 'Notifications',
-        component: Notifications
-      },
-      {
-        path: '/*',
-        name: 'Error',
-        component: Error
-      }
-
     ]
   }
 ]

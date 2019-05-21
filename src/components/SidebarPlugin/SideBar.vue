@@ -3,7 +3,6 @@
     <div class="logo">
       <a href="#" class="simple-text logo-mini">
         <div class="logo-img">
-            <img :src="imgLogo" alt="">
         </div>
       </a>
 
@@ -39,7 +38,7 @@ export default{
   props: {
     title: {
       type: String,
-      default: 'PoliticTweet'
+      default: 'Hotel'
     },
     backgroundImage: {
       type: String,
@@ -47,7 +46,7 @@ export default{
     },
     imgLogo: {
       type: String,
-      default: require('@/assets/img/twitter-logo.png')
+      //default: require('@/assets/img/twitter-logo.png')
     },
     activeColor: {
       type: String,

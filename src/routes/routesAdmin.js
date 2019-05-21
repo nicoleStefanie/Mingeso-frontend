@@ -1,7 +1,6 @@
 import DashboardAdminLayout from '@/pages/Layout/DashboardAdminLayout.vue'
 
 import TableList from '@/pages/cuenta/TableList.vue'
-import Ministro from '@/pages/ministro/Ministro.vue'
 import Dashboard from '@/pages/Dashboard.vue'
 
 const routesAdmin = [
@@ -20,11 +19,7 @@ const routesAdmin = [
         name: 'Table List',
         component: TableList
       },
-      {
-        path: 'ministro/:id',
-        name: 'ministro',
-        component: Ministro
-      }
+
     ]
   }
 ]

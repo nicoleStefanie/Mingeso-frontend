@@ -1,3 +1,4 @@
+
 <template>
   <div class="content">
     <div class="md-layout">
@@ -98,5 +99,4 @@ export default {
     }
   }
 }
-
 </script>

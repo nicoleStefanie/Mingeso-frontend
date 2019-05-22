@@ -21,6 +21,7 @@ import Chartist from 'chartist'
 
 import VueChartkick from 'vue-chartkick'
 import Chart from 'chart.js'
+Vue.use(VueChartkick, {adapter: Chart})
 
 
 // configure router

@@ -8,6 +8,7 @@
             <md-card-content>
               <div class="md-layout">
                 <div>
+                  asdjkasndanksdkj
                   <timeline :data="this.grafico_habitaciones" :colors="['#b00']"></timeline>
                 </div>
               </div>
@@ -16,9 +17,6 @@
         </md-card>
     </div>
 </template>
-
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script>
 export default {

@@ -1,37 +1,88 @@
 <template>
   <div class="container">
-        <md-card>
-          <md-card-header data-background-color="green" style="position: relative;">
-            <h2 class="title">Realizar reserva </h2>
-          </md-card-header>
-          <md-card-content>
-             <div class="md-card-avatar">
-                   <div class="md-layout-item md-size-100">
-                        <div class="places-buttons text-center">
-                              <md-button type="button"  :href="'#/reservaSimple'" class=" md-button md-primary md-sm md-theme-default" >
-                                  <div class="md-ripple">
-                                      <div class="md-button-content"><b>Reserva Simple</b></div>
-                                        <span></span>
-                                    </div>
-                              </md-button>
-                                <md-button type="button" :href="'#/reservaMultiple'" class="md-button md-primary md-sm md-theme-default" >
-                                    <div class="md-ripple">
-                                       <div class="md-button-content"><b>Reserva Múltiple</b></div>
-                                       <span></span>
-                                    </div>
-                                </md-button>
-                                <md-button type="button" :href="'#/reservaEntradas'" class="md-button md-primary md-sm md-theme-default" >
-                                    <div class="md-ripple">
-                                       <div class="md-button-content"><b>Reserva Múltiples Entradas</b></div>
-                                       <span></span>
-                                    </div>
-                                </md-button>
-                          </div>
-                  </div>
-             </div>
-          </md-card-content>
-        </md-card>
-    </div>
+    <md-card>
+      <md-card-header>
+        <div class="md-title">Realizar Reserva</div>
+      </md-card-header>
+
+      <md-card-content>
+         <div class="md-layout-item md-size-100">
+              <div class="places-buttons text-center">
+                  
+                  <md-button type="button"  :href="'#/reservaSimple'" class=" md-primary md-wd md-sm md-theme-default" >
+                    <div class="md-ripple">
+                      <div class="md-button-content"><b>Simple</b></div>
+                        <span></span>
+                    </div>
+                   </md-button>
+                   <br>
+                   <md-button type="button" :href="'#/reservaMultiple'" class="md-primary md-wd md-sm md-theme-default" >
+                      <div class="md-ripple">
+                         <div class="md-button-content"><b>Múltiple</b></div>
+                         <span></span>
+                      </div>
+                  </md-button>
+                  <br>
+                  <md-button type="button" :href="'#/reservaEntradas'" class="md-primary md-wd md-sm md-theme-default" >
+                      <div class="md-ripple">
+                         <div class="md-button-content"><b> Múltiples Entradas</b></div>
+                         <span></span>
+                      </div>
+                  </md-button>
+              </div>
+          </div>
+      </md-card-content>
+
+    </md-card>
+
+    <md-card>
+        <md-card-header>
+          <div class="md-title">Editar Reserva</div>
+        </md-card-header>
+
+        <md-card-content>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea, nostrum odio. Dolores, sed accusantium quasi non.
+
+         <div class="md-layout-item md-small-size-100 md-size-100">
+          <md-field>
+            <label>Tipo de reserva</label>
+            <md-input v-model="tipo_reserva" type="text"></md-input>
+          </md-field>
+        </div>
+        <div class="md-layout-item md-small-size-100 md-size-100">
+          <md-field>
+            <label>ID reserva</label>
+            <md-input v-model="id_reserva" type="text"></md-input>
+          </md-field>
+        </div>
+        </md-card-content>
+
+        <md-card-actions>
+          <md-button type="button" :href="'#/modificarReserva'" >Editar</md-button>
+        </md-card-actions>
+    </md-card>
+
+    <md-card >
+        <md-card-header>
+          <div class="md-title">Eliminar Reserva</div>
+        </md-card-header>
+
+        <md-card-content>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea, nostrum odio. Dolores, sed accusantium quasi non.
+          <div class="md-layout-item md-small-size-100 md-size-100">
+            <md-field>
+              <label>ID reserva</label>
+              <md-input v-model="id_reserva" type="text"></md-input>
+            </md-field>
+          </div>
+        </md-card-content>
+
+        <md-card-actions>
+          <md-button>Eliminar</md-button>
+        </md-card-actions>
+    </md-card>
+
+  </div>
 </template>
 
 
@@ -52,7 +103,9 @@ export default{
 export default{
   data () {
     return {
-      datos: []
+      datos: [],
+      id_reserva: null,
+      tipo_reserva: null
     }
   },
   mounted: function () {
@@ -79,5 +132,5 @@ export default{
 
 h2.title{
   text-align:center;
-}   
+}  
 </style>

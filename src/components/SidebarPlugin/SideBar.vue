@@ -8,7 +8,7 @@
 
       <a href="#" target="_blank" class="simple-text logo-normal">
         {{title}}
-
+        
       </a>
     </div>
     <div class="sidebar-wrapper">
@@ -52,7 +52,7 @@ export default{
       type: String,
       default: 'green',
       validator: (value) => {
-        let acceptedValues = ['', 'purple', 'blue', 'green', 'orange', 'red']
+        let acceptedValues = ['grey', 'purple', 'blue', 'green', 'orange', 'red']
         return acceptedValues.indexOf(value) !== -1
       }
     },

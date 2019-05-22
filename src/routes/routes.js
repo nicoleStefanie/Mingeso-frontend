@@ -1,4 +1,4 @@
-// No pescar
+/* No pescar */
 import Dashboard from '@/pages/Dashboard.vue'
 import UserProfile from '@/pages/UserProfile.vue'
 import TableList from '@/pages/cuenta/TableList.vue'
@@ -15,7 +15,9 @@ import Reservas from '@/pages/Reservas.vue'
 import ReservaSimple from '@/pages/ReservaSimple.vue'
 import ReservaMultiple from '@/pages/ReservaMultiple.vue'
 import ReservaEntradas from '@/pages/ReservaEntradas.vue'
-import Modificar from '@/pages/Modificar.vue'
+import ModificarReservaSimple from '@/pages/ModificarSimple.vue'
+import ModificarReservaEntradas from '@/pages/ModificarEntradas.vue'
+import ModificarReservaMultiple from '@/pages/ModificarMultiple.vue'
 
 /*##############################################################*/ 
 
@@ -42,9 +44,19 @@ const routes = [
         component: ReservaEntradas
       },
       {
-        path: 'modificarReserva',
-        name: 'Modificar',
-        component: Modificar
+        path: 'modificarReservaSimple',
+        name: 'ModificarReservaSimple',
+        component: ModificarReservaSimple
+      },
+      {
+        path: 'modificarReservaMultiple',
+        name: 'ModificarReservaMultiple',
+        component: ModificarReservaMultiple
+      },
+      {
+        path: 'modificarReservaEntradas',
+        name: 'ModificarReservaEntradas',
+        component: ModificarReservaEntradas
       },
       {
         path: 'reservas',

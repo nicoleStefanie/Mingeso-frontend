@@ -1,72 +1,208 @@
 <template>
   <div class="container">
         <md-card>
-             <!--<img  class="img" :src="require('@/assets/img/moneda.jpg')">-->
           <md-card-header data-background-color="green" style="position: relative;">
-            <h2 class="title">Visualizar el Rack</h2>
+            <h3 class="title">Visualizar el Rack</h3>
           </md-card-header>
             <md-card-content>
               <div class="md-layout">
-                <div>
-                  asdjkasndanksdkj
-                  <timeline :data="this.grafico_habitaciones" :colors="['#b00']"></timeline>
-                </div>
+                <div id="chartdiv"></div>
               </div>
-
             </md-card-content>
         </md-card>
     </div>
 </template>
 
-<script>
-export default {
 
+<script>
+/* eslint-disable */ 
+export default {
         data(){
             return{
-
-                reservas: [
-                  {
-                    id: 1,
-                    fecha_inicio: '2019-01-23',
-                    fecha_termino: '2019-01-28',
-                    habitacion: '123',
-
-                  },
-                  {
-                    id: 2,
-                    fecha_inicio: '2019-02-15',
-                    fecha_termino: '2019-02-18',
-                    habitacion: '234',
-
-                  },
-                  {
-                    id: 3,
-                    fecha_inicio: '2019-03-23',
-                    fecha_termino: '2019-03-30',
-                    habitacion: '345',
-
-                  },
-                ],
-
-                grafico_habitaciones: [],
+                reservas: [{
+                    "habitacion": "12",
+                    "segments": [{
+                      "id":"1",
+                      "start": "2016-01-01",
+                      "end": "2016-01-14",
+                      "color": "#b9783f",
+                      "cliente": "Nicole",
+                      "tipo_reserva": "simple"
+                    }, {
+                      "id":"2",
+                      "start": "2016-01-16",
+                      "end": "2016-01-27",
+                      "cliente": "Javiera",
+                      "tipo_reserva": "simple"
+                    }, {
+                      "id":"3",
+                      "start": "2016-02-05",
+                      "end": "2016-04-18",
+                      "cliente": "Javiera",
+                      "tipo_reserva": "multiple"
+                    }, {
+                       "id":"4",
+                      "start": "2016-04-18",
+                      "end": "2016-04-30",
+                      "cliente": "Liliana",
+                      "tipo_reserva": "simple"
+                    }]
+                  }, {
+                    "habitacion": "321",
+                    "segments": [{
+                      "id":"5",                      
+                      "start": "2016-01-08",
+                      "end": "2016-01-10",
+                      "color": "#cc4748",
+                      "cliente": "Liliana",
+                      "tipo_reserva": "simple"
+                    }, {
+                      "id":"6",
+                      "start": "2016-01-12",
+                      "end": "2016-01-15",
+                      "cliente": "Nicole",
+                      "tipo_reserva": "multiple"
+                    }, {
+                      "id":"7",
+                      "start": "2016-01-16",
+                      "end": "2016-02-05",
+                      "cliente": "Javiera",
+                      "tipo_reserva": "entradas"
+                    }]
+                  }, {
+                    "habitacion": "23",
+                    "segments": [{
+                      "id":"8",
+                      "start": "2016-01-02",
+                      "end": "2016-01-08",
+                      "color": "#cd82ad",
+                      "cliente": "Javiera",
+                      "tipo_reserva": "simple"
+                    }, {
+                      "id":"9",
+                      "start": "2016-01-08",
+                      "end": "2016-01-16",
+                      "cliente": "Nicole",
+                      "tipo_reserva": "multiple"
+                    }, {
+                      "id":"10",
+                      "start": "2016-01-19",
+                      "end": "2016-03-01",
+                      "cliente": "Liliana",
+                      "tipo_reserva": "entradas"
+                    }]
+                  }, {
+                    "habitacion": "23",
+                    "segments": [{
+                      "id":"11",
+                      "start": "2016-01-01",
+                      "end": "2016-01-19",
+                      "color": "#2f4074",
+                      "cliente": "Javiera",
+                      "tipo_reserva": "simple"
+                    }, {
+                      "id":"12",                      
+                      "start": "2016-01-19",
+                      "end": "2016-02-03",
+                      "cliente": "Nicole",
+                      "tipo_reserva":"multiple"
+                    }]
+                  }, {
+                    "habitacion": "654",
+                    "segments": [{
+                      "id":"13",
+                      "start": "2016-01-01",
+                      "end": "2016-01-12",
+                      "color": "#448e4d",
+                      "cliente": "Nicole",
+                      "tipo_reserva": "simple"
+                    }, {
+                      "id":"14",
+                      "start": "2016-01-12",
+                      "end": "2016-01-19",
+                      "cliente": "Javiera",
+                      "tipo_reserva": "simple"
+                    }, {
+                      "id":"15",
+                      "start": "2016-01-19",
+                      "end": "2016-03-01",
+                      "cliente": "Liliana",
+                      "tipo_reserva": "simple"
+                    }]
+                  }],
             }
         },
-        methods: {
-
-            crearGrafico(){
-
-              for (let i = 0; i < this.reservas.length; i++) {
-                this.grafico_habitaciones.push([this.reservas[i].habitacion , this.reservas[i].fecha_inicio , this.reservas[i].fecha_termino]);
-                }
-            },
-
-        },
-        mounted(){
+        mounted: function(){
           this.crearGrafico();
+        },
+        methods: {
+            crearGrafico: function(){
+                var color_simple = "#b9783f";
+                var color_multiple = "#cc4748";
+                var color_entradas = "#cd82ad";
+                var chart = AmCharts.makeChart("chartdiv", {
+                  "type": "gantt",
+                  "theme": "light",
+                  "marginRight": 70,
+                  "period": "DD",
+                  "dataDateFormat": "YYYY-MM-DD",
+                  "columnWidth": 0.5,
+                  "valueAxis": {
+                    "type": "date"
+                  },
+                  "brightnessStep": 7,
+                  "graph": {
+                    "fillAlphas": 1,
+                    "lineAlpha": 1,
+                    "lineColor": "#fff",
+                    "fillAlphas": 0.85,
+                    "balloonText": "<b>[[cliente]] con id: [[id]]</b>:<br /> Desde [[open]] hasta [[value]]"
+                  },
+                  "rotate": true,
+                  "categoryField": "habitacion",
+                  "segmentsField": "segments",
+                  "colorField": "color",
+                  "startDateField": "start",
+                  "endDateField": "end",
+                  "dataProvider": this.reservas,
+                  "valueScrollbar": {
+                    "autoGridCount": true
+                  },
+                  "chartCursor": {
+                    "cursorColor": "#55bb76",
+                    "valueBalloonsEnabled": false,
+                    "cursorAlpha": 0,
+                    "valueLineAlpha": 0.5,
+                    "valueLineBalloonEnabled": true,
+                    "valueLineEnabled": true,
+                    "zoomable": false,
+                    "valueZoomable": true
+                  },
+                  "legend": {
+                    "data": [{
+                      "title": "Reserva Simple",
+                      "color": "#b9783f"
+                    }, {
+                      "title": "Reserva Múltiple",
+                      "color": "#cc4748"
+                    }, {
+                      "title": "Reserva varias entradas",
+                      "color": "#cd82ad"
+                    }]
+                  },
+                  "export": {
+                    "enabled": true
+                  }
+                });
+            }
         },
     }
 </script>
 
-<style>
 
+<style>
+#chartdiv {
+  width: 100%;
+  height: 500px;
+}
 </style>

@@ -2,8 +2,8 @@
   <form>
     <md-card>
       <md-card-header :data-background-color="dataBackgroundColor">
-        <h4 class="title">Modificar Reserva</h4>
-        <p class="category">Completar con los datos</p>
+        <h4 class="title">Editar Reserva Simple</h4>
+        <p class="category">Completar con los campos que quiere modificar</p>
       </md-card-header>
 
       <md-card-content>
@@ -58,7 +58,7 @@
           </div>
 
           <div class="md-layout-item md-size-100 text-right">
-            <md-button class="md-raised md-success">Crear Reserva</md-button>
+            <md-button class="md-raised md-success">Modificar Reserva</md-button>
           </div>
         </div>
       </md-card-content>

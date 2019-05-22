@@ -25,7 +25,7 @@
                   <br>
                   <md-button type="button" :href="'#/reservaEntradas'" class="md-primary md-wd md-sm md-theme-default" >
                       <div class="md-ripple">
-                         <div class="md-button-content"><b> Múltiples Entradas</b></div>
+                         <div class="md-button-content"><b> Varias Entradas</b></div>
                          <span></span>
                       </div>
                   </md-button>
@@ -44,10 +44,17 @@
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea, nostrum odio. Dolores, sed accusantium quasi non.
 
          <div class="md-layout-item md-small-size-100 md-size-100">
-          <md-field>
-            <label>Tipo de reserva</label>
-            <md-input v-model="tipo_reserva" type="text"></md-input>
-          </md-field>
+            <md-field>
+              <label>Tipo de reserva</label>
+      
+                <md-select v-model="tipo_habitacion" name="tipo_reserva" id="tipo_reserva" 
+                placeholder="Tipo de reserva" >
+                  <md-option value="1"> <br>&nbsp;Simple</md-option>
+                  <md-option value="2"> <br>&nbsp;Múltiple</md-option>
+                  <md-option value="3"> <br>&nbsp;Varias entradas</md-option>
+                </md-select>
+
+            </md-field>
         </div>
         <div class="md-layout-item md-small-size-100 md-size-100">
           <md-field>
@@ -58,7 +65,7 @@
         </md-card-content>
 
         <md-card-actions>
-          <md-button type="button" :href="'#/modificarReserva'" >Editar</md-button>
+          <md-button type="button" :href="'#/modificarReservaSimple'" >Editar</md-button>
         </md-card-actions>
     </md-card>
 
@@ -85,7 +92,6 @@
   </div>
 </template>
 
-
 <script>
 export default{
   name: 'Home',
@@ -94,18 +100,12 @@ export default{
       type: String,
       default: ''
     }
-  }
-}
-</script>
-
-
-<script>
-export default{
+  },
   data () {
     return {
       datos: [],
       id_reserva: null,
-      tipo_reserva: null
+      tipo_reserva: null,
     }
   },
   mounted: function () {
@@ -128,9 +128,7 @@ export default{
 }
 </script>
 
-<style>
 
-h2.title{
-  text-align:center;
-}  
+<style>
+  
 </style>

@@ -2,7 +2,7 @@
   <form>
     <md-card>
       <md-card-header :data-background-color="dataBackgroundColor">
-        <h4 class="title">Crear Reserva</h4>
+        <h4 class="title">Crear Reserva en grupos</h4>
         <p class="category">Completar con los datos</p>
       </md-card-header>
 
@@ -35,17 +35,8 @@
 
           <div class="md-layout-item md-small-size-100 md-size-30">
             <md-field>
-              <label>Habitación</label>
-      
-                <md-select v-model="tipo_habitacion" name="tipo_habitacion" id="tipo_habitacion" 
-                placeholder="Habitación" >
-                  <md-option value="1"> <br>&nbsp;Opción 1</md-option>
-                  <md-option value="2"> <br>&nbsp;Opción 2</md-option>
-                  <md-option value="3"> <br>&nbsp;Opción 3</md-option>
-                  <md-option value="4"> <br>&nbsp;Opción 4</md-option>
-                  <md-option value="5"> <br>&nbsp;Opción 5</md-option>
-                </md-select>
-
+              <label>Número Reservas</label>
+              <md-input v-model="number" type="number"></md-input>
             </md-field>
           </div>
           
@@ -85,7 +76,6 @@ export default {
   }
 };
 </script>
-
 
 <style>
 

@@ -2,8 +2,8 @@
   <form>
     <md-card>
       <md-card-header :data-background-color="dataBackgroundColor">
-        <h4 class="title">Crear Reserva con varias Entradas</h4>
-        <p class="category">Completar con los datos</p>
+        <h4 class="title">Modificar Reserva en grupo</h4>
+        <p class="category">Completar con los campos que quiere modificar</p>
       </md-card-header>
 
       <md-card-content>

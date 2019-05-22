@@ -2,7 +2,7 @@
   <form>
     <md-card>
       <md-card-header :data-background-color="dataBackgroundColor">
-        <h4 class="title">Crear Reserva</h4>
+        <h4 class="title">Crear Reserva Simple</h4>
         <p class="category">Completar con los datos</p>
       </md-card-header>
 

@@ -18,6 +18,11 @@ import MaterialDashboard from './material-dashboard'
 
 import Chartist from 'chartist'
 
+
+import VueChartkick from 'vue-chartkick'
+import Chart from 'chart.js'
+
+
 // configure router
 const router = new VueRouter({
   routes, // short for routes: ro utes

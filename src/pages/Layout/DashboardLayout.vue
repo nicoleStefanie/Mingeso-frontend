@@ -20,7 +20,7 @@
       </sidebar-link>
 
       <sidebar-link to="/habitaciones">
-        <md-icon>pie_chart</md-icon>
+        <md-icon>meeting_room</md-icon>
         <p>Habitaciones</p>
       </sidebar-link>
 

@@ -16,13 +16,14 @@
             </div>
               <md-card-actions>
               <div  v-if="selected !== null">
-                <md-button type="button" :href="'#/modificarHabitaciones/'+ this.habitacion" >Editar</md-button>
+                <md-button type="button" :href="'#/modificarHabitacion/'+ this.habitacion" >Editar</md-button>
               </div>
               </md-card-actions>
             </md-card-content>
             <md-card-actions>
             <div>
-              <md-button type="button" :href="'#/agregarHabitaciones'" >Agregar</md-button>
+              <md-button type="button" :href="'#/agregarHabitacion'" >Agregar Habitacion</md-button>
+              <md-button type="button" :href="'#/eliminarHabitacion'" >Deshabilitar Habitacion</md-button>
             </div>
             </md-card-actions>
         </md-card>

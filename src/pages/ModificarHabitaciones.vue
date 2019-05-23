@@ -2,7 +2,7 @@
   <form>
     <md-card>
       <md-card-header :data-background-color="dataBackgroundColor">
-        <h4 class="title">Modificar Habitación con ID {{this.$route.params.id}} </h4>
+        <h4 class="title">Modificar Habitación N° {{this.$route.params.id}} </h4>
         <p class="category">Completar con los campos que quiere modificar</p>
       </md-card-header>
 

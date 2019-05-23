@@ -21,6 +21,7 @@ import ModificarReservaMultiple from '@/pages/ModificarMultiple.vue'
 import Habitaciones from '@/pages/Habitaciones.vue'
 import ModificarHabitaciones from '@/pages/ModificarHabitaciones.vue'
 import AgregarHabitaciones from '@/pages/AgregarHabitaciones.vue'
+import EliminarHabitacion from '@/pages/EliminarHabitacion.vue'
 
 /*##############################################################*/
 
@@ -87,15 +88,21 @@ const routes = [
         component: Habitaciones
       },
       {
-        path: 'modificarHabitaciones/:id',
-        name: 'modificarHabitaciones',
+        path: 'modificarHabitacion/:id',
+        name: 'modificarHabitacion',
         component: ModificarHabitaciones
 
       },
       {
-        path: 'agregarHabitaciones',
-        name: 'agregarHabitaciones',
+        path: 'agregarHabitacion',
+        name: 'agregarHabitacion',
         component: AgregarHabitaciones
+
+      },
+      {
+        path: 'eliminarHabitacion',
+        name: 'eliminarHabitacion',
+        component: EliminarHabitacion
 
       },
     ]

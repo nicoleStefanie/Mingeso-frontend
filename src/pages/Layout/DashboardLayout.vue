@@ -10,18 +10,23 @@
       </sidebar-link>
 
       <sidebar-link to="/reservas">
-        <md-icon>pie_chart</md-icon>
+        <md-icon>assignment</md-icon>
         <p>Reservas</p>
       </sidebar-link>
 
       <sidebar-link to="/rack">
-        <md-icon>pie_chart</md-icon>
+        <md-icon>notes</md-icon>
         <p>Rack</p>
       </sidebar-link>
 
       <sidebar-link to="/habitaciones">
         <md-icon>meeting_room</md-icon>
         <p>Habitaciones</p>
+      </sidebar-link>
+
+      <sidebar-link to="/empleados">
+        <md-icon>people</md-icon>
+        <p>Empleados</p>
       </sidebar-link>
 
     </side-bar>

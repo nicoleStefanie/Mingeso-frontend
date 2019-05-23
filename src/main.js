@@ -37,6 +37,13 @@ Vue.use(GlobalComponents)
 Vue.use(GlobalDirectives)
 Vue.use(Notifications)
 
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+import BootstrapVue from 'bootstrap-vue'
+
+Vue.use(BootstrapVue)
+
 // global library setup
 Object.defineProperty(Vue.prototype, '$Chartist', {
   get () {

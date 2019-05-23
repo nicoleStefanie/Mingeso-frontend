@@ -9,7 +9,7 @@ import DashboardLayout from '@/pages/Layout/DashboardLayout.vue'
 
 /*##############################################################*/
 import Rack from '@/pages/Rack.vue'
-import Home from '@/pages/Home.vue' 
+import Home from '@/pages/Home.vue'
 import Login from '@/pages/Login.vue'
 import Reservas from '@/pages/Reservas.vue'
 import ReservaSimple from '@/pages/ReservaSimple.vue'
@@ -18,8 +18,10 @@ import ReservaEntradas from '@/pages/ReservaEntradas.vue'
 import ModificarReservaSimple from '@/pages/ModificarSimple.vue'
 import ModificarReservaEntradas from '@/pages/ModificarEntradas.vue'
 import ModificarReservaMultiple from '@/pages/ModificarMultiple.vue'
+import Habitaciones from '@/pages/Habitaciones.vue'
+import ModificarHabitaciones from '@/pages/ModificarHabitaciones.vue'
 
-/*##############################################################*/ 
+/*##############################################################*/
 
 const routes = [
 
@@ -72,11 +74,22 @@ const routes = [
         path: 'login',
         name: 'Login',
         component: Login
-      },        
+      },
       {
         path: 'Home',
         name: 'Home',
         component: Home
+      },
+      {
+        path: 'habitaciones',
+        name: 'Habitaciones',
+        component: Habitaciones
+      },
+      {
+        path: 'modificarHabitaciones/:id',
+        name: 'modificarHabitaciones',
+        component: ModificarHabitaciones
+
       },
     ]
   }

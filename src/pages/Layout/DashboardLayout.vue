@@ -19,6 +19,11 @@
         <p>Rack</p>
       </sidebar-link>
 
+      <sidebar-link to="/habitaciones">
+        <md-icon>pie_chart</md-icon>
+        <p>Habitaciones</p>
+      </sidebar-link>
+
     </side-bar>
 
     <div class="main-panel">

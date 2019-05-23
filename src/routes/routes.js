@@ -20,6 +20,7 @@ import ModificarReservaEntradas from '@/pages/ModificarEntradas.vue'
 import ModificarReservaMultiple from '@/pages/ModificarMultiple.vue'
 import Habitaciones from '@/pages/Habitaciones.vue'
 import ModificarHabitaciones from '@/pages/ModificarHabitaciones.vue'
+import AgregarHabitaciones from '@/pages/AgregarHabitaciones.vue'
 
 /*##############################################################*/
 
@@ -89,6 +90,12 @@ const routes = [
         path: 'modificarHabitaciones/:id',
         name: 'modificarHabitaciones',
         component: ModificarHabitaciones
+
+      },
+      {
+        path: 'agregarHabitaciones',
+        name: 'agregarHabitaciones',
+        component: AgregarHabitaciones
 
       },
     ]

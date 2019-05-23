@@ -20,6 +20,11 @@
               </div>
               </md-card-actions>
             </md-card-content>
+            <md-card-actions>
+            <div>
+              <md-button type="button" :href="'#/agregarHabitaciones'" >Agregar</md-button>
+            </div>
+            </md-card-actions>
         </md-card>
     </div>
 </template>

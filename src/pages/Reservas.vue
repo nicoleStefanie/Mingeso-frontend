@@ -7,21 +7,21 @@
       <md-card-content>
          <div class="md-layout-item md-size-100">
            <div class="places-buttons text-center">
-                  <md-button type="button"  :href="'#/reservaSimple'" class=" md-primary md-wd md-sm md-theme-default" >
+                  <md-button type="button"  :href="'#/reservaSimple'" class=" md-primary md-wd md-sm md-theme-default">
                     <div class="md-ripple">
                       <div class="md-button-content"><b>Simple</b></div>
                         <span></span>
                     </div>
                    </md-button>
                    <br>
-                   <md-button type="button" :href="'#/reservaMultiple'" class="md-primary md-wd md-sm md-theme-default" >
+                   <md-button type="button" :href="'#/reservaMultiple'" class="md-primary md-wd md-sm md-theme-default">
                       <div class="md-ripple">
                          <div class="md-button-content"><b>Múltiple</b></div>
                          <span></span>
                       </div>
                   </md-button>
                   <br>
-                  <md-button type="button" :href="'#/reservaEntradas'" class="md-primary md-wd md-sm md-theme-default" >
+                  <md-button type="button" :href="'#/reservaEntradas'" class="md-primary md-wd md-sm md-theme-default">
                       <div class="md-ripple">
                          <div class="md-button-content"><b> Varias Entradas</b></div>
                          <span></span>
@@ -36,27 +36,14 @@
           <div class="md-title">Editar Reserva</div>
         </md-card-header>
         <md-card-content>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea, nostrum odio. Dolores, sed accusantium quasi non.
+        En esta sección se puede editar la información de una reserva. 
          <div class="md-layout-item md-small-size-100 md-size-100">
-            <md-field>
-              <label>Tipo de reserva</label>
-              <md-select v-model="tipo_habitacion" name="tipo_reserva" id="tipo_reserva" placeholder="Tipo de reserva">
-                  <md-option value="1"> <br>&nbsp;Simple</md-option>
-                  <md-option value="2"> <br>&nbsp;Múltiple</md-option>
-                  <md-option value="3"> <br>&nbsp;Varias entradas</md-option>
-                </md-select>
-
-            </md-field>
         </div>
         <div class="md-layout-item md-small-size-100 md-size-100">
-          <md-field>
-            <label>ID reserva</label>
-            <md-input v-model="id_reserva" type="text"></md-input>
-          </md-field>
         </div>
         </md-card-content>
         <md-card-actions>
-          <md-button type="button" :href="'#/modificarReservaSimple'" >Editar</md-button>
+          <md-button type="button" :href="'#/modificarReservaSimple'">Editar Reserva</md-button>
         </md-card-actions>
     </md-card>
     <md-card >
@@ -64,16 +51,12 @@
           <div class="md-title">Eliminar Reserva</div>
         </md-card-header>
         <md-card-content>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea, nostrum odio. Dolores, sed accusantium quasi non.
+          En esta sección se puede borrar por completo una reserva.
           <div class="md-layout-item md-small-size-100 md-size-100">
-            <md-field>
-              <label>ID reserva</label>
-              <md-input v-model="id_reserva" type="text"></md-input>
-            </md-field>
           </div>
         </md-card-content>
         <md-card-actions>
-          <md-button>Eliminar</md-button>
+          <md-button type="button" :href="'#/vistaEliminar'">Eliminar Reserva</md-button>
         </md-card-actions>
     </md-card>
   </div>

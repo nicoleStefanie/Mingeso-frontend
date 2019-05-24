@@ -15,6 +15,7 @@ import Reservas from '@/pages/Reservas.vue'
 import ReservaSimple from '@/pages/ReservaSimple.vue'
 import ReservaMultiple from '@/pages/ReservaMultiple.vue'
 import ReservaEntradas from '@/pages/ReservaEntradas.vue'
+import VistaEliminar from '@/pages/VistaEliminar.vue'
 import ModificarReservaSimple from '@/pages/ModificarSimple.vue'
 import ModificarReservaEntradas from '@/pages/ModificarEntradas.vue'
 import ModificarReservaMultiple from '@/pages/ModificarMultiple.vue'
@@ -69,6 +70,11 @@ const routes = [
         path: 'reservas',
         name: 'Reservas',
         component: Reservas
+      },
+      {
+        path: 'vistaEliminar',
+        name: 'VistaEliminar',
+        component: VistaEliminar
       },
       {
         path: 'rack',

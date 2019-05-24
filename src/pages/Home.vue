@@ -7,8 +7,7 @@
           <md-card-content>
              <div class="md-card-avatar">
                    <div class="md-layout-item md-size-100">
-                        <div class="places-buttons text-center">
-                          </div>
+                        <div class="places-buttons text-center"></div>
                   </div>
              </div>
           </md-card-content>
@@ -17,6 +16,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 export default{
   name: 'Home',
   props: {

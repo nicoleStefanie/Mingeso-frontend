@@ -5,7 +5,6 @@
         <h4 class="title">Eliminar Empleado</h4>
         <p class="category">Indique el ID del empleado a eliminar</p>
       </md-card-header>
-
       <md-card-content>
         <div class="md-layout">
 
@@ -15,7 +14,6 @@
               <md-input v-model="id_empleado" type="text"></md-input>
             </md-field>
           </div>
-
           <div class="md-layout-item md-size-100 text-right">
             <md-button class="md-raised md-success">Eliminar Empleado</md-button>
           </div>
@@ -26,7 +24,7 @@
 </template>
 
 <script>
-
+/* eslint-disable */
 </script>
 
 

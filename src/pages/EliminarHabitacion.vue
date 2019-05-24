@@ -5,17 +5,14 @@
         <h4 class="title">Deshabilitar Habitación</h4>
         <p class="category">Indique el N° de la habitacion que desea a Deshabilitar</p>
       </md-card-header>
-
       <md-card-content>
         <div class="md-layout">
-
           <div class="md-layout-item md-small-size-100 md-size-50">
             <md-field>
               <label>N° Habitación</label>
               <md-input v-model="id_habitacion" type="text"></md-input>
             </md-field>
           </div>
-
           <div class="md-layout-item md-size-100 text-right">
             <md-button class="md-raised md-success">Deshabilitar Habitación</md-button>
           </div>
@@ -26,7 +23,7 @@
 </template>
 
 <script>
-
+/* eslint-disable */
 </script>
 
 

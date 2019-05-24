@@ -5,41 +5,34 @@
         <h4 class="title">Crear Reserva en grupos</h4>
         <p class="category">Completar con los datos</p>
       </md-card-header>
-
       <md-card-content>
         <div class="md-layout">
-          
           <div class="md-layout-item md-small-size-100 md-size-50">
             <md-field>
               <label>Nombre</label>
               <md-input v-model="firstname" type="text"></md-input>
             </md-field>
           </div>
-          
           <div class="md-layout-item md-small-size-100 md-size-50">
             <md-field>
               <label>Apellido</label>
               <md-input v-model="lastname" type="text"></md-input>
             </md-field>
           </div>
-          
           <div class="md-layout-item md-small-size-100 md-size-50">
               <label>Fecha inicio</label>
               <md-datepicker v-model="selectedLabeled" :md-disabled-dates="disabledDates"></md-datepicker>
           </div>
-          
           <div class="md-layout-item md-small-size-100 md-size-50">
               <label>Fecha término</label>
               <md-datepicker v-model="selectedLabeled"></md-datepicker>
           </div>
-
           <div class="md-layout-item md-small-size-100 md-size-30">
             <md-field>
               <label>Número Reservas</label>
               <md-input v-model="number" type="number"></md-input>
             </md-field>
           </div>
-          
           <div class="md-layout-item md-small-size-100 md-size-30">
             <md-field>
               <label>Precio Noche </label>
@@ -47,7 +40,6 @@
                 <md-icon>attach_money</md-icon>
             </md-field>
           </div>
-
           <div class="md-layout-item md-size-100 text-right">
             <md-button class="md-raised md-success">Crear Reserva</md-button>
           </div>
@@ -58,6 +50,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 export default {
   name: "Home",
   props: {

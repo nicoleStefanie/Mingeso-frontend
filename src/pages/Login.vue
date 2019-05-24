@@ -1,5 +1,4 @@
-  
-<template>
+  <template>
   <form>
     <md-card>
       <md-card-header>
@@ -13,7 +12,6 @@
               <md-input v-model="username" type="text" @keyup="username = $event.target.value"></md-input>
             </md-field>
           </div>
-
           <div class="md-layout-item md-small-size-100 md-size-51">
             <md-field>
               <label>Contraseña</label>
@@ -30,6 +28,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 export default{
   data () {
     return {

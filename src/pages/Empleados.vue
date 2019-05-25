@@ -2,7 +2,7 @@
   <div class="container">
         <md-card>
           <md-card-header data-background-color="green" style="position: relative;">
-            <h3 class="title">Empleados</h3>
+            <h3 class="title">Usuarios</h3>
           </md-card-header>
             <md-card-content>
             <div>
@@ -17,13 +17,13 @@
               <md-card-actions>
               <div  v-if="selected !== null">
                 <md-button type="button" :href="'#/modificarEmpleado/'+ this.id_empleado" >Editar</md-button>
+                  <md-button class="md-raised md-success">Eliminar Empleado</md-button>
               </div>
               </md-card-actions>
             </md-card-content>
             <md-card-actions>
             <div>
               <md-button type="button" :href="'#/agregarEmpleado'" >Agregar Empleado</md-button>
-              <md-button type="button" :href="'#/eliminarEmpleado'" >Eliminar Empleado</md-button>
             </div>
             </md-card-actions>
         </md-card>

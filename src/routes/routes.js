@@ -22,11 +22,10 @@ import ModificarReservaMultiple from '@/pages/ModificarMultiple.vue'
 import Habitaciones from '@/pages/Habitaciones.vue'
 import ModificarHabitaciones from '@/pages/ModificarHabitaciones.vue'
 import AgregarHabitaciones from '@/pages/AgregarHabitaciones.vue'
-import EliminarHabitacion from '@/pages/EliminarHabitacion.vue'
 import Empleados from '@/pages/Empleados.vue'
 import ModificarEmpleado from '@/pages/ModificarEmpleado.vue'
 import AgregarEmpleado from '@/pages/AgregarEmpleado.vue'
-import EliminarEmpleado from '@/pages/EliminarEmpleado.vue'
+
 /*##############################################################*/
 
 const routes = [
@@ -108,12 +107,7 @@ const routes = [
         component: AgregarHabitaciones
 
       },
-      {
-        path: 'eliminarHabitacion',
-        name: 'eliminarHabitacion',
-        component: EliminarHabitacion
 
-      },
       {
         path: 'empleados',
         name: 'empleados',
@@ -130,12 +124,6 @@ const routes = [
         path: 'agregarEmpleado',
         name: 'agregarEmpleado',
         component: AgregarEmpleado
-
-      },
-      {
-        path: 'eliminarEmpleado',
-        name: 'eliminarEmpleado',
-        component: EliminarEmpleado
 
       },
     ]

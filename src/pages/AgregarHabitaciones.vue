@@ -9,37 +9,25 @@
         <div class="md-layout">
           <div class="md-layout-item md-small-size-100 md-size-50">
             <md-field>
-              <label>N° de habitacion</label>
-              <md-input v-model="nroHabitacion" type="text"></md-input>
-            </md-field>
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-50">
-            <md-field>
               <label>Tipo</label>
               <md-input v-model="tipo" type="text"></md-input>
             </md-field>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-50">
             <md-field>
-              <label>Capacidad niños</label>
-              <md-input v-model="capacidadNinos" type="text"></md-input>
-            </md-field>
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-50">
-            <md-field>
-              <label>Capacidad Adultos</label>
-              <md-input v-model="capacidadAdultos" type="text"></md-input>
+              <label>Estado</label>
+              <md-input v-model="estado" type="text"></md-input>
             </md-field>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-30">
             <md-field>
-              <label>Precio Noche </label>
-                <md-input v-model="precioNoche"></md-input>
+              <label>Precio Noche</label>
+                <md-input v-model="precio" type="number" min="100000"></md-input>
                 <md-icon>attach_money</md-icon>
             </md-field>
           </div>
           <div class="md-layout-item md-size-100 text-right">
-            <md-button class="md-raised md-success">Agregar Habitación</md-button>
+            <md-button class="md-raised md-success" @click.native="verificar()">Agregar Habitación</md-button>
           </div>
         </div>
       </md-card-content>
@@ -49,6 +37,31 @@
 
 <script>
 /* eslint-disable */
+import Datepicker from 'vuejs-datepicker'
+var hoy = new Date()
+export default {
+  name: 'simple',
+  components: {
+    Datepicker
+  },
+    data(){ 
+      return {
+        tipo: null,
+        precio: null,
+        estado: null,
+      }
+  },
+  methods:{
+    verificar: function(){
+      if(this.tipo != null && this.precio != null && this.estado != null){
+        alert('Todos los campos estan llenos');
+      }
+      else{
+        alert('Se requiere completar todos los campos.')
+      }
+    } 
+  },
+};
 </script>
 
 

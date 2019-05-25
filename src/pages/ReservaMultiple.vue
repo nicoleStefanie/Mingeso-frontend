@@ -2,7 +2,7 @@
   <form id="simple">
     <md-card>
       <md-card-header :data-background-color="dataBackgroundColor">
-        <h4 class="title">Crear Reserva Múltiple</h4>
+        <h4 class="title">Crear Reserva Simple</h4>
         <p class="category">Completar con los datos</p>
       </md-card-header>
       <md-card-content>
@@ -22,31 +22,32 @@
               <p v-if="apellido">{{ apellido }}</p><!--tengo el valor de la fecha-->
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33">
-              <label>Check In</label>
-              <datepicker :disabledDates="disabled" v-model="checkin" type="date"></datepicker>
-                <p v-if="checkin">{{ checkin }}</p><!--tengo el valor de la fecha-->
+              <label>Fecha Inicio</label>
+              <datepicker :disabledDates="disabled" v-model="inicio" type="date"></datepicker>
+                <p v-if="inicio">{{ inicio }}</p><!--tengo el valor de la fecha-->
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33">
-              <label>Chek Out</label>
-              <datepicker :disabledDates="disabledDates" v-model="checkout" type="date"></datepicker>
-                <p v-if="checkout">{{ checkout }}</p><!--tengo el valor de la fecha-->
+              <label>Fecha Término</label>
+              <datepicker :disabledDates="disabledDates" v-model="termino" type="date"></datepicker>
+                <p v-if="termino">{{ termino }}</p><!--tengo el valor de la fecha-->
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field>
               <label>Habitación</label>
                 <md-select v-model="habitacion" placeholder="Habitación">
-                  <md-option value="simple"> <br>&nbsp;Simple &nbsp;$ precio</md-option>
-                  <md-option value="doble"> <br>&nbsp;Doble&nbsp;$ precio</md-option>
-                  <md-option value="triple"> <br>&nbsp;Triple&nbsp; $ precio</md-option>
-                  <md-option value="cuadruple"> <br>&nbsp;Cuádruple&nbsp; $precio</md-option>
-                  <md-option value="matrimonial"> <br>&nbsp;Matrimonial&nbsp; $precio</md-option>
+                  <md-option value="simple"> <br>&nbsp;Simple</md-option>
+                  <md-option value="doble"> <br>&nbsp;Doble</md-option>
+                  <md-option value="triple"> <br>&nbsp;Triple</md-option>
+                  <md-option value="cuadruple"> <br>&nbsp;Cuádruple</md-option>
+                  <md-option value="matrimonial"> <br>&nbsp;Matrimonia</md-option>
                 </md-select>
             </md-field>
+            <p v-if="habitacion">{{ habitacion }}</p><!--tengo el valor de la fecha-->
           </div>
           <div class="md-layout-item md-small-size-100 md-size-30">
           </div>
           <div class="md-layout-item md-size-100 text-right">
-            <md-button class="md-raised md-success">Crear Reserva</md-button>
+            <md-button class="md-raised md-success" @click.native="verificar()">Crear Reserva</md-button>
           </div>
         </div>
       </md-card-content>
@@ -68,8 +69,9 @@ export default {
         disabled: {},
         nombre: null,
         apellido: null,
-        descuento: null,
         habitacion: null,
+        inicio: null,
+        termino: null,
         disabled: {
           ranges: [{
                 from: new Date(2016, 11, 25),
@@ -94,7 +96,15 @@ export default {
       return date.getFullYear() + '-' + 
       	(date.getMonth() +1) + '-' + 
         date.getDate();
-    }, 
+    },
+    verificar: function(){
+      if(this.nombre != null && this.apellido != null && this.habitacion != null && this.termino != null && this.inicio != null){
+        alert('Todos los campos estan llenos');
+      }
+      else{
+        alert('Se requiere completar todos los campos.')
+      }
+    } 
   },
   
 };

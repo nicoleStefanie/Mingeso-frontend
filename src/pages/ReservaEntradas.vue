@@ -96,7 +96,13 @@ export default {
         date.getDate();
     }, 
   },
-  
+    verificar: function(){
+  if(this.nombre != null && this.apellido != null && this.habitacion != null && this.termino != null && this.inicio != null){        alert('Todos los campos estan llenos');
+      }
+    else{
+      alert('Se requiere completar todos los campos.')
+    }   
+} 
 };
 </script>
 

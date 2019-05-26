@@ -26,7 +26,7 @@
             </md-field>
           </div>
           <div class="md-layout-item md-size-100 text-right">
-            <md-button class="md-raised md-success">Agregar Empleado</md-button>
+            <md-button class="md-raised md-success" @click.native="verificar()">Agregar Empleado</md-button>
           </div>
         </div>
       </md-card-content>
@@ -36,9 +36,36 @@
 
 <script>
 /* eslint-disable */
+import Datepicker from 'vuejs-datepicker'
+var hoy = new Date()
+export default {
+  name: 'simple',
+  components: {
+    Datepicker
+  },
+    data(){ 
+      return {
+        nombre: null,
+        rol: null,
+        correo: null,
+      }
+  },
+  methods:{
+    verificar: function(){
+      if(this.nombre != null && this.rol != null && this.correo != null){
+        alert('Todos los campos estan llenos');
+      }
+      else{
+        alert('Se requiere completar todos los campos.')
+      }
+    } 
+  },
+  
+};
 </script>
 
 
 <style>
 
 </style>
+

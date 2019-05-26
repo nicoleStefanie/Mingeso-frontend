@@ -36,7 +36,6 @@
 </template>
 
 <script>
-  },
 import axios from 'axios';
 const localhost = 'http://localhost:8060';
 export default {
@@ -83,6 +82,4 @@ export default {
     }
   }
 }
-
-
 </script>

@@ -36,13 +36,8 @@
 
 <script>
 /* eslint-disable */
-import Datepicker from 'vuejs-datepicker'
-var hoy = new Date()
 export default {
   name: 'simple',
-  components: {
-    Datepicker
-  },
     data(){ 
       return {
         nombre: null,

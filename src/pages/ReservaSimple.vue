@@ -10,44 +10,63 @@
           <div class="md-layout-item md-small-size-100 md-size-50">
             <md-field>
               <label>Nombre</label>
-              <md-input v-model="nombre" type="text"></md-input>
+              <md-input v-model="nombre" type="text" required></md-input>
             </md-field>
-              <p v-if="nombre">{{ nombre }}</p><!--tengo el valor de la fecha-->
+              <p v-if="nombre">{{ nombre }}</p>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-50">
             <md-field>
               <label>Apellido</label>
-              <md-input v-model="apellido" type="text"></md-input>
+              <md-input v-model="apellido" type="text" required></md-input>
             </md-field>
-              <p v-if="apellido">{{ apellido }}</p><!--tengo el valor de la fecha-->
+              <p v-if="apellido">{{ apellido }}</p>
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
-              <label>Fecha Inicio</label>
-              <datepicker :disabledDates="disabled" v-model="inicio" type="date"></datepicker>
-                <p v-if="inicio">{{ inicio }}</p><!--tengo el valor de la fecha-->
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
-              <label>Fecha Término</label>
-              <datepicker :disabledDates="disabledDates" v-model="termino" type="date"></datepicker>
-                <p v-if="termino">{{ termino }}</p><!--tengo el valor de la fecha-->
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
+          <div class="md-layout-item md-small-size-100 md-size-50">
             <md-field>
-              <label>Habitación</label>
-                <md-select v-model="habitacion" placeholder="Habitación">
-                  <md-option value="simple"> <br>&nbsp;Simple</md-option>
-                  <md-option value="doble"> <br>&nbsp;Doble</md-option>
-                  <md-option value="triple"> <br>&nbsp;Triple</md-option>
-                  <md-option value="cuadruple"> <br>&nbsp;Cuádruple</md-option>
-                  <md-option value="matrimonial"> <br>&nbsp;Matrimonia</md-option>
+              <label>Rut</label>
+              <md-input v-model="rut" type="text" required></md-input>
+            </md-field>
+              <p v-if="rut">{{ rut }}</p>
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-50">
+            <md-field>
+              <label>Teléfono</label>
+              <md-input v-model="telefono" type="text" required></md-input>
+            </md-field>
+              <p v-if="telefono">{{ telefono }}</p>
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-50">
+            <md-field>
+              <label>Correo</label>
+              <md-input v-model="correo" type="email" required></md-input>
+            </md-field>
+              <p v-if="correo">{{ correo }}</p>
+          </div>
+            <div class="md-layout-item md-small-size-100 md-size-33">
+            <md-field>
+                <md-select v-model="habitacion" placeholder="Habitación*" md-dense required>
+                  <md-option value=""><br></md-option>
+                  <md-option value="simple"><br>&nbsp;Simple</md-option>
+                  <md-option value="doble"><br>&nbsp;Doble</md-option>
+                  <md-option value="triple"><br>&nbsp;Triple</md-option>
+                  <md-option value="cuadruple"><br>&nbsp;Cuádruple</md-option>
+                  <md-option value="matrimonial"><br>&nbsp;Matrimonia</md-option>
                 </md-select>
             </md-field>
-            <p v-if="habitacion">{{ habitacion }}</p><!--tengo el valor de la fecha-->
+            <p v-if="habitacion">{{ habitacion }}</p>
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-30">
+          <div class="md-layout-item md-small-size-100 md-size-33">
+              <label>Fecha Inicio*</label>
+              <datepicker :disabledDates="disabled" v-model="inicio" type="date" required></datepicker>
+                <p v-if="inicio">{{ inicio }}</p>
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-33">
+              <label>Fecha Término*</label>
+              <datepicker :disabledDates="disabledDates" v-model="termino" type="date" required></datepicker>
+                <p v-if="termino">{{ termino }}</p>
           </div>
           <div class="md-layout-item md-size-100 text-right">
-            <md-button class="md-raised md-success" @click.native="verificar()">Crear Reserva</md-button>
+            <md-button class="md-raised md-success" @click.native="validar()">Crear Reserva</md-button>
           </div>
         </div>
       </md-card-content>
@@ -69,6 +88,9 @@ export default {
         disabled: {},
         nombre: null,
         apellido: null,
+        rut: null,
+        correo: null,
+        telefono: null,
         habitacion: null,
         inicio: null,
         termino: null,
@@ -97,9 +119,14 @@ export default {
       	(date.getMonth() +1) + '-' + 
         date.getDate();
     },
-    verificar: function(){
-      if(this.nombre != null && this.apellido != null && this.habitacion != null && this.termino != null && this.inicio != null){
+    validar: function(){
+      if(this.nombre != null && this.apellido != null && this.habitacion != null && this.termino != null 
+      && this.inicio != null && this.rut != null && this.correo != null && this.telefono != null){
         alert('Todos los campos estan llenos');
+      }
+      if(this.nombre != null || this.apellido != null || this.habitacion != null || this.termino != null 
+      && this.inicio != null || this.rut != null || this.correo != null || this.telefono != null){
+        alert('Falta algun campo por completar.')
       }
       else{
         alert('Se requiere completar todos los campos.')

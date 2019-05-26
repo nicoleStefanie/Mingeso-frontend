@@ -43,7 +43,7 @@
         </div>
         </md-card-content>
         <md-card-actions>
-          <md-button type="button" :href="'#/modificarReservaSimple'">Editar Reserva</md-button>
+          <md-button type="button" :href="'#/vistaModificar'">Editar Reserva</md-button>
         </md-card-actions>
     </md-card>
     <md-card >
@@ -51,7 +51,7 @@
           <div class="md-title">Eliminar Reserva</div>
         </md-card-header>
         <md-card-content>
-          En esta sección se puede borrar por completo una reserva.
+          En esta sección se puede borrar por completo una reserva y todos sus datos.
           <div class="md-layout-item md-small-size-100 md-size-100">
           </div>
         </md-card-content>

@@ -3,7 +3,7 @@
     <md-card>
       <md-card-header :data-background-color="dataBackgroundColor">
         <h4 class="title">Eliminando Reserva</h4>
-        <p class="category">La reserva que elimine no podrá recuperarse.</p>
+        <p class="category">La reserva que quiera eliminar, no podrá ser recuperada posteriormente.</p>
       </md-card-header>
       <md-card-content>
         <div class="md-layout">
@@ -12,11 +12,16 @@
               <label>Código de la reserva</label>
               <md-input v-model="id_reserva" type="number" min="1"></md-input>
             </md-field>
-              <p v-if="id_reserva">{{ id_reserva}}</p>
+              <p v-if="id_reserva">{{ id_reserva }}</p>
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-50">
-            <md-button class="md-raised md-success" @click.native="evento(id_reserva)">Eliminar Reserva</md-button>
+          <div class="md-layout-item md-small-size-100 md-size-50" v-if="id_reserva != null">
+            <md-button class="md-raised md-success" @click.native="evento()">Eliminar Reserva</md-button>
           </div>
+        </div>
+      </md-card-content>
+      <md-card-content>
+        <div class="md-layout-item md-small-size-100 md-size-50">
+          <md-button class="md-raised md-size-50 md-success md-accent" :href="'#/reservas'">ATRAS</md-button>
         </div>
       </md-card-content>
     </md-card>
@@ -39,14 +44,8 @@ export default{
     }
   },
   methods:{
-    evento: function(data) {
-      if(data != null){
-        alert('Se elimina la reserva');
-      }
-      else{
-        alert('Se requiere completar el campo de Código de Reserva');
-      }
-      return
+    evento: function() {
+      alert('Se elimina reserva');
     }
   }
 }

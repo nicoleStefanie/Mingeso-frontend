@@ -27,6 +27,8 @@
             </md-field>
           </div>
           <div class="md-layout-item md-size-100 text-right">
+            <md-button class="md-raised md-success" :href="'#/habitaciones'">Cancelar</md-button>
+            &nbsp; &nbsp; 
             <md-button class="md-raised md-success"  @click="agregarHabitacion">Agregar Habitación</md-button>
           </div>
         </div>

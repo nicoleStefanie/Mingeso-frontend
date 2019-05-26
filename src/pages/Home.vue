@@ -2,7 +2,7 @@
   <div class="container">
         <md-card>
           <md-card-header data-background-color="green" style="position: relative;">
-            <h2 class="title">AFDGASFJASJFKASDKMK</h2>
+            <h2 class="title">HOTEL MINGESO</h2>
           </md-card-header>
           <md-card-content>
              <div class="md-card-avatar">

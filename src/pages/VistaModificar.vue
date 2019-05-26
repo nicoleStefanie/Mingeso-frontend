@@ -12,13 +12,19 @@
               <label>Código de la reserva</label>
               <md-input v-model="id_reserva" type="number" min="1"></md-input>
             </md-field>
-              <p v-if="id_reserva">{{ id_reserva}}</p>
+              <p v-if="id_reserva">{{ id_reserva }}</p>
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-50">
-            <md-button class="md-raised md-success" @click.native="evento(id_reserva)">Editar Reserva</md-button>
+          <div class="md-layout-item md-small-size-100 md-size-50" v-if="id_reserva != null">
+            <md-button class="md-raised md-success" @click.native="evento(id_reserva)" 
+            :href="'#/modificarReservaSimple/'+ this.id_reserva">Editar Reserva</md-button>
           </div>
         </div>
       </md-card-content>
+    <md-card-content>
+      <div class="md-layout-item md-small-size-100 md-size-50">
+        <md-button class="md-raised md-size-50 md-success md-accent" :href="'#/reservas'">ATRAS</md-button>
+      </div>
+    </md-card-content>
     </md-card>
   </form>
 </template>
@@ -35,16 +41,13 @@ export default{
   },
   data () {
     return {
-      id_reserva: null,
-    }
+      id_reserva: null
+      }
   },
   methods:{
-    evento: function(data) {
-      if(data != null)
+    evento: function(id_reserva) {
+      if(id_reserva == null)
       {
-        alert('Se elimina la reserva');
-      }
-      else{
         alert('Se requiere completar el campo de Código de Reserva');
       }
       return
@@ -55,3 +58,6 @@ export default{
 
 
 <style>
+
+</style>
+

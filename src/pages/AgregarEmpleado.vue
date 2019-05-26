@@ -26,7 +26,9 @@
             </md-field>
           </div>
           <div class="md-layout-item md-size-100 text-right">
-            <md-button class="md-raised md-success" @click.native="verificar()">Agregar Empleado</md-button>
+            <md-button class="md-raised md-success" :href="'#/empleados'">Cancelar</md-button>
+            &nbsp; &nbsp; 
+            <md-button class="md-raised md-success" @click="verificar()">Agregar Empleado</md-button>
           </div>
         </div>
       </md-card-content>

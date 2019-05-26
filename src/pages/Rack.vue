@@ -156,7 +156,7 @@ export default {
                     "lineAlpha": 1,
                     "lineColor": "#fff",
                     "fillAlphas": 0.85,
-                    "balloonText": "<b>[[cliente]] con id: [[id]]</b>:<br /> Desde [[open]] hasta [[value]]"
+                    "balloonText": "<b>[[cliente]] ID Reserva [[id]]</b>:<br /> Desde [[open]] hasta [[value]]"
                   },
                   "rotate": true,
                   "categoryField": "habitacion",

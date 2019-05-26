@@ -66,6 +66,8 @@
                 <p v-if="termino">{{ termino }}</p>
           </div>
           <div class="md-layout-item md-size-100 text-right">
+            <md-button class="md-raised md-success" :href="'#/reservas'">Cancelar</md-button>
+            &nbsp; &nbsp; 
             <md-button class="md-raised md-success" @click.native="validar()">Crear Reserva</md-button>
           </div>
         </div>

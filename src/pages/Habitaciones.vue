@@ -66,7 +66,7 @@ export default {
       deleteHabitacion(){
         const url = localhost + '/habitaciones/delete/'+ this.habitacion;
         axios.post(url, {
-          
+
           })
           .then(response => {
             alert(response.data[0].message);

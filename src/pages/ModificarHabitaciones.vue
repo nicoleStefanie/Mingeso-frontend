@@ -88,12 +88,13 @@ export default {
         this.capacidadAdultos = "";
         this.precioNoche= "";
         alert(response.data[0].message);
+        console.log(response.data.message);
       })
       .catch(e => {
         this.errors.push(e)
-      })
-    },
-  },
+      });
+    }
+  }
 }
 
 </script>

@@ -39,7 +39,7 @@
             </md-field>
           </div>
           <div class="md-layout-item md-size-100 text-right">
-            <md-button class="md-raised md-success">Agregar Habitación</md-button>
+            <md-button class="md-raised md-success"  @click="agregarHabitacion">Agregar Habitación</md-button>
           </div>
         </div>
       </md-card-content>
@@ -48,10 +48,52 @@
 </template>
 
 <script>
-/* eslint-disable */
+import axios from 'axios';
+const localhost = 'http://localhost:8060';
+export default {
+  name : 'agregarEmpleado',
+
+  components: {
+  },
+  data(){
+    return{
+      nroHabitacion: '',
+      tipo:'',
+      capacidadNinos:'',
+      capacidadAdultos:'',
+      precioNoche:'',
+      habitaciones: [],
+      errors: []
+    }
+  },
+  methods: {
+    agregarHabitacion() {
+      var url = localhost + '/habitaciones/create';
+      axios.post(url, {
+
+        nroHabitacion : this.nroHabitacion,
+        tipo : this.tipo,
+        capacidadNinos : this.capacidadNinos,
+        capacidadAdultos: this.capacidadAdultos,
+        precioNoche: this.precioNoche
+
+      })
+      .then(response => {
+
+        this.tipo = "";
+        this.nroHabitacion = "";
+        this.capacidadNinos = "";
+        this.capacidadAdultos = "";
+        this.precioNoche= "";
+        alert(response.data[0].message);
+        console.log(response.data.message);
+      })
+      .catch(e => {
+        this.errors.push(e)
+      });
+    }
+  }
+}
+
+
 </script>
-
-
-<style>
-
-</style>

@@ -35,12 +35,11 @@
   export default {
     data() {
       return {
-        items: [
-          { id: 40, nombre: 'Felipe Contreras', correo: 'FC@gmail.com' },
-          { id: 21, nombre: 'Jose Soto', correo: 'JS@gmail.com' },
-          { id: 89, nombre: 'carlos Contreras', correo: 'CarlosC@gmail.com' },
-          { id: 38, nombre: 'Felipe Meza', correo: 'FMeza@gmail.com' },
-        ],
+        fields: ["nombreUsuario",
+        "rolUsuario",
+        "correoUsuario",
+        "rutUsuario"],
+        items: [],
         selectMode: 'single',
         selected: null,
         id_empleado: null
@@ -49,7 +48,7 @@
     methods: {
       rowSelected(items) {
         this.selected = items,
-        this.id_empleado = this.selected[0].id
+        this.id_empleado = this.selected[0].idUser
       }
 
     }

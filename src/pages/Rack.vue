@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { existsSync } from 'fs';
 /* eslint-disable */ 
 export default {
         data(){
@@ -24,7 +25,6 @@ export default {
                       "id":"1",
                       "start": "2016-01-01",
                       "end": "2016-01-14",
-                      "color": "#b9783f",
                       "cliente": "Nicole",
                       "tipo": "simple",
                       "color":"#b9783f", 
@@ -57,10 +57,9 @@ export default {
                       "id":"5",                      
                       "start": "2016-01-08",
                       "end": "2016-01-10",
-                      "color": "#cc4748",
                       "cliente": "Liliana",
                       "tipo": "simple",
-                     "color":"#b9783f", 
+                      "color":"#b9783f", 
                     }, {
                       "id":"6",
                       "start": "2016-01-12",
@@ -82,7 +81,6 @@ export default {
                       "id":"8",
                       "start": "2016-01-02",
                       "end": "2016-01-08",
-                      "color": "#cd82ad",
                       "cliente": "Javiera",
                       "tipo": "simple",
                       "color":"#b9783f", 
@@ -107,7 +105,6 @@ export default {
                       "id":"11",
                       "start": "2016-01-01",
                       "end": "2016-01-19",
-                      "color": "#2f4074",
                       "cliente": "Javiera",
                       "tipo": "simple",
                       "color":"#b9783f", 
@@ -125,7 +122,6 @@ export default {
                       "id":"13",
                       "start": "2016-01-01",
                       "end": "2016-01-12",
-                      "color": "#448e4d",
                       "cliente": "Nicole",
                       "tipo": "simple",
                       "color":"#b9783f", 
@@ -145,6 +141,11 @@ export default {
                       "color":"#b9783f", 
                     }]
                   }],
+                  id_reserva: '',
+                  fecha_inicio: '',
+                  fecha_termino: '',
+                  nombre_cliente: '',
+                  tipo_reserva: '',
             }
         },
         mounted: function(){
@@ -201,6 +202,16 @@ export default {
                       "color": "#cd82ad"
                     }]
                   },
+                  "listeners": [{
+                    "event": "clickGraphItem",
+                    "method": function(e) {
+                      alert("Información de la reserva:\nID Reserva: " + e.graph.segmentData.id + 
+                      "\nFecha inicio: " + e.graph.segmentData.start +
+                      "\nFecha término: " + e.graph.segmentData.end +
+                      "\nCliente: " + e.graph.segmentData.cliente +
+                      "\nTipo: Reserva " + e.graph.segmentData.tipo)
+                    }
+                  }],
                   "export": {
                     "enabled": false
                   }

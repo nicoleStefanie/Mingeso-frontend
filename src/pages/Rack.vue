@@ -13,7 +13,6 @@
     </div>
 </template>
 
-
 <script>
 /* eslint-disable */ 
 export default {
@@ -27,25 +26,30 @@ export default {
                       "end": "2016-01-14",
                       "color": "#b9783f",
                       "cliente": "Nicole",
-                      "tipo_reserva": "simple"
+                      "tipo": "simple",
+                      "color":"#b9783f", 
                     }, {
                       "id":"2",
                       "start": "2016-01-16",
                       "end": "2016-01-27",
                       "cliente": "Javiera",
-                      "tipo_reserva": "simple"
+                      "tipo": "simple",
+                      "color":"#b9783f", 
                     }, {
                       "id":"3",
                       "start": "2016-02-05",
                       "end": "2016-04-18",
                       "cliente": "Javiera",
-                      "tipo_reserva": "multiple"
+                      "tipo": "multiple",
+                      "color":"#cc4748"
                     }, {
                        "id":"4",
-                      "start": "2016-04-18",
-                      "end": "2016-04-30",
+                      "start": "2016-08-18",
+                      "end": "2016-08-30",
                       "cliente": "Liliana",
-                      "tipo_reserva": "simple"
+                      "tipo": "simple",
+                      "color":"#b9783f", 
+
                     }]
                   }, {
                     "habitacion": "321",
@@ -55,19 +59,22 @@ export default {
                       "end": "2016-01-10",
                       "color": "#cc4748",
                       "cliente": "Liliana",
-                      "tipo_reserva": "simple"
+                      "tipo": "simple",
+                     "color":"#b9783f", 
                     }, {
                       "id":"6",
                       "start": "2016-01-12",
                       "end": "2016-01-15",
                       "cliente": "Nicole",
-                      "tipo_reserva": "multiple"
+                      "tipo": "multiple",
+                      "color":"#cc4748"
                     }, {
                       "id":"7",
-                      "start": "2016-01-16",
-                      "end": "2016-02-05",
+                      "start": "2016-09-26",
+                      "end": "2016-10-05",
                       "cliente": "Javiera",
-                      "tipo_reserva": "entradas"
+                      "tipo": "multiple",
+                      "color":"#cc4748"
                     }]
                   }, {
                     "habitacion": "23",
@@ -77,35 +84,40 @@ export default {
                       "end": "2016-01-08",
                       "color": "#cd82ad",
                       "cliente": "Javiera",
-                      "tipo_reserva": "simple"
+                      "tipo": "simple",
+                      "color":"#b9783f", 
                     }, {
-                      "id":"9",
+                      "id":"10",
                       "start": "2016-01-08",
                       "end": "2016-01-16",
                       "cliente": "Nicole",
-                      "tipo_reserva": "multiple"
+                      "tipo": "entradas",
+                      "color":"#cd82ad"
                     }, {
                       "id":"10",
                       "start": "2016-01-19",
                       "end": "2016-03-01",
-                      "cliente": "Liliana",
-                      "tipo_reserva": "entradas"
+                      "cliente": "Nicole",
+                      "tipo": "entradas",
+                      "color":"#cd82ad"
                     }]
                   }, {
-                    "habitacion": "23",
+                    "habitacion": "24",
                     "segments": [{
                       "id":"11",
                       "start": "2016-01-01",
                       "end": "2016-01-19",
                       "color": "#2f4074",
                       "cliente": "Javiera",
-                      "tipo_reserva": "simple"
+                      "tipo": "simple",
+                      "color":"#b9783f", 
                     }, {
                       "id":"12",                      
-                      "start": "2016-01-19",
-                      "end": "2016-02-03",
+                      "start": "2017-01-19",
+                      "end": "2017-02-03",
                       "cliente": "Nicole",
-                      "tipo_reserva":"multiple"
+                      "tipo":"multiple",
+                      "color":"#cc4748",
                     }]
                   }, {
                     "habitacion": "654",
@@ -115,19 +127,22 @@ export default {
                       "end": "2016-01-12",
                       "color": "#448e4d",
                       "cliente": "Nicole",
-                      "tipo_reserva": "simple"
+                      "tipo": "simple",
+                      "color":"#b9783f", 
                     }, {
                       "id":"14",
                       "start": "2016-01-12",
                       "end": "2016-01-19",
                       "cliente": "Javiera",
-                      "tipo_reserva": "simple"
+                      "tipo": "simple",
+                      "color":"#b9783f", 
                     }, {
                       "id":"15",
-                      "start": "2016-01-19",
-                      "end": "2016-03-01",
+                      "start": "2016-11-19",
+                      "end": "2016-12-01",
                       "cliente": "Liliana",
-                      "tipo_reserva": "simple"
+                      "tipo": "simple",
+                      "color":"#b9783f", 
                     }]
                   }],
             }
@@ -137,12 +152,8 @@ export default {
         },
         methods: {
             crearGrafico: function(){
-                var color_simple = "#b9783f";
-                var color_multiple = "#cc4748";
-                var color_entradas = "#cd82ad";
                 var chart = AmCharts.makeChart("chartdiv", {
                   "type": "gantt",
-                  "theme": "light",
                   "marginRight": 70,
                   "period": "DD",
                   "dataDateFormat": "YYYY-MM-DD",
@@ -191,10 +202,10 @@ export default {
                     }]
                   },
                   "export": {
-                    "enabled": true
+                    "enabled": false
                   }
                 });
-            }
+            },
         },
     }
 </script>

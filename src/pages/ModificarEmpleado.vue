@@ -43,7 +43,7 @@
 
 <script>
 import axios from 'axios';
-const localhost = 'http://localhost:8060';
+const localhost = 'http://localhost:8060/backend';
 export default {
   name : 'modificarEmpleado',
 
@@ -89,8 +89,3 @@ export default {
 }
 
 </script>
-
-
-
-
-

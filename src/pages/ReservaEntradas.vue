@@ -2,53 +2,56 @@
   <form id="simple">
     <md-card>
       <md-card-header :data-background-color="dataBackgroundColor">
-        <h4 class="title">Crear Reserva con varias entrada</h4>
+        <h4 class="title">Crear Reserva con Entradas</h4>
         <p class="category">Completar con los datos</p>
       </md-card-header>
       <md-card-content>
+        <br>
         <div class="md-layout">
+          <div class="md-layout-item md-small-size-100 md-size-80">
+                <b-form-input v-model="nombre" placeholder="Nombre Completo"></b-form-input>
+                  <div class="mt-2">{{ nombre }}</div>
+          </div>
+          <br><br><br>
+          <div class="md-layout-item md-small-size-100 md-size-40">
+                <b-form-input v-model="rut" placeholder="Rut"></b-form-input>
+                  <div class="mt-2">{{ rut }}</div>
+          </div>
+          <br><br><br>
+          <div class="md-layout-item md-small-size-100 md-size-40">
+                <b-form-input v-model="telefono" placeholder="Teléfono"></b-form-input>
+                  <div class="mt-2">{{ telefono }}</div>
+          </div>
+          <br><br><br>
           <div class="md-layout-item md-small-size-100 md-size-50">
-            <md-field>
-              <label>Nombre</label>
-              <md-input v-model="nombre" type="text"></md-input>
-            </md-field>
-              <p v-if="nombre">{{ nombre }}</p><!--tengo el valor de la fecha-->
+                <b-form-input v-model="correo" placeholder="Correo"></b-form-input>
+                  <div class="mt-2">{{ correo }}</div>
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-50">
-            <md-field>
-              <label>Apellido</label>
-              <md-input v-model="apellido" type="text"></md-input>
-            </md-field>
-              <p v-if="apellido">{{ apellido }}</p><!--tengo el valor de la fecha-->
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
-              <label>Check In</label>
-              <datepicker :disabledDates="disabled" v-model="checkin" type="date"></datepicker>
-                <p v-if="checkin">{{ checkin }}</p><!--tengo el valor de la fecha-->
+          <br><br><br>
+            <div class="md-layout-item md-small-size-100 md-size-30">
+                 <b-form-select v-model="habitacion" :options="options">
+                    <option :value="null" disabled>Seleccione Habitación</option>              
+                    <option>Simple</option>
+                    <option>Doble</option>
+                    <option>Triple</option>
+                    <option>Cuádruple</option>
+                    <option>Matrimonial</option>
+                    <option></option>              
+              </b-form-select>
+                <div class="mt-2">{{ habitacion }}</div>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33">
-              <label>Chek Out</label>
-              <datepicker :disabledDates="disabledDates" v-model="checkout" type="date"></datepicker>
-                <p v-if="checkout">{{ checkout }}</p><!--tengo el valor de la fecha-->
+              <datepicker :disabledDates="disabled" v-model="inicio" type="date" placeholder=" Fecha inicio"></datepicker>
+                <p v-if="inicio">{{ inicio }}</p>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33">
-            <md-field>
-              <label>Habitación</label>
-                <md-select v-model="habitacion" placeholder="Habitación">
-                  <md-option value="simple"> <br>&nbsp;Simple &nbsp;$ precio</md-option>
-                  <md-option value="doble"> <br>&nbsp;Doble&nbsp;$ precio</md-option>
-                  <md-option value="triple"> <br>&nbsp;Triple&nbsp; $ precio</md-option>
-                  <md-option value="cuadruple"> <br>&nbsp;Cuádruple&nbsp; $precio</md-option>
-                  <md-option value="matrimonial"> <br>&nbsp;Matrimonial&nbsp; $precio</md-option>
-                </md-select>
-            </md-field>
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-30">
+              <datepicker :disabledDates="disabledDates" v-model="termino" type="date" placeholder=" Fecha Término"></datepicker>
+                <p v-if="termino">{{ termino }}</p>
           </div>
           <div class="md-layout-item md-size-100 text-right">
             <md-button class="md-raised md-success" :href="'#/reservas'">Cancelar</md-button>
             &nbsp; &nbsp; 
-            <md-button class="md-raised md-success">Crear Reserva</md-button>
+            <md-button class="md-raised md-success" @click="verificar()">Crear Reserva</md-button>
           </div>
         </div>
       </md-card-content>
@@ -69,7 +72,6 @@ export default {
       return {
         disabled: {},
         nombre: null,
-        apellido: null,
         descuento: null,
         habitacion: null,
         disabled: {
@@ -96,15 +98,17 @@ export default {
       return date.getFullYear() + '-' + 
       	(date.getMonth() +1) + '-' + 
         date.getDate();
-    }, 
-  },
+      }, 
     verificar: function(){
-  if(this.nombre != null && this.apellido != null && this.habitacion != null && this.termino != null && this.inicio != null){        alert('Todos los campos estan llenos');
+      if(this.nombre && this.habitacion && this.inicio && this.termino && this.rut && this.correo && this.telefono) return true;      
+      if(this.nombre || this.habitacion || this.inicio || this.termino || this.rut || this.correo || this.telefono){
+        alert('Falta algun campo por completar.')
       }
-    else{
-      alert('Se requiere completar todos los campos.')
-    }   
-} 
+      else{
+        alert('Se requiere completar todos los campos.')
+      }
+    }, 
+  }
 };
 </script>
 

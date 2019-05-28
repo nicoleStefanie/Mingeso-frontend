@@ -6,71 +6,56 @@
         <p class="category">Completar con los datos</p>
       </md-card-header>
       <md-card-content>
+        <br>
         <div class="md-layout">
-          <div class="md-layout-item md-small-size-100 md-size-50">
-            <md-field>
-              <label>Nombre</label>
-              <md-input v-model="nombre" type="text"></md-input>
-            </md-field>
-              <p v-if="nombre">{{ nombre }}</p>
+          <div class="md-layout-item md-small-size-100 md-size-80">
+                <b-form-input @keyup="validarNombre" v-model="nombre" placeholder="Nombre Completo"></b-form-input>
+                  <!--<div class="mt-2">{{ nombre }}</div>-->
+                <p class="error" v-if="vatError1">{{vatErrorMsg1}}</p>          
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-50">
-            <md-field>
-              <label>Apellido</label>
-              <md-input v-model="apellido" type="text"></md-input>
-            </md-field>
-              <p v-if="apellido">{{ apellido }}</p>
+          <br><br><br>
+          <div class="md-layout-item md-small-size-100 md-size-40">
+                <b-form-input v-model="rut" placeholder="Rut"></b-form-input>
+                  <div class="mt-2">{{ rut }}</div>
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-50">
-            <md-field>
-              <label>Rut</label>
-              <md-input v-model="rut" type="text"></md-input>
-            </md-field>
-              <p v-if="rut">{{ rut }}</p>
+          <br><br><br>
+          <div class="md-layout-item md-small-size-100 md-size-40">
+                <b-form-input @keyup="validarTelefono" v-model="telfono" placeholder="Teléfono"></b-form-input>
+                  <!--<div class="mt-2">{{ telefono }}</div>-->
+                  <p class="error" v-if="vatError3">{{vatErrorMsg3}}</p>
           </div>
+          <br><br><br>
           <div class="md-layout-item md-small-size-100 md-size-50">
-            <md-field>
-              <label>Teléfono</label>
-              <md-input v-model="telefono" type="text"></md-input>
-            </md-field>
-              <p v-if="telefono">{{ telefono }}</p>
+                <b-form-input @keyup="validarEmail" v-model="correo" placeholder="Correo"></b-form-input>
+                  <div class="mt-2">{{ correo }}</div>
+                  <p class="error" v-if="vatError4">{{vatErrorMsg4}}</p>         
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-50">
-            <md-field>
-              <label>Correo</label>
-              <md-input v-model="correo" type="email" required></md-input>
-            </md-field>
-              <p v-if="correo">{{ correo }}</p>
-          </div>
-            <div class="md-layout-item md-small-size-100 md-size-33">
-            <md-field>
-                <md-select v-model="habitacion" placeholder="Habitación*" md-dense>
-                  <md-option value=""><br></md-option>
-                  <md-option value="simple"><br>&nbsp;Simple</md-option>
-                  <md-option value="doble"><br>&nbsp;Doble</md-option>
-                  <md-option value="triple"><br>&nbsp;Triple</md-option>
-                  <md-option value="cuadruple"><br>&nbsp;Cuádruple</md-option>
-                  <md-option value="matrimonial"><br>&nbsp;Matrimonia</md-option>
-                </md-select>
-            </md-field>
-            <p v-if="habitacion">{{ habitacion }}</p>
+          <br><br><br>
+            <div class="md-layout-item md-small-size-100 md-size-30">
+                 <b-form-select v-model="habitacion" :options="options">
+                    <option :value="null" disabled>Seleccione Habitación</option>              
+                    <option>Simple</option>
+                    <option>Doble</option>
+                    <option>Triple</option>
+                    <option>Cuádruple</option>
+                    <option>Matrimonial</option>
+                    <option></option>              
+              </b-form-select>
+                <div class="mt-2">{{ habitacion }}</div>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33">
-              <label>Fecha Inicio*</label>
-              <datepicker :disabledDates="disabled" v-model="inicio" type="date"></datepicker>
+              <datepicker :disabledDates="disabled" v-model="inicio" type="date" placeholder=" Fecha inicio"></datepicker>
                 <p v-if="inicio">{{ inicio }}</p>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33">
-              <label>Fecha Término*</label>
-              <datepicker :disabledDates="disabledDates" v-model="termino" type="date"></datepicker>
+              <datepicker :disabledDates="disabledDates" v-model="termino" type="date" placeholder=" Fecha Término"></datepicker>
                 <p v-if="termino">{{ termino }}</p>
           </div>
           <div class="md-layout-item md-size-100 text-right">
-            <md-button class="md-raised md-success" :href="'#/vistaModificar'">Cancelar</md-button>
+            <md-button class="md-raised md-success" :href="'#/reservas'">Cancelar</md-button>
             &nbsp; &nbsp; 
-            <md-button class="md-raised md-success md-size-100 text-left" @click.native="validar()">Modificar Reserva</md-button>
-          </div>         
-
+            <md-button class="md-raised md-success" @click="validar()">Modificar Reserva</md-button>
+          </div>
         </div>
       </md-card-content>
     </md-card>
@@ -89,14 +74,19 @@ export default {
     data(){ 
       return {
         disabled: {},
-        nombre: null,
-        apellido: null,
-        rut: null,
-        correo: null,
-        telefono: null,
-        habitacion: null,
-        inicio: null,
-        termino: null,
+        nombre: '',
+        rut: '',
+        correo: '',
+        telefono: '',
+        habitacion: '',
+        inicio: '',
+        termino: '',
+        vatError1:'',
+        vatErrorMsg1: '',
+        vatError3:'',
+        vatErrorMsg3:'',
+        vatError4:'',
+        vatErrorMsg4:'',
         disabled: {
           ranges: [{
                 from: new Date(2016, 11, 25),
@@ -123,18 +113,44 @@ export default {
         date.getDate();
     },
     validar: function(){
-      if(this.nombre != null && this.apellido != null && this.habitacion != null && this.termino != null 
-      && this.inicio != null && this.rut != null && this.correo != null && this.telefono != null){
-        alert('Todos los campos estan llenos');
-      }
-      if(this.nombre != null || this.apellido != null || this.habitacion != null || this.termino != null 
-      && this.inicio != null || this.rut != null || this.correo != null || this.telefono != null){
+      if(this.nombre && this.habitacion && this.inicio && this.termino && this.rut && this.correo && this.telefono) return true;      
+      if(this.nombre || this.habitacion || this.inicio || this.termino || this.rut || this.correo || this.telefono){
         alert('Falta algun campo por completar.')
       }
       else{
         alert('Se requiere completar todos los campos.')
       }
-    } 
+    },
+    validarNombre:function(nombre){
+      if(/^[A-Za-z\s]+$/.test(this.nombre)) {
+        this.vatError1 = false;
+        this.vatErrorMsg1 = null; 
+        return true }        
+      else{
+        this.vatError1 = true;
+        this.vatErrorMsg1 = "Ingrese un nombre válido.";
+      }
+    },
+    validarTelefono:function(telefono){
+      if(/^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/.test(this.telefono)){
+        this.vatError3 = false; 
+        this.vatErrorMsg3 = null;
+        return true }
+        else{
+          this.vatError3 = true;
+          this.vatErrorMsg3 = "Ingrese un teléfono válido."
+        }
+    },
+    validarEmail:function(email) {
+      var a = /\S+@\S+/;
+      if(a.test(this.email)){
+        this.vatError4 = false;
+        this.vatErrorMsg4 = null; }
+        else{
+          this.vatError4 = true;
+          this.vatErrorMsg4 = "Ingrese un correo válido."
+        }
+    }, 
   },
   
 };

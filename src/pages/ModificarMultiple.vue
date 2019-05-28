@@ -67,7 +67,6 @@ export default {
       return {
         disabled: {},
         nombre: null,
-        apellido: null,
         descuento: null,
         habitacion: null,
         disabled: {

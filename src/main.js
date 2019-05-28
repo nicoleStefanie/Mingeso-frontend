@@ -15,13 +15,10 @@ import Notifications from './components/NotificationPlugin'
 
 // MaterialDashboard plugin
 import MaterialDashboard from './material-dashboard'
-
+import VeeValidate from 'vee-validate'
 import Chartist from 'chartist'
-
-
 import VueChartkick from 'vue-chartkick'
 import Chart from 'chart.js'
-Vue.use(VueChartkick, {adapter: Chart})
 
 
 // configure router
@@ -36,13 +33,15 @@ Vue.use(MaterialDashboard)
 Vue.use(GlobalComponents)
 Vue.use(GlobalDirectives)
 Vue.use(Notifications)
+Vue.use(VeeValidate)
+Vue.use(VueChartkick, {adapter: Chart})
+Vue.use(BootstrapVue)
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import BootstrapVue from 'bootstrap-vue'
 
-Vue.use(BootstrapVue)
 
 // global library setup
 Object.defineProperty(Vue.prototype, '$Chartist', {

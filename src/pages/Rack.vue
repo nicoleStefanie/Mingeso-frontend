@@ -61,6 +61,7 @@ export default {
             crearGrafico: function(){
                 var chart = AmCharts.makeChart("chartdiv", {
                   "type": "gantt",
+                  "theme":"light",
                   "marginRight": 70,
                   "period": "DD",
                   "dataDateFormat": "YYYY-MM-DD",
@@ -95,18 +96,6 @@ export default {
                     "valueLineEnabled": true,
                     "zoomable": false,
                     "valueZoomable": true
-                  },
-                  "legend": {
-                    "data": [{
-                      "title": "Reserva Simple",
-                      "color": "#b9783f"
-                    }, {
-                      "title": "Reserva Múltiple",
-                      "color": "#cc4748"
-                    }, {
-                      "title": "Reserva varias entradas",
-                      "color": "#cd82ad"
-                    }]
                   },
                   "listeners": [{
                     "event": "clickGraphItem",

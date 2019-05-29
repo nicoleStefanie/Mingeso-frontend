@@ -12,7 +12,7 @@
             Rerservas {{this.reservas}}
 
         </md-card>
-        items {{this.items[i].nroHabitacion}}
+        items {{this.items[1].nroHabitacion}}
     </div>
 </template>
 

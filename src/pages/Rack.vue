@@ -10,6 +10,7 @@
               </div>
             </md-card-content>
         </md-card>
+        {{this.reservas}}
     </div>
 </template>
 

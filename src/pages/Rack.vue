@@ -9,9 +9,10 @@
                 <div id="chartdiv"></div>
               </div>
             </md-card-content>
-            {{this.reservas}}
-            {{this.items}}
+            Rerservas {{this.reservas}}
+
         </md-card>
+        items {{this.items[i].nroHabitacion}}
     </div>
 </template>
 

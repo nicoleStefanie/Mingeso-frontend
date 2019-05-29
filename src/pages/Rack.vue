@@ -9,8 +9,9 @@
                 <div id="chartdiv"></div>
               </div>
             </md-card-content>
+            {{this.reservas}}
+            {{this.items}}
         </md-card>
-        {{this.reservas}}
     </div>
 </template>
 
@@ -30,6 +31,7 @@ export default {
                   nombre_cliente: '',
                   tipo_reserva: '',
                   reservas: null,
+                  items: null,
 
             }
         },

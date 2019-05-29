@@ -10,9 +10,8 @@
               </div>
             </md-card-content>
             Rerservas {{this.reservas}}
-
         </md-card>
-        items {{this.items[1].nroHabitacion}}
+
     </div>
 </template>
 
@@ -31,30 +30,33 @@ export default {
                   fecha_termino: '',
                   nombre_cliente: '',
                   tipo_reserva: '',
-                  reservas: null,
+                  reservas: [],
                   items: null,
 
             }
         },
         mounted: function(){
           this.getReservas();
-          this.modificarDatosRack();
-          this.crearGrafico();
+
+
         },
         methods: {
           getReservas(){
               const url = localhost + '/reservahabitacion/rack';
               axios.get(url).then((data) => {
                 this.items = data.data;
+                this.modificarDatosRack();
               });
+
             },
 
             modificarDatosRack(){
                for (let i = 0; i < this.items.length; i++) {
                    if(this.items[i] !== null){
-                       this.reservas.push(["habitacion", this.items[i].nroHabitacion,["segments", [this.items[i].idCliente, this.items[i].idReserva , this.items[i].fechaInicio, this.items[i].fechaTermino, this.items[i].nombreCliente]]]);
+                     this.reservas.push(["habitacion",this.items[i].nroHabitacion, "segments", [this.items[i].idCliente, this.items[i].idReserva , this.items[i].fechaInicio, this.items[i].fechaTermino, this.items[i].nombreCliente]]);
                    }
                }
+               this.crearGrafico();
            },
             crearGrafico: function(){
                 var chart = AmCharts.makeChart("chartdiv", {

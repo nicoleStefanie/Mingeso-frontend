@@ -13,145 +13,46 @@
     </div>
 </template>
 
+
+
 <script>
 import { existsSync } from 'fs';
-/* eslint-disable */ 
+import axios from 'axios';
+const localhost = 'http://159.203.94.72:8060/backend';
+/* eslint-disable */
 export default {
         data(){
             return{
-                reservas: [{
-                    "habitacion": "12",
-                    "segments": [{
-                      "id":"1",
-                      "start": "2016-01-01",
-                      "end": "2016-01-14",
-                      "cliente": "Nicole",
-                      "tipo": "simple",
-                      "color":"#b9783f", 
-                    }, {
-                      "id":"2",
-                      "start": "2016-01-16",
-                      "end": "2016-01-27",
-                      "cliente": "Javiera",
-                      "tipo": "simple",
-                      "color":"#b9783f", 
-                    }, {
-                      "id":"3",
-                      "start": "2016-02-05",
-                      "end": "2016-04-18",
-                      "cliente": "Javiera",
-                      "tipo": "multiple",
-                      "color":"#cc4748"
-                    }, {
-                       "id":"4",
-                      "start": "2016-08-18",
-                      "end": "2016-08-30",
-                      "cliente": "Liliana",
-                      "tipo": "simple",
-                      "color":"#b9783f", 
-
-                    }]
-                  }, {
-                    "habitacion": "321",
-                    "segments": [{
-                      "id":"5",                      
-                      "start": "2016-01-08",
-                      "end": "2016-01-10",
-                      "cliente": "Liliana",
-                      "tipo": "simple",
-                      "color":"#b9783f", 
-                    }, {
-                      "id":"6",
-                      "start": "2016-01-12",
-                      "end": "2016-01-15",
-                      "cliente": "Nicole",
-                      "tipo": "multiple",
-                      "color":"#cc4748"
-                    }, {
-                      "id":"7",
-                      "start": "2016-09-26",
-                      "end": "2016-10-05",
-                      "cliente": "Javiera",
-                      "tipo": "multiple",
-                      "color":"#cc4748"
-                    }]
-                  }, {
-                    "habitacion": "23",
-                    "segments": [{
-                      "id":"8",
-                      "start": "2016-01-02",
-                      "end": "2016-01-08",
-                      "cliente": "Javiera",
-                      "tipo": "simple",
-                      "color":"#b9783f", 
-                    }, {
-                      "id":"10",
-                      "start": "2016-01-08",
-                      "end": "2016-01-16",
-                      "cliente": "Nicole",
-                      "tipo": "entradas",
-                      "color":"#cd82ad"
-                    }, {
-                      "id":"10",
-                      "start": "2016-01-19",
-                      "end": "2016-03-01",
-                      "cliente": "Nicole",
-                      "tipo": "entradas",
-                      "color":"#cd82ad"
-                    }]
-                  }, {
-                    "habitacion": "24",
-                    "segments": [{
-                      "id":"11",
-                      "start": "2016-01-01",
-                      "end": "2016-01-19",
-                      "cliente": "Javiera",
-                      "tipo": "simple",
-                      "color":"#b9783f", 
-                    }, {
-                      "id":"12",                      
-                      "start": "2017-01-19",
-                      "end": "2017-02-03",
-                      "cliente": "Nicole",
-                      "tipo":"multiple",
-                      "color":"#cc4748",
-                    }]
-                  }, {
-                    "habitacion": "654",
-                    "segments": [{
-                      "id":"13",
-                      "start": "2016-01-01",
-                      "end": "2016-01-12",
-                      "cliente": "Nicole",
-                      "tipo": "simple",
-                      "color":"#b9783f", 
-                    }, {
-                      "id":"14",
-                      "start": "2016-01-12",
-                      "end": "2016-01-19",
-                      "cliente": "Javiera",
-                      "tipo": "simple",
-                      "color":"#b9783f", 
-                    }, {
-                      "id":"15",
-                      "start": "2016-11-19",
-                      "end": "2016-12-01",
-                      "cliente": "Liliana",
-                      "tipo": "simple",
-                      "color":"#b9783f", 
-                    }]
-                  }],
                   id_reserva: '',
                   fecha_inicio: '',
                   fecha_termino: '',
                   nombre_cliente: '',
                   tipo_reserva: '',
+                  reservas: null,
+
             }
         },
         mounted: function(){
+          this.getReservas();
+          this.modificarDatosRack();
           this.crearGrafico();
         },
         methods: {
+          getReservas(){
+              const url = localhost + '/reservahabitacion/rack';
+              axios.get(url).then((data) => {
+                this.items = data.data;
+              });
+            },
+
+            modificarDatosRack(){
+               for (let i = 0; i < this.items.length; i++) {
+                   if(this.items[i] !== null){
+
+                       this.reservas.push("habitacion": this.items[i].nroHabitacion, "segments": [this.items[i].idCliente, this.items[i].idReserva , this.items[i].fechaInicio, this.items[i].fechaTermino, this.items[i].nombreCliente ] )
+                   }
+               }
+           },
             crearGrafico: function(){
                 var chart = AmCharts.makeChart("chartdiv", {
                   "type": "gantt",
@@ -205,7 +106,7 @@ export default {
                   "listeners": [{
                     "event": "clickGraphItem",
                     "method": function(e) {
-                      alert("Información de la reserva:\nID Reserva: " + e.graph.segmentData.id + 
+                      alert("Información de la reserva:\nID Reserva: " + e.graph.segmentData.id +
                       "\nFecha inicio: " + e.graph.segmentData.start +
                       "\nFecha término: " + e.graph.segmentData.end +
                       "\nCliente: " + e.graph.segmentData.cliente +
@@ -218,6 +119,7 @@ export default {
                 });
             },
         },
+
     }
 </script>
 

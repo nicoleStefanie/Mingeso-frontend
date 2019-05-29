@@ -48,7 +48,7 @@ export default {
             modificarDatosRack(){
                for (let i = 0; i < this.items.length; i++) {
                    if(this.items[i] !== null){
-                       this.reservas.push(["habitacion": this.items[i].nroHabitacion, "segments": [this.items[i].idCliente, this.items[i].idReserva , this.items[i].fechaInicio, this.items[i].fechaTermino, this.items[i].nombreCliente]]);
+                       this.reservas.push(["habitacion", this.items[i].nroHabitacion,["segments", [this.items[i].idCliente, this.items[i].idReserva , this.items[i].fechaInicio, this.items[i].fechaTermino, this.items[i].nombreCliente]]]);
                    }
                }
            },

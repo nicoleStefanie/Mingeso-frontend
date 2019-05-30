@@ -16,13 +16,16 @@
                     <div class="md-layout-item md-small-size-100 md-size-50">
                         <md-field>
                             <label>Rut - Sin Guión</label>
-                            <md-input v-model="rut_usuario" type="text"></md-input>
+                            <md-input v-model="rut_usuario" type="number"></md-input>
                         </md-field>
                     </div>
                     <div class="md-layout-item md-small-size-100 md-size-50">
                         <md-field>
-                            <label>Rol</label>
-                            <md-input v-model="rol_usuario" type="text"></md-input>
+                            <select v-model="rol_usuario">
+                              <option disabled value="">Seleccione un rol de usuario</option>
+                              <option>Operario</option>
+                              <option>Administrador</option>
+                            </select>
                         </md-field>
                     </div>
                     <div class="md-layout-item md-small-size-100 md-size-50">
@@ -32,7 +35,7 @@
                         </md-field>
                     </div>
                     <div class="md-layout-item md-size-100 text-right">
-                        <md-button class="md-raised md-success" @click="putEmpleado" >Modificar Empleado</md-button>
+                        <md-button class="md-raised md-success" @click="validar" >Modificar Empleado</md-button>
                     </div>
                 </div>
             </md-card-content>
@@ -60,6 +63,16 @@ export default {
       }
   },
   methods: {
+    validar: function(){
+      if(this.nombre_usuario && this.rut_usuario&& this.rol_usuario && this.correo_usuario)
+       this.putEmpleado();
+
+        else{
+          alert('Se requiere completar todos los campos.')
+        }
+
+
+    },
     putEmpleado() {
       var url = localhost + '/usuarios/update/';
       var idString = "" + this.$route.params.rut;

@@ -10,36 +10,40 @@
                     <div class="md-layout-item md-small-size-100 md-size-50">
                         <md-field>
                             <label>N° de habitacion</label>
-                            <md-input v-model="nroHabitacion" type="text"></md-input>
+                            <md-input v-model="nroHabitacion" type="number"></md-input>
                         </md-field>
                     </div>
                     <div class="md-layout-item md-small-size-100 md-size-50">
                         <md-field>
-                            <label>Tipo</label>
-                            <md-input v-model="tipo" type="text"></md-input>
+                            <select v-model="tipo">
+                              <option disabled value="">Seleccione un tipo</option>
+                              <option>Simple</option>
+                              <option>Doble</option>
+                              <option>Matrimonial</option>
+                            </select>
                         </md-field>
                     </div>
                     <div class="md-layout-item md-small-size-100 md-size-50">
                         <md-field>
                             <label>Capacidad niños</label>
-                            <md-input v-model="capacidadNinos" type="text"></md-input>
+                            <md-input v-model="capacidadNinos" type="number"></md-input>
                         </md-field>
                     </div>
                     <div class="md-layout-item md-small-size-100 md-size-50">
                         <md-field>
                             <label>Capacidad Adultos</label>
-                            <md-input v-model="capacidadAdultos" type="text"></md-input>
+                            <md-input v-model="capacidadAdultos" type="number"></md-input>
                         </md-field>
                     </div>
                     <div class="md-layout-item md-small-size-100 md-size-30">
                         <md-field>
                             <label>Precio Noche </label>
-                            <md-input v-model="precioNoche"></md-input>
+                            <md-input v-model="precioNoche" type="number"></md-input>
                             <md-icon>attach_money</md-icon>
                         </md-field>
                     </div>
                     <div class="md-layout-item md-size-100 text-right">
-                        <md-button class="md-raised md-success" @click="agregarHabitacion" >Agregar Habitación</md-button>
+                        <md-button class="md-raised md-success"  @click="validar" >Agregar Habitación</md-button>
                     </div>
                 </div>
             </md-card-content>
@@ -63,10 +67,21 @@ export default {
       capacidadAdultos:'',
       precioNoche:'',
       habitaciones: [],
-      errors: []
+      errors: [],
+
     }
   },
   methods: {
+    validar: function(){
+      if(this.nroHabitacion && this.tipo && this.capacidadNinos && this.capacidadAdultos&& this.precioNoche)
+       this.agregarHabitacion();
+
+        else{
+          alert('Se requiere completar todos los campos.')
+        }
+
+
+    },
     agregarHabitacion() {
       var url = localhost + '/habitaciones/create';
       axios.post(url, {

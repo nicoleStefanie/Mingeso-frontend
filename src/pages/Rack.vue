@@ -25,6 +25,7 @@ const localhost = 'http://159.203.94.72:8060/backend';
 export default {
         data(){
             return{
+          
                   id_reserva: '',
                   fecha_inicio: '',
                   fecha_termino: '',
@@ -51,12 +52,42 @@ export default {
             },
 
             modificarDatosRack(){
+              var k =0;
+
                for (let i = 0; i < this.items.length; i++) {
-                   if(this.items[i] !== null){
-                     this.reservas.push(["habitacion",this.items[i].nroHabitacion, "segments", [this.items[i].idCliente, this.items[i].idReserva , this.items[i].fechaInicio, this.items[i].fechaTermino, this.items[i].nombreCliente]]);
+                   if(!this.existe(this.items[i].nroHabitacion)){
+                     this.reservas.push({"habitacion": this.items[i].nroHabitacion , "segments":{}});
+                     var segments =[];
+                     segments.push({"id": this.items[i].idReserva,
+                     "start": this.items[i].fechaInicio,
+                      "end": this.items[i].fechaTermino,
+                   "cliente": this.items[i].nombreCliente});
+
+                    for(let j= i+1; j<this.items.length;j++){
+                      if(this.items[j].nroHabitacion === this.items[i].nroHabitacion){
+                        segments.push({"id": this.items[j].idReserva,
+                        "start": this.items[j].fechaInicio,
+                        "end": this.items[j].fechaTermino,
+                      "cliente": this.items[j].nombreCliente});
+
+                      }
+                    }
+                    console.log(this.segments)
+                    this.reservas[k].segments = segments;
+                    k = k+1;
                    }
+
                }
                this.crearGrafico();
+           },
+
+           existe: function(numero){
+             for(var x=0;x<this.reservas.length; x++){
+               if(this.reservas[x].habitacion === numero){
+                 return true;
+               }
+             }
+             return false;
            },
             crearGrafico: function(){
                 var chart = AmCharts.makeChart("chartdiv", {

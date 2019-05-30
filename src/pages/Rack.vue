@@ -9,9 +9,7 @@
                 <div id="chartdiv"></div>
               </div>
             </md-card-content>
-            Rerservas {{this.reservas}}
         </md-card>
-
     </div>
 </template>
 
@@ -25,7 +23,7 @@ const localhost = 'http://159.203.94.72:8060/backend';
 export default {
         data(){
             return{
-          
+
                   id_reserva: '',
                   fecha_inicio: '',
                   fecha_termino: '',

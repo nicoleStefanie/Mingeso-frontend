@@ -97,7 +97,6 @@ const routes = [
         name: 'agregarHabitacion',
         component: AgregarHabitaciones
       },
-
       {
         path: 'empleados',
         name: 'empleados',

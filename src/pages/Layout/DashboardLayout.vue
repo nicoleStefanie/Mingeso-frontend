@@ -24,9 +24,9 @@
         <p>Habitaciones</p>
       </sidebar-link>
 
-      <sidebar-link to="/empleados">
+      <sidebar-link to="/usuarios">
         <md-icon>people</md-icon>
-        <p>Empleados</p>
+        <p>Usuarios</p>
       </sidebar-link>
 
     </side-bar>

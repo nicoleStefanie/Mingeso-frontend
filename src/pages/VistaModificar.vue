@@ -1,63 +1,78 @@
 <template>
-  <form id="simple">
-    <md-card>
-      <md-card-header :data-background-color="dataBackgroundColor">
-        <h4 class="title">Editando Reserva</h4>
-        <p class="category">La reserva que quiera editar, la podrá editar posteriormente.</p>
-      </md-card-header>
-      <md-card-content>
-        <div class="md-layout">
-          <div class="md-layout-item md-small-size-100 md-size-30">
-            <md-field>
-              <label>Código de la reserva</label>
-              <md-input v-model="id_reserva" type="number" min="1"></md-input>
-            </md-field>
-              <p v-if="id_reserva">{{ id_reserva }}</p>
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-50" v-if="id_reserva != null">
-            <md-button class="md-raised md-success" @click.native="evento(id_reserva)" 
-            :href="'#/modificarReservaSimple/'+ this.id_reserva">Editar Reserva</md-button>
-          </div>
-        </div>
-      </md-card-content>
-    <md-card-content>
-      <div class="md-layout-item md-small-size-100 md-size-50">
-        <md-button class="md-raised md-size-50 md-success md-accent" :href="'#/reservas'">ATRAS</md-button>
-      </div>
-    </md-card-content>
-    </md-card>
-  </form>
+  <div class="container">
+        <md-card>
+          <md-card-header data-background-color="green" style="position: relative;">
+            <h3 class="title">Reservas</h3>
+          </md-card-header>
+            <md-card-content>
+            <div>
+              <b-table
+                selectable
+                :select-mode="selectMode"
+                selectedVariant="success"
+                :items="items"
+                :fields = "fields"
+                @row-selected="rowSelected"
+              ></b-table>
+            </div>
+              <md-card-actions>
+              <div  v-if="selected !== null">
+                <md-button type="button"  :href="'#/modificartodo/'+ this.codigoreserva" >Editar todos los datos</md-button>
+                <md-button type="button" :href="'#/modificarfechas/'+ this.codigoreserva +'/'+ this.idHabitacion " >Editar fecha de reserva</md-button>
+                <md-button type="button"  >Eliminar reserva</md-button>
+              </div>
+              </md-card-actions>
+            </md-card-content>
+            <md-card-actions>
+            <div>
+            </div>
+            </md-card-actions>
+        </md-card>
+    </div>
 </template>
 
 <script>
-/* eslint-disable */
-export default{
-  name: 'simple',
-  props: {
-    dataBackgroundColor: {
-      type: String,
-      default: ''
-    }
-  },
-  data () {
-    return {
-      id_reserva: null
+import axios from 'axios';
+const localhost = 'http://159.203.94.72:8060/backend/';
+export default {
+    components: {
+    },
+    data(){
+      return{
+        fields: [ "codigoReserva",
+            "rut",
+            "estado",
+            "idCliente",
+            "nombreCliente",
+            "fechaInicio",
+            "fechaTermino",
+            "nroHabitacion"],
+        items:[],
+        errors:[],
+        itemsCompleto: [],
+        selectMode: 'single',
+        selected: null,
+        codigoreserva: null,
+        idHabitacion:[],
+        arreglo : null,
       }
-  },
-  methods:{
-    evento: function(id_reserva) {
-      if(id_reserva == null)
-      {
-        alert('Se requiere completar el campo de Código de Reserva');
-      }
-      return
+    },
+    methods: {
+      getReservas(){
+          const url = localhost + '/reservas/mostrarReservas/';
+          axios.get(url).then((data) => {
+            this.items = data.data;
+          });
+        },
+
+      rowSelected(items) {
+        this.selected = items;
+        this.codigoreserva = this.selected[0].codigoReserva;
+        this.idHabitacion = this.selected[0].idHab;
+      },
+    },
+    mounted() {
+    this.getReservas();
     }
   }
-}
 </script>
-
-
-<style>
-
-</style>
-

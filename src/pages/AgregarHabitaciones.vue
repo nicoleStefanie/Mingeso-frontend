@@ -19,6 +19,8 @@
                               <option disabled value="">Seleccione un tipo</option>
                               <option>Simple</option>
                               <option>Doble</option>
+                              <option>Triple</option>
+                              <option>Cuadruple</option>
                               <option>Matrimonial</option>
                             </select>
                         </md-field>

@@ -18,13 +18,13 @@
               <md-card-actions>
               <div  v-if="selected !== null">
                 <md-button type="button" :href="'#/modificarEmpleado/'+ this.usuarioR" >Editar</md-button>
-                <md-button class="md-raised md-success" @click="deleteUsuario">Eliminar Empleado</md-button>
+                <md-button class="md-raised md-success" @click="deleteUsuario">Eliminar Usuario</md-button>
               </div>
               </md-card-actions>
             </md-card-content>
             <md-card-actions>
             <div>
-              <md-button type="button" :href="'#/agregarEmpleado'" >Agregar Empleado</md-button>
+              <md-button type="button" :href="'#/agregarEmpleado'" >Agregar Usuario</md-button>
             </div>
             </md-card-actions>
         </md-card>

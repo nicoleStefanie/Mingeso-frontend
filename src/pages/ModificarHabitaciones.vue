@@ -16,9 +16,11 @@
                     <div class="md-layout-item md-small-size-100 md-size-50">
                         <md-field>
                             <select v-model="tipo">
-                              <option disabled value="">Tipo</option>
+                              <option disabled value="">Seleccione un tipo de habitacion</option>
                               <option>Simple</option>
                               <option>Doble</option>
+                              <option>Triple</option>
+                              <option>Cuadruple</option>
                               <option>Matrimonial</option>
                             </select>
                         </md-field>

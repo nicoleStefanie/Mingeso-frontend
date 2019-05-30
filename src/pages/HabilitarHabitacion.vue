@@ -52,15 +52,10 @@ export default {
         else{
           alert('Se requiere completar todos los campos.')
         }
-
-
     },
     agregarHabitacion() {
-      var url = localhost + '/habitaciones/habilitar/';
-      var idString = "" + this.$route.params.id;
-      url = url + idString;
+      var url = localhost + '/habitaciones/habilitar/' + this.$route.params.id;
       axios.post(url, {
-
         tipo : this.tipo,
 
       })

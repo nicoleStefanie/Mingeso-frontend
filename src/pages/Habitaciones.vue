@@ -70,7 +70,7 @@ export default {
 
       },
       deshabilitar(){
-        const url = localhost + '/habitaciones/deshabilitar/'+ this.habitacion;
+        const url = localhost + '/habitaciones/deshabilitar/' + this.habitacion;
         axios.post(url, {
             tipo : "Inhabilitada",
           })

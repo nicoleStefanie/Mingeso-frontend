@@ -3,12 +3,12 @@
     <notifications></notifications>
 
       <sidebar-link to="/rack">
+      <mobile-menu slot="content"></mobile-menu>
         <md-icon>notes</md-icon>
         <p>Rack</p>
       </sidebar-link>
       
     <side-bar>
-      <mobile-menu slot="content"></mobile-menu>
       <sidebar-link to="/reservas">
         <md-icon>assignment</md-icon>
         <p>Reservas</p>

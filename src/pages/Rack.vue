@@ -13,17 +13,15 @@
     </div>
 </template>
 
-
-
 <script>
+/* eslint-disable */
+var hoy = new Date();
 import { existsSync } from 'fs';
 import axios from 'axios';
 const localhost = 'http://159.203.94.72:8060/backend';
-/* eslint-disable */
 export default {
         data(){
             return{
-
                   id_reserva: '',
                   fecha_inicio: '',
                   fecha_termino: '',
@@ -31,13 +29,23 @@ export default {
                   tipo_reserva: '',
                   reservas: [],
                   items: null,
-
             }
         },
         mounted: function(){
           this.getReservas();
-
-
+        },
+        dateFormat: function(date) {
+          //return date.getFullYear() + '-' + (date.getMonth() +1) + '-' + date.getDate();
+          if(date.getMonth()< 10 && date.getDate() < 10)
+          {
+            return date.getFullYear() + '-0' + (date.getMonth() +1) + '-0' + date.getDate();
+          }
+          else if(date.getMonth()< 10){
+            return date.getFullYear() + '-0' + (date.getMonth() +1) + '-' + date.getDate();
+          }
+          else if(date.getDate() < 10){
+            return date.getFullYear() + '-' + (date.getMonth() +1) + '-0' + date.getDate();
+          } 
         },
         methods: {
           getReservas(){
@@ -48,7 +56,6 @@ export default {
               });
 
             },
-
             modificarDatosRack(){
               var k =0;
 
@@ -74,11 +81,9 @@ export default {
                     this.reservas[k].segments = segments;
                     k = k+1;
                    }
-
                }
                this.crearGrafico();
            },
-
            existe: function(numero){
              for(var x=0;x<this.reservas.length; x++){
                if(this.reservas[x].habitacion === numero){
@@ -129,11 +134,12 @@ export default {
                   "listeners": [{
                     "event": "clickGraphItem",
                     "method": function(e) {
-                      alert("Información de la reserva:\nID Reserva: " + e.graph.segmentData.id +
-                      "\nFecha inicio: " + e.graph.segmentData.start +
-                      "\nFecha término: " + e.graph.segmentData.end +
-                      "\nCliente: " + e.graph.segmentData.cliente +
-                      "\nTipo: Reserva " + e.graph.segmentData.tipo)
+                      var ventana = window.open( "", "nombrePop-Up", "width=380,height=300, top=85,left=50");
+                      ventana.document.write("Información de la reserva: <br><br> ID Reserva: " + e.graph.segmentData.id +
+                      "<br>Fecha inicio: " + e.graph.segmentData.start +
+                      "<br>Fecha término: " + e.graph.segmentData.end +
+                      "<br>Cliente: " + e.graph.segmentData.cliente + "<br><br>");
+
                     }
                   }],
                   "export": {
@@ -142,7 +148,6 @@ export default {
                 });
             },
         },
-
     }
 </script>
 

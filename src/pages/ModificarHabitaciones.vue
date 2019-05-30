@@ -52,6 +52,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import axios from 'axios';
 const localhost = 'http://159.203.94.72:8060/backend';
 export default {

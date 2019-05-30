@@ -19,7 +19,7 @@
               <div  v-if="selected !== null">
                 <md-button type="button" :href="'#/modificarHabitacion/'+ this.habitacion" >Editar</md-button>
                 <md-button class="md-raised md-success" @click="deleteHabitacion">Eliminar Habitación</md-button>
-                <md-button  v-if= "arreglo !== 'Inhabilitada'" class="md-raised md-success"@click="deshabilitar" >Deshabilitar Habitación</md-button>
+                <md-button  v-if= "arreglo !== 'Inhabilitada'" class="md-raised md-success" @click="deshabilitar" >Deshabilitar Habitación</md-button>
                 <md-button  v-else class="md-raised md-success" :href="'#/habilitarHabitacion/'+ this.habitacion">Habilitar Habitación</md-button>
               </div>
               </md-card-actions>
@@ -34,6 +34,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import axios from 'axios';
 const localhost = 'http://159.203.94.72:8060/backend/';
 export default {

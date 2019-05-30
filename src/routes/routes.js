@@ -1,13 +1,5 @@
-/* No pescar */
-import Dashboard from '@/pages/Dashboard.vue'
-import UserProfile from '@/pages/UserProfile.vue'
-import TableList from '@/pages/cuenta/TableList.vue'
-import Notifications from '@/pages/Notifications.vue'
-import Agregar from '@/pages/UserProfile/AddPolitico.vue'
-import Editar from '@/pages/UserProfile/EditPolitico.vue'
 import DashboardLayout from '@/pages/Layout/DashboardLayout.vue'
 
-/*##############################################################*/
 import Rack from '@/pages/Rack.vue'
 import Home from '@/pages/Home.vue'
 import Login from '@/pages/Login.vue'
@@ -27,8 +19,6 @@ import Empleados from '@/pages/Empleados.vue'
 import ModificarEmpleado from '@/pages/ModificarEmpleado.vue'
 import AgregarEmpleado from '@/pages/AgregarEmpleado.vue'
 import HabilitarHabitacion from '@/pages/HabilitarHabitacion.vue'
-
-/*##############################################################*/
 
 const routes = [
 
@@ -106,39 +96,33 @@ const routes = [
         path: 'modificarHabitacion/:id',
         name: 'modificarHabitacion',
         component: ModificarHabitaciones
-
       },
       {
         path: 'agregarHabitacion',
         name: 'agregarHabitacion',
         component: AgregarHabitaciones
-
       },
 
       {
         path: 'empleados',
         name: 'empleados',
         component: Empleados
-
       },
       {
         path: 'modificarEmpleado/:rut',
         name: 'modificarEmpleado',
         component: ModificarEmpleado
-
       },
       {
         path: 'agregarEmpleado',
         name: 'agregarEmpleado',
         component: AgregarEmpleado
-
       },
       {
         path: 'habilitarHabitacion/:id',
         name: 'habilitarHabitacion',
         component: HabilitarHabitacion
-
-      },
+      }
     ]
   }
 ]

@@ -15,7 +15,7 @@
               <p v-if="id_reserva">{{ id_reserva }}</p>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-50" v-if="id_reserva != null">
-            <md-button class="md-raised md-success" @click.native="evento(id_reserva)" 
+            <md-button class="md-raised md-success" @click.native="evento(id_reserva)"
             :href="'#/modificarReservaSimple/'+ this.id_reserva">Editar Reserva</md-button>
           </div>
         </div>

@@ -52,11 +52,11 @@
 </template>
 
 <script>
+/* eslint-disable */
 import axios from 'axios';
 const localhost = 'http://159.203.94.72:8060/backend/';
 export default {
   name : 'agregarEmpleado',
-
   components: {
   },
   data(){
@@ -68,7 +68,6 @@ export default {
       precioNoche:'',
       habitaciones: [],
       errors: [],
-
     }
   },
   methods: {

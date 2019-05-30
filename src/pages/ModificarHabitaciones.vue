@@ -10,7 +10,7 @@
                     <div class="md-layout-item md-small-size-100 md-size-50">
                         <md-field>
                             <label>N° de habitacion</label>
-                            <md-input v-model="nroHabitacion" type="number"></md-input>
+                            <md-input  v-model="nroHabitacion" type="number"></md-input>
                         </md-field>
                     </div>
                     <div class="md-layout-item md-small-size-100 md-size-50">
@@ -65,15 +65,19 @@ export default {
   data(){
     return{
       nroHabitacion: '',
+        nroHabitacion2: '',
       tipo:'',
       capacidadNinos:'',
       capacidadAdultos:'',
       precioNoche:'',
       habitaciones: [],
-      errors: []
+      items:[],
+      errors: [],
+
     }
   },
   methods: {
+      
     validar: function(){
       if(this.nroHabitacion && this.tipo && this.capacidadNinos && this.capacidadAdultos&& this.precioNoche)
        this.putHabitacion();
@@ -110,7 +114,7 @@ export default {
         this.errors.push(e)
       });
     }
-  }
+  },
 }
 
 </script>

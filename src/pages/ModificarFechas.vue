@@ -45,7 +45,7 @@ export default {
         seleccion:'',
         fechaInicio:'',
         fechaTermino:'',
-        idHab: '',
+        IdHab: '',
         inicio: '',
         termino: '',
         errors: [],
@@ -100,7 +100,7 @@ export default {
 
         fechaInicio : this.fechaInicio,
         fechaTermino : this.fechaTermino,
-        idHab : this.$route.params.idHabitacion
+        IdHab : this.$route.params.idHabitacion
 
       })
       .then(response => {

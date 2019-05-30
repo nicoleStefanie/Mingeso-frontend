@@ -47,14 +47,14 @@ export default {
   methods: {
     validar: function(){
       if( this.tipo )
-       this.agregarHabitacion();
+       this.habilitar();
 
         else{
           alert('Se requiere completar todos los campos.')
         }
     },
-    agregarHabitacion() {
-      var url = localhost + '/habitaciones/habilitar/' + this.$route.params.id;
+    habilitar() {
+      var url = localhost + '/habitaciones/deshabilitar/' + this.$route.params.id;
       axios.post(url, {
         tipo : this.tipo,
 

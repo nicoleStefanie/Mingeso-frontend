@@ -25,7 +25,7 @@ const routes = [
   {
     path: '/',
     component: DashboardLayout,
-    redirect: '/Home',
+    redirect: '/rack',
     children: [
       {
         path: 'reservaSimple',
@@ -81,11 +81,6 @@ const routes = [
         path: 'login',
         name: 'Login',
         component: Login
-      },
-      {
-        path: 'Home',
-        name: 'Home',
-        component: Home
       },
       {
         path: 'habitaciones',

@@ -1,22 +1,17 @@
 <template>
   <div class="wrapper" :class="{'nav-open': $sidebar.showSidebar}">
-    <notifications></notifications>
-
+    <notifications></notifications>      
     <side-bar>
       <mobile-menu slot="content"></mobile-menu>
-      <sidebar-link to="/Home">
-        <md-icon>home</md-icon>
-        <p>Home</p>
+   
+      <sidebar-link to="/rack">
+        <md-icon>notes</md-icon>
+        <p>Rack</p>
       </sidebar-link>
 
       <sidebar-link to="/reservas">
         <md-icon>assignment</md-icon>
         <p>Reservas</p>
-      </sidebar-link>
-
-      <sidebar-link to="/rack">
-        <md-icon>notes</md-icon>
-        <p>Rack</p>
       </sidebar-link>
 
       <sidebar-link to="/habitaciones">

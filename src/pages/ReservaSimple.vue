@@ -19,8 +19,8 @@
           </div>
           <br><br><br>
           <div class="md-layout-item md-small-size-100 md-size-40">
-                <b-form-input type="date" @keyup="validarEdad" v-model="nacimiento" placeholder="Fecha de Nacimiento"></b-form-input>
-                  <p class="error" v-if="vatError5">{{vatErrorMsg5}}</p>
+              <datepicker v-model="nacimiento" type="date" placeholder=" Fecha de Nacimiento"></datepicker>
+                <p v-if="nacimiento">{{ dateFormat(nacimiento) }}</p>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-30">
                 <b-form-input @keyup="validarTelefono" v-model="telefono" placeholder="Teléfono"></b-form-input>
@@ -34,13 +34,13 @@
           <br><br><br>
             <!--<div class="md-layout-item md-small-size-100 md-size-30">
                  <b-form-select v-model="habitacion" :options="options">
-                    <option :value="null" disabled>Seleccione Habitación</option>              
+                    <option :value="null" disabled>Seleccione Habitación</option>
                     <option>Simple</option>
                     <option>Doble</option>
                     <option>Triple</option>
                     <option>Cuádruple</option>
                     <option>Matrimonial</option>
-                    <option></option>              
+                    <option></option>
               </b-form-select>
                 <div class="mt-2">{{ habitacion }}</div>
           </div>-->
@@ -49,7 +49,7 @@
                 <p v-if="inicio">{{ dateFormat(inicio) }}</p>
                <div class="md-layout md-small-size-100 md-size-20" v-if="seleccion">
                   <b-form-select v-model="habitacion">
-                      <option :value="null" disabled>Habitaciones Disponibles</option> 
+                      <option :value="null" disabled>Habitaciones Disponibles</option>
                       <template v-for="r in reservas">
                           <template v-if="(r.fechainicio != (dateFormat(inicio))) && (r.id != r.habitacion)">
                             <option :key="r">{{ r.habitacion}}</option>
@@ -66,7 +66,7 @@
           </div>
           <div class="md-layout-item md-size-100 text-right">
             <md-button class="md-raised md-success" :href="'#/reservas'">Cancelar</md-button>
-            &nbsp; &nbsp; 
+            &nbsp;&nbsp;
             <md-button class="md-raised md-success" @click="validar()">Crear Reserva</md-button>
           </div>
         </div>
@@ -237,7 +237,7 @@ export default {
     },
     validarRut:function(rut){
       if(/^\d*$/.test(this.rut)){
-        if(Object.keys(this.rut).length < 9){
+        if(Object.keys(this.rut).length < 10){
           this.vatError2 = false;
           this.vatErrorMsg2 = null; 
         }

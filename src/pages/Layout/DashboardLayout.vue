@@ -1,14 +1,14 @@
 <template>
   <div class="wrapper" :class="{'nav-open': $sidebar.showSidebar}">
-    <notifications></notifications>
-
-      <sidebar-link to="/rack">
+    <notifications></notifications>      
+    <side-bar>
       <mobile-menu slot="content"></mobile-menu>
+   
+      <sidebar-link to="/rack">
         <md-icon>notes</md-icon>
         <p>Rack</p>
       </sidebar-link>
-      
-    <side-bar>
+
       <sidebar-link to="/reservas">
         <md-icon>assignment</md-icon>
         <p>Reservas</p>

@@ -57,6 +57,9 @@ export default {
       }
     },
     methods: {
+      refresh(){
+        location.reload(true);
+      },
       getHabitaciones(){
           const url = localhost + '/habitaciones';
           axios.get(url).then((data) => {
@@ -76,6 +79,7 @@ export default {
           })
           .then(response => {
             alert(response.data[0].message);
+            this.refresh();
           })
           .catch(e => {
             this.errors.push(e)

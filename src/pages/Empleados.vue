@@ -54,6 +54,9 @@ export default {
         }
     },
     methods: {
+      refresh(){
+        location.reload(true);
+      },
       getUsuarios(){
           const url = localhost + '/usuarios';
           axios.get(url).then((data) => {
@@ -71,6 +74,7 @@ export default {
         axios.post(url, {})
         .then(response => {
           alert(response.data[0].message);
+          this.refresh();
         })
         .catch(e => {
           this.errors.push(e)

@@ -55,7 +55,6 @@
           <br><br><br>
           <div class="md-layout-item md-small-size-100 md-size-33">
               <datepicker :disabledDates="fechasTermino" v-model="fechaTermino" type="date"  placeholder=" Fecha Termino"></datepicker>
-                <p v-if="fechaTermino">{{ dateFormat(fechaTermino) }}</p>
           </div>
           <br><br><br>
           <div class="md-layout-item md-small-size-100 md-size-30">
@@ -195,6 +194,9 @@ export default {
         this.descuento="";
         alert(response.data[0].message);
         console.log(response.data.message);
+        if(response.data[0].message == 'OK'){
+          location.href = "http://159.203.94.72/#/rack";
+        }  
       })
       .catch(e => {
         this.errors.push(e)

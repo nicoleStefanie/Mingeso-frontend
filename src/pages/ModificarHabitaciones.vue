@@ -2,7 +2,7 @@
     <form>
         <md-card>
             <md-card-header :data-background-color="dataBackgroundColor">
-                <h4 class="title">Agregar Habitación</h4>
+                <h4 class="title">Modificar Habitación</h4>
                 <p class="category">Completar los campos</p>
             </md-card-header>
             <md-card-content>
@@ -108,6 +108,9 @@ export default {
         this.precioNoche= "";
         alert(response.data[0].message);
         console.log(response.data.message);
+        if(response.data[0].message == 'La Habitacion ha sido editada'){
+          location.href = "http://159.203.94.72/#/habitaciones";
+        }  
       })
       .catch(e => {
         this.errors.push(e)

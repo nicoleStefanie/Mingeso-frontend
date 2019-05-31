@@ -49,7 +49,7 @@
           </div>
           <br><br><br>
           <div class="md-layout-item md-small-size-100 md-size-33">
-              <datepicker :disabledDates="fechasInicio" v-model="fechaInicio" type="date"  placeholder=" Fecha inicio"></datepicker>
+              <datepicker format="yyyy-MM-dd" :disabledDates="fechasInicio" v-model="fechaInicio" type="date"  placeholder=" Fecha inicio"></datepicker>
                 <p v-if="fechaInicio">{{ fechaInicio }}</p>
           </div>
           <br><br><br>
@@ -58,11 +58,11 @@
                 <p v-if="fechaTermino">{{ dateFormat(fechaTermino) }}</p>
           </div>
           <br><br><br>
-          <!--<div class="md-layout-item md-small-size-100 md-size-30">
+          <div class="md-layout-item md-small-size-100 md-size-30">
                 <b-form-input  @keyup="validarIdHab" v-model="IdHab" placeholder="ID Habitación"></b-form-input>
                 <p class="error" v-if="vatError7">{{vatErrorMsg7}}</p>
-          </div>-->
-            <div v-if= "fechaInicio && fechaTermino">
+          </div>-
+            <!--<div v-if= "fechaInicio && fechaTermino">
               <b-table
                 selectable
                 :select-mode="selectMode"
@@ -72,7 +72,7 @@
                 @row-selected="rowSelected3"
               ></b-table>
               {{items}}
-            </div>
+            </div>-->
           <div class="md-layout-item md-size-100 text-right">
             <md-button class="md-raised md-success" :href="'#/reservas'">Cancelar</md-button>
             &nbsp;&nbsp;
@@ -156,18 +156,7 @@ export default {
         descuento:'',
       }
   },  
-  mounted(){
-    this.getHabitaciones();
-  },
   methods:{
-    getHabitaciones(){
-        //AQUI ES EL PROBLEMA DE LAS FECHAS, 
-        const url = localhost + '/reservahabitacion/' + '2019-09-05'  + '/' + '2019-09-30';
-  
-        axios.get(url).then((data) => {
-          this.items = data.data;
-        });
-    },
     rowSelected3(items) {
         this.selected = items;
         this.habitacion = this.selected[0].idHabitacion;
@@ -188,7 +177,7 @@ export default {
         fechaInicio:this.fechaInicio,
         fechaTermino:this.fechaTermino,
         codigoReserva:this.codigoReserva,
-        IdHab:17,
+        IdHab:this.IdHab,
         estado:'1',
         descuento:this.descuento,
       })

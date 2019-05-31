@@ -13,24 +13,24 @@
                             <md-input v-model="nombre_usuario" type="text"></md-input>
                         </md-field>
                     </div>
-                    <div class="md-layout-item md-small-size-100 md-size-50">
+                    <div class="md-layout-item md-small-size-100 md-size-30">
                         <md-field>
-                            <label>Rut - Sin Guión</label>
+                            <label>Rut , ej: 191135709</label>
                             <md-input v-model="rut_usuario" type = "number"></md-input>
                         </md-field>
                     </div>
-                    <div class="md-layout-item md-small-size-100 md-size-50">
+                    <div class="md-layout-item md-small-size-100 md-size-30">
                         <md-field>
-                            <select v-model="rol_usuario">
+                            <b-form-select v-model="rol_usuario">
                               <option disabled value="">Seleccione un rol de usuario</option>
                               <option>Operario</option>
                               <option>Administrador</option>
-                            </select>
+                            </b-form-select>
                         </md-field>
                     </div>
                     <div class="md-layout-item md-small-size-100 md-size-50">
                         <md-field>
-                            <label>Correo electrónico</label>
+                            <label>Correo electrónico , ej: example@example.com</label>
                             <md-input v-model="correo_usuario" type="text"></md-input>
                         </md-field>
                     </div>
@@ -64,16 +64,12 @@ export default {
     }
   },
   methods: {
-
     validar: function(){
       if(this.nombre_usuario && this.rut_usuario&& this.rol_usuario && this.correo_usuario)
        this.agregarEmpleado();
-
         else{
           alert('Se requiere completar todos los campos.')
         }
-
-
     },
     agregarEmpleado() {
       var url = localhost + '/usuarios/create';

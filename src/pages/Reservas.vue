@@ -33,30 +33,17 @@
     </md-card>
     <md-card>
         <md-card-header>
-          <div class="md-title">Editar Reserva</div>
+          <div class="md-title">Gestión de Reserva</div>
         </md-card-header>
         <md-card-content>
-        En esta sección se puede editar la información de una reserva. 
+        En esta sección se puede editar la información de una reserva y se puede eliminar una reserva.
          <div class="md-layout-item md-small-size-100 md-size-100">
         </div>
         <div class="md-layout-item md-small-size-100 md-size-100">
         </div>
         </md-card-content>
         <md-card-actions>
-          <md-button type="button" :href="'#/vistaModificar'">Editar Reserva</md-button>
-        </md-card-actions>
-    </md-card>
-    <md-card >
-        <md-card-header>
-          <div class="md-title">Eliminar Reserva</div>
-        </md-card-header>
-        <md-card-content>
-          En esta sección se puede borrar por completo una reserva y todos sus datos.
-          <div class="md-layout-item md-small-size-100 md-size-100">
-          </div>
-        </md-card-content>
-        <md-card-actions>
-          <md-button type="button" :href="'#/vistaEliminar'">Eliminar Reserva</md-button>
+          <md-button type="button" :href="'#/vistaModificar'">Gestionar Reserva</md-button>
         </md-card-actions>
     </md-card>
   </div>
@@ -80,18 +67,6 @@ export default{
     }
   },
   mounted: function () {
-    // GET /someUrl
-    /*this.$http.get('')
-      .then(response => {
-        // get body data
-        this.datos = response.body
-        console.log('datos', this.datos)
-        // this.obtenerFecha();
-        this.loadpie()
-      }, response => {
-        // error callback
-        console.log('Error cargando lista')
-      })*/
   },
   methods: {
   }

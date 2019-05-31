@@ -18,7 +18,7 @@
               <md-card-actions>
               <div  v-if="selected !== null">
                 <md-button type="button"  :href="'#/modificartodo/'+ this.codigoreserva" >Editar todos los datos</md-button>
-                <md-button type="button" :href="'#/modificarfechas/'+ this.codigoreserva +'/'+ this.idHabitacion " >Editar fecha de reserva</md-button>
+                <md-button type="button" :href="'#/modificarfechas/'+ this.codigoreserva +'/'+ this.idHabitacion ">Editar fecha de reserva</md-button>
                 <md-button type="button"  >Eliminar reserva</md-button>
               </div>
               </md-card-actions>

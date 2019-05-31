@@ -18,7 +18,7 @@
                 <p v-if="fechaTermino">{{ dateFormat(fechaTermino) }}</p>
           </div>
           <div class="md-layout-item md-size-100 text-right">
-            <md-button class="md-raised md-success" @click="validar()">Modificar</md-button>
+            <md-button class="md-raised md-success" @click="validar()">Modificar Fechas</md-button>
           </div>
         </div>
       </md-card-content>

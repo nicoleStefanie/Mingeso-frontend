@@ -31,10 +31,11 @@
                 <b-form-input @keyup="validarEmail" v-model="correo" placeholder="Correo"></b-form-input>
                   <p class="error" v-if="vatError4">{{vatErrorMsg4}}</p>
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-80">
+          <div class="md-layout-item md-small-size-100 md-size-40">
                 <b-form-input v-model="estado" placeholder="Estado de la reserva"></b-form-input>
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-80">
+          <br><br><br>
+          <div class="md-layout-item md-small-size-100 md-size-40">
                 <b-form-input v-model="descuento" placeholder="Descuento de la reserva"></b-form-input>
           </div>
           <div class="md-layout-item md-size-100 text-right">

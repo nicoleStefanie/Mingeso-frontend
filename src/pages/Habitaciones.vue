@@ -20,7 +20,7 @@
                 <md-button type="button" :href="'#/modificarHabitacion/'+ this.habitacion" >Editar</md-button>
                 <md-button class="md-raised md-success" @click="deleteHabitacion">Eliminar Habitación</md-button>
                 <md-button  v-if= "arreglo !== 'Inhabilitada'" class="md-raised md-success" @click="deshabilitar" >Deshabilitar Habitación</md-button>
-                <md-button  v-else class="md-raised md-success" :href="'#/Habitaciones/'+ this.habitacion">Habilitar Habitación</md-button>
+                <md-button  v-else class="md-raised md-success" :href="'#/Habitaciones/'">Habilitar Habitación</md-button>
               </div>
               </md-card-actions>
             </md-card-content>

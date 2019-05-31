@@ -77,7 +77,6 @@ export default {
     }
   },
   methods: {
-      
     validar: function(){
       if(this.nroHabitacion && this.tipo && this.capacidadNinos && this.capacidadAdultos&& this.precioNoche)
        this.putHabitacion();

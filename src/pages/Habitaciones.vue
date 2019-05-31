@@ -63,7 +63,6 @@ export default {
             this.items = data.data;
           });
         },
-
       rowSelected(items) {
         this.selected = items;
         this.habitacion = this.selected[0].idHabitacion;

@@ -1,66 +1,76 @@
 <template>
-  <form id="simple">
+  <form id="simple" charset=UTF-8″>
     <md-card>
-      <md-card-header :data-background-color="dataBackgroundColor">
+      <md-card-header>
         <h4 class="title">Crear Reserva Múltiple</h4>
         <p class="category">Completar con los datos</p>
       </md-card-header>
       <md-card-content>
         <br>
         <div class="md-layout">
+          <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ingrese los datos del Usuario que esta haciendo la reserva</label>
           <div class="md-layout-item md-small-size-100 md-size-80">
-                <b-form-input v-model="nombre" placeholder="Nombre Completo"></b-form-input>
-                  <!--<div class="mt-2">{{ nombre }}</div>-->
+                <b-form-input @keyup="validarRut(rutUsuario)" v-model="rutUsuario" placeholder="Rut Usuario"></b-form-input>
+                <p class="error" v-if="vatError2">{{vatErrorMsg2}}</p>
+          </div>
+          <br><br><br>
+          <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ingrese la información de la reserva.</label>
+          <div class="md-layout-item md-small-size-100 md-size-80">
+                <b-form-input @keyup="validarNombre" v-model="nombreCliente" placeholder="Nombre y Apellido del Cliente"></b-form-input>
                 <p class="error" v-if="vatError1">{{vatErrorMsg1}}</p>
           </div>
           <br><br><br>
           <div class="md-layout-item md-small-size-100 md-size-40">
-                <b-form-input v-model="rut" placeholder="Rut"></b-form-input>
-                  <!--<div class="mt-2">{{ rut }}</div>-->
-                  <p class="error" v-if="vatError2">{{vatErrorMsg2}}</p>  
+                <b-form-input @keyup="validarRut" v-model="rut" placeholder="Rut , ej: 191135709"></b-form-input>
+                <p class="error" v-if="vatError2">{{vatErrorMsg2}}</p>
           </div>
           <br><br><br>
           <div class="md-layout-item md-small-size-100 md-size-40">
-                <b-form-input v-model="telefono" placeholder="Teléfono"></b-form-input>
-                  <!--<div class="mt-2">{{ telefono }}</div>-->
+              <datepicker v-model="fechaNacimiento" type="date" placeholder=" Fecha de Nacimiento"></datepicker>
+                <p v-if="nacimiento">{{ dateFormat(fechaNacimiento) }}</p>
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-30">
+                <b-form-input @keyup="validarTelefono" v-model="telefonoCliente" placeholder="Teléfono , ej: 983897060"></b-form-input>
                   <p class="error" v-if="vatError3">{{vatErrorMsg3}}</p>
           </div>
           <br><br><br>
           <div class="md-layout-item md-small-size-100 md-size-50">
-                <b-form-input v-model="correo" placeholder="Correo"></b-form-input>
-                  <!--<div class="mt-2">{{ correo }}</div>-->
+                <b-form-input @keyup="validarEmail" v-model="correoCliente" placeholder="Correo , ej: example@example.com"></b-form-input>
                   <p class="error" v-if="vatError4">{{vatErrorMsg4}}</p>
           </div>
           <br><br><br>
-          <div class="md-layout-item md-small-size-100 md-size-30">
-                <b-form-input v-model="numero" :type="number" placeholder="Número de Habitaciones"></b-form-input>
-                  <div class="mt-2">{{ numero }}</div>
+          <div class="md-layout-item md-small-size-100 md-size-40">
+                <b-form-input  @keyup="validarCodigoReserva" v-model="codigoReserva" placeholder="Código de la reserva"></b-form-input>
+                <p class="error" v-if="vatError5">{{vatErrorMsg5}}</p>
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-40">
+                <b-form-input  @keyup="validarDescuento" v-model="descuento" placeholder="Descuento"></b-form-input>
+                <p class="error" v-if="vatError7">{{vatErrorMsg7}}</p>
           </div>
           <br><br><br>
-            <div class="md-layout-item md-small-size-100 md-size-30">
-                 <b-form-select v-model="habitacion" :options="options">
-                    <option :value="null" disabled>Seleccione Habitación</option>              
-                    <option>Simple</option>
-                    <option>Doble</option>
-                    <option>Triple</option>
-                    <option>Cuádruple</option>
-                    <option>Matrimonial</option>
-                    <option></option>              
-              </b-form-select>
-                <div class="mt-2">{{ habitacion }}</div>
+          <div class="md-layout-item md-small-size-100 md-size-30">
+              <datepicker v-model="inicio" type="date" placeholder=" Fecha inicio"></datepicker>
+                <p v-if="inicio">{{ dateFormat(inicio) }}</p>
           </div>
-          <!--<div class="md-layout-item md-small-size-90 md-size-23">
-              <datepicker :disabledDates="disabled" v-model="inicio" type="date" placeholder=" Fecha inicio"></datepicker>
-                <p v-if="inicio">{{ inicio }}</p>
+          <div class="md-layout-item md-small-size-100 md-size-30">
+              <datepicker v-model="termino" type="date" placeholder=" Fecha Término"></datepicker>
+                <p v-if="termino">{{ dateFormat(termino) }}</p>
           </div>
-          <div class="md-layout-item md-small-size-90 md-size-23">
-              <datepicker :disabledDates="disabledDates" v-model="termino" type="date" placeholder=" Fecha Término"></datepicker>
-                <p v-if="termino">{{ termino }}</p>
-          </div>-->
+          <br><br><br>
+            <div v-if= "inicio && termino">
+              <b-table
+                selectable
+                :select-mode="selectMode"
+                selectedVariant="success"
+                :items="items"
+                :fields = "fields"
+                @row-selected="rowSelected2"
+              ></b-table>
+            </div>
           <div class="md-layout-item md-size-100 text-right">
             <md-button class="md-raised md-success" :href="'#/reservas'">Cancelar</md-button>
-            &nbsp; &nbsp; 
-            <md-button class="md-raised md-success" @click="verificar()">Crear Reserva</md-button>
+            &nbsp;&nbsp;
+            <md-button class="md-raised md-success" @click="validar()">Crear Reserva</md-button>
           </div>
         </div>
       </md-card-content>
@@ -70,24 +80,19 @@
 
 <script>
 /* eslint-disable */
-import Datepicker from 'vuejs-datepicker'
+import Datepicker from 'vuejs-datepicker';
+import { access } from 'fs';
+import axios from 'axios';
+const localhost = 'http://159.203.94.72:8060/backend';
 var hoy = new Date()
 export default {
-  name: 'simple',
+  name: 'agregarMultiple',
   components: {
     Datepicker
   },
     data(){ 
       return {
         disabled: {},
-        nombre: '',
-        rut: '',
-        correo: '',
-        telefono: '',
-        habitacion: '',
-        numero: '',
-        inicio: '',
-        termino: '',
         vatError1:'',
         vatErrorMsg1: '',
         vatError2:'',
@@ -98,42 +103,105 @@ export default {
         vatErrorMsg4:'',
         vatError5:'',
         vatErrorMsg5:'',
-        disabled: {
-          ranges: [{
-                from: new Date(2016, 11, 25),
-                to: hoy,
-                //Agregar las fechas que estan reservadas
-              }]
-        },
-        disabledDates: {
-          customPredictor: function(date) {
-            // Arreglar esto, para poner que no esten disponibles las fechas que estan ocupadas
-            if(date.getDate() % 5 == 0){
-              return true
+        vatError6:'',
+        vatErrorMsg6:'',        
+        vatError7:'',
+        vatErrorMsg7:'',
+        vatError8:'',
+        vatErrorMsg8:'',
+        items:[],
+        selected: null,
+        habitacion: null,
+        seleccion:'',
+        fields: ["nroHabitacion",
+        "capacidadNinos",
+        "capacidadAdultos",
+        "precioNoche",
+        "tipoHabitacion"],
+        selectMode: 'single',
+        fechasInicio: {
+          ranges: [
+            { 
+              from: new Date(2019, 0, 1),
+              to: hoy
             }
-            //Agregar que la fecha del checkin no este disponible para el checkout
-          }
-        }
+          ],
+        },
+        fechaTermino: {
+            ranges: [
+              { 
+                from: new Date(2019, 0, 1),
+                to: hoy
+              }
+            ],
+        },
+        items:[],
+        selected: null,
+        habitacion: null,
+        seleccion:'',
+        fields: ["nroHabitacion",
+        "capacidadNinos",
+        "capacidadAdultos",
+        "precioNoche",
+        "tipoHabitacion"],
+        selectMode: 'single',
+        errors:[],
+        nombre:'',
+        rut:'',
+        fechaNacimiento:'',
+        telefono:'',
+        rutUsuario:'',
+        correo:'',
+        fechaInicio:'',
+        fechaTermino:'',
+        codigoReserva:'',
+        IdHab:'',
+        estado:'',
+        descuento:'',
       }
+  },  
+  mounted: function () {
+    this.getHabitaciones2();
   },
   methods:{
-    dateFormat: function() {
-      let date = new Date(this.date);
-      return date.getFullYear() + '-' + 
-      	(date.getMonth() +1) + '-' + 
-        date.getDate();
+    getHabitaciones2:function(){
+        const url = localhost + '/reservahabitacion/mostrar' + this.fechaInicio + '/' + this.fechaTermino;
+        axios.get(url).then((data) => {
+          this.items = data.data;
+        });
     },
-    verificar: function(){
-      if(this.nombre && this.habitacion && this.inicio && this.termino && this.rut && this.correo && this.telefono) return true;      
-      if(this.nombre || this.habitacion || this.inicio || this.termino || this.rut || this.correo || this.telefono){
-        alert('Falta algun campo por completar.')
+    dateFormat: function(date) {
+      //return date.getFullYear() + '-' + (date.getMonth() +1) + '-' + date.getDate();
+      if(date.getMonth()< 10 && date.getDate() < 10)
+      {
+        return date.getFullYear() + '-0' + (date.getMonth() +1) + '-0' + date.getDate();
+      }
+      else if(date.getMonth()< 10){
+        return date.getFullYear() + '-0' + (date.getMonth() +1) + '-' + date.getDate();
+      }
+      else if(date.getDate() < 10){
+        return date.getFullYear() + '-' + (date.getMonth() +1) + '-0' + date.getDate();
+      } 
+    },
+    rowSelected2(items) {
+        this.selected = items;
+        this.habitacion = this.selected[0].idHabitacion;
+    },
+    seleccionada:function(inicio){
+      this.seleccion = true;
+      return seleccion
+    },
+    validar: function(){
+      if(this.nombre && this.fechaInicio && this.fechaTermino && this.rut && this.correo && this.telefono
+      && this.rutUsuario && this.fechaNacimiento && this.codigoReserva && this.descuento){
+        this.createReserva();
       }
       else{
         alert('Se requiere completar todos los campos.')
       }
     },
-        validarNombre:function(nombre){
-      if(/^[A-Za-z\s]+$/.test(this.nombre)) {
+    validarNombre:function(nombreCliente){
+      if(/^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g.test(this.nombre)) {
         this.vatError1 = true;
         this.vatErrorMsg1 = null; 
         return true }        
@@ -144,7 +212,7 @@ export default {
     },
     validarRut:function(rut){
       if(/^\d*$/.test(this.rut)){
-        if(Object.keys(this.rut).length < 9){
+        if(Object.keys(this.rut).length < 10){
           this.vatError2 = false;
           this.vatErrorMsg2 = null; 
         }
@@ -158,17 +226,23 @@ export default {
         this.vatErrorMsg2 = "Ingrese un rut válido."
       }
     },
-    validarTelefono:function(telefono){
-      if(/^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/.test(this.telefono)){
-        this.vatError3 = false; 
-        this.vatErrorMsg3 = null;
-        return true }
+    validarTelefono:function(telefonoCliente){
+      if(/^\d*$/.test(this.telefonoCliente)){
+        if(Object.keys(this.telefonoCliente).length < 9){
+          this.vatError3 = false;
+          this.vatErrorMsg3 = null; 
+        }
         else{
           this.vatError3 = true;
-          this.vatErrorMsg3 = "Ingrese un teléfono válido."
+          this.vatErrorMsg3 = "Largo del teléfono inválido."
         }
+      }
+      else{
+        this.vatError3 = true;
+        this.vatErrorMsg3 = "Ingrese un teléfono válido."
+      }
     },
-    validarEmail:function(correo) {
+    validarEmail:function(correoCliente) {
       var a = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/;
       if(a.test(this.correo)){
         this.vatError4 = false;
@@ -177,11 +251,61 @@ export default {
           this.vatError4 = true;
           this.vatErrorMsg4 = "Ingrese un correo válido."
         }
-    }, 
+    },
+    validarCodigoReserva:function(codigoReserva){
+      if(/^\d*$/.test(this.codigoReserva)){
+        if(Object.keys(this.codigoReserva).length < 10){
+          this.vatError5 = false;
+          this.vatErrorMsg5 = null; 
+        }
+        else{
+          this.vatError5 = true;
+          this.vatErrorMsg5 = "Largo del Código inválido."
+        }
+      }
+      else{
+        this.vatError5 = true;
+        this.vatErrorMsg5 = "Ingrese un Código válido."
+      }
+    },
+    validarEstado:function(estado){
+      if(/^\d*$/.test(this.estado)){
+        if(Object.keys(this.estado).length < 2){
+          this.vatError7 = false;
+          this.vatErrorMsg7 = null; 
+        }
+        else{
+          this.vatError7 = true;
+          this.vatErrorMsg7 = "Largo del Código inválido."
+        }
+      }
+      else{
+        this.vatError7 = true;
+        this.vatErrorMsg7 = "Ingrese un Código válido."
+      }
+    },
+    validarDescuento:function(descuento){
+      if(/^\d*$/.test(this.descuento)){
+        if(Object.keys(this.descuento).length < 3){
+          this.vatError8 = false;
+          this.vatErrorMsg8 = null; 
+        }
+        else{
+          this.vatError8 = true;
+          this.vatErrorMsg8 = "Largo del Código inválido."
+        }
+      }
+      else{
+        this.vatError8 = true;
+        this.vatErrorMsg8 = "Ingrese un Código válido."
+      }
+    },
   },
 };
 </script>
 
 <style>
-
+input,select {
+  margin-left: 10px;
+}
 </style>

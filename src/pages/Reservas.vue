@@ -21,12 +21,6 @@
                       </div>
                   </md-button>
                   <br>
-                  <md-button type="button" :href="'#/reservaEntradas'" class="md-primary md-wd md-sm md-theme-default">
-                      <div class="md-ripple">
-                         <div class="md-button-content"><b> Varias Entradas</b></div>
-                         <span></span>
-                      </div>
-                  </md-button>
               </div>
           </div>
       </md-card-content>

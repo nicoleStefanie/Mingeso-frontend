@@ -10,7 +10,6 @@ import VistaModificar from '@/pages/VistaModificar.vue'
 import ReservaMultiple from '@/pages/ReservaMultiple.vue'
 import ReservaEntradas from '@/pages/ReservaEntradas.vue'
 import ModificarSimple from '@/pages/ModificarSimple.vue'
-import ModificarReservaEntradas from '@/pages/ModificarEntradas.vue'
 import ModificarReservaMultiple from '@/pages/ModificarMultiple.vue'
 import Habitaciones from '@/pages/Habitaciones.vue'
 import ModificarHabitaciones from '@/pages/ModificarHabitaciones.vue'
@@ -24,7 +23,6 @@ import ModificarTodo from '@/pages/ModificarTodo.vue'
 /*##############################################################*/
 
 const routes = [
-
   {
     path: '/',
     component: DashboardLayout,
@@ -54,11 +52,6 @@ const routes = [
         path: 'modificarReservaMultiple',
         name: 'ModificarReservaMultiple',
         component: ModificarReservaMultiple
-      },
-      {
-        path: 'modificarReservaEntradas',
-        name: 'ModificarReservaEntradas',
-        component: ModificarReservaEntradas
       },
       {
         path: 'reservas',

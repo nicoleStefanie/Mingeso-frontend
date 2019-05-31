@@ -75,7 +75,7 @@ export default {
         var url = localhost + '/reservas/delete/';
         var idString = "" + this.codigoreserva;
         url = url + idString;
-        axios.post(url, {estado: 0})
+        axios.post(url, {})
 
         .then(response => {
 

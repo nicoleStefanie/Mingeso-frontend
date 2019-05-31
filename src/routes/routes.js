@@ -19,6 +19,9 @@ import Empleados from '@/pages/Empleados.vue'
 import ModificarEmpleado from '@/pages/ModificarEmpleado.vue'
 import AgregarEmpleado from '@/pages/AgregarEmpleado.vue'
 import HabilitarHabitacion from '@/pages/HabilitarHabitacion.vue'
+import ModificarFechas from '@/pages/ModificarFechas.vue'
+import ModificarTodo from '@/pages/ModificarTodo.vue'
+/*##############################################################*/
 
 const routes = [
 
@@ -98,8 +101,8 @@ const routes = [
         component: AgregarHabitaciones
       },
       {
-        path: 'empleados',
-        name: 'empleados',
+        path: 'usuarios',
+        name: 'uaurios',
         component: Empleados
       },
       {
@@ -116,7 +119,20 @@ const routes = [
         path: 'habilitarHabitacion/:id',
         name: 'habilitarHabitacion',
         component: HabilitarHabitacion
-      }
+
+      },
+      {
+        path: 'modificarfechas/:codigoReserva/:idHabitacion',
+        name: 'modificarfechas',
+        component: ModificarFechas
+
+      },
+      {
+        path: 'modificartodo/:codigoReserva',
+        name: 'modificartodo',
+        component: ModificarTodo
+
+      },
     ]
   }
 ]

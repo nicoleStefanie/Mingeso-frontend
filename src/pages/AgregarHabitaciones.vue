@@ -7,38 +7,40 @@
             </md-card-header>
             <md-card-content>
                 <div class="md-layout">
-                    <div class="md-layout-item md-small-size-100 md-size-50">
+                    <div class="md-layout-item md-small-size-100 md-size-40">
                         <md-field>
                             <label>N° de habitacion</label>
-                            <md-input v-model="nroHabitacion" type="number"></md-input>
+                            <md-input v-model="nroHabitacion" type="number" min="1"></md-input>
                         </md-field>
                     </div>
-                    <div class="md-layout-item md-small-size-100 md-size-50">
+                    <div class="md-layout-item md-small-size-100 md-size-40">
                         <md-field>
-                            <select v-model="tipo">
+                            <b-form-select v-model="tipo">
                               <option disabled value="">Seleccione un tipo</option>
                               <option>Simple</option>
                               <option>Doble</option>
+                              <option>Triple</option>
+                              <option>Cuadruple</option>
                               <option>Matrimonial</option>
-                            </select>
+                            </b-form-select>
                         </md-field>
                     </div>
-                    <div class="md-layout-item md-small-size-100 md-size-50">
+                    <div class="md-layout-item md-small-size-100 md-size-40">
                         <md-field>
                             <label>Capacidad niños</label>
-                            <md-input v-model="capacidadNinos" type="number"></md-input>
+                            <md-input v-model="capacidadNinos" type="number" min="0"></md-input>
                         </md-field>
                     </div>
-                    <div class="md-layout-item md-small-size-100 md-size-50">
+                    <div class="md-layout-item md-small-size-100 md-size-40">
                         <md-field>
                             <label>Capacidad Adultos</label>
-                            <md-input v-model="capacidadAdultos" type="number"></md-input>
+                            <md-input v-model="capacidadAdultos" type="number" min="1"></md-input>
                         </md-field>
                     </div>
                     <div class="md-layout-item md-small-size-100 md-size-30">
                         <md-field>
                             <label>Precio Noche </label>
-                            <md-input v-model="precioNoche" type="number"></md-input>
+                            <md-input v-model="precioNoche" type="number" min="0"></md-input>
                             <md-icon>attach_money</md-icon>
                         </md-field>
                     </div>

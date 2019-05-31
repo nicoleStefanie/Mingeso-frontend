@@ -101,7 +101,13 @@ export default {
                   "dataDateFormat": "YYYY-MM-DD",
                   "columnWidth": 0.5,
                   "valueAxis": {
-                    "type": "date"
+                    "type": "date",
+                    "title":"Fecha",
+                    "size":14
+                  },
+                  "categoryAxis":{
+                    "title":"Número de Habitación",
+                    "size":14
                   },
                   "brightnessStep": 7,
                   "graph": {
@@ -109,7 +115,7 @@ export default {
                     "lineAlpha": 1,
                     "lineColor": "#fff",
                     "fillAlphas": 0.85,
-                    "balloonText": "<b>[[cliente]] ID Reserva [[id]]</b>:<br /> Desde [[open]] hasta [[value]]"
+                    "balloonText": "<b>[[cliente]] con ID Reserva [[id]]</b>:<br/> Desde [[open]] hasta [[value]]"
                   },
                   "rotate": true,
                   "categoryField": "habitacion",

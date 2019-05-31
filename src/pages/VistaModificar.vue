@@ -19,7 +19,7 @@
               <div  v-if="selected !== null">
                 <md-button type="button" :href="'#/modificartodo/'+ this.codigoreserva" >Editar todos los datos</md-button>
                 <md-button type="button" :href="'#/modificarfechas/'+ this.codigoreserva +'/'+ this.idHabitacion ">Editar fecha de reserva</md-button>
-                <md-button type="button" @click="eliminaReserva">Eliminar reserva</md-button>
+                <md-button type="button" @click="eliminaReserva()">Eliminar reserva</md-button>
               </div>
               </md-card-actions>
             </md-card-content>
@@ -33,7 +33,7 @@
 
 <script>
 import axios from 'axios';
-const localhost = 'http://159.203.94.72:8060/backend/';
+const localhost = 'http://159.203.94.72:8060/backend';
 import { access } from 'fs';
 export default {
     components: {
@@ -72,10 +72,10 @@ export default {
         this.idHabitacion = this.selected[0].idHab;
       },
       eliminaReserva() {
-        var url = localhost + '/reservahabitacion/update/';
+        var url = localhost + '/reservas/delete/';
         var idString = "" + this.codigoreserva;
         url = url + idString;
-        axios.post(url, {estado: "0"})
+        axios.post(url, {estado: 0})
 
         .then(response => {
 

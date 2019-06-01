@@ -95,14 +95,14 @@ export default {
   components: {
     Datepicker
   },
-    data(){ 
+    data(){
       return {
         disabled: {},
         vatError:'',
         vatErrorMsg: '',
         vatError1:'',
         vatErrorMsg1: '',
-        vatError2:'',  
+        vatError2:'',
         vatErrorMsg2:'',
         vatError3:'',
         vatErrorMsg3:'',
@@ -111,10 +111,10 @@ export default {
         vatError5:'',
         vatErrorMsg5:'',
         vatError6:'',
-        vatErrorMsg6:'',        
+        vatErrorMsg6:'',
         fechasInicio: {
           ranges: [
-            { 
+            {
               from: new Date(2019, 0, 1),
               to: hoy
             }
@@ -122,7 +122,7 @@ export default {
         },
         fechasTermino: {
             ranges: [
-              { 
+              {
                 from: new Date(2019, 0, 1),
                 to: hoy
               }
@@ -154,7 +154,7 @@ export default {
         estado:'',
         descuento:'',
       }
-  },  
+  },
   methods:{
     rowSelected3(items) {
         this.selected = items;
@@ -197,12 +197,12 @@ export default {
         console.log(response.data.message);
         if(response.data[0].message == 'OK'){
           location.href = "http://159.203.94.72/#/rack";
-        }  
+        }
       })
       .catch(e => {
         this.errors.push(e)
       });
-      
+
      },
     dateFormat: function(date) {
       if(date.getMonth()< 10 && date.getDate() < 10)
@@ -214,7 +214,7 @@ export default {
       }
       else if(date.getDate() < 10){
         return date.getFullYear() + '-' + (date.getMonth() +1) + '-0' + date.getDate();
-      } 
+      }
     },
     seleccionada:function(inicio){
       this.seleccion = true;
@@ -232,8 +232,8 @@ export default {
     validarNombre:function(nombre){
       if(/^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g.test(this.nombre)) {
         this.vatError1 = true;
-        this.vatErrorMsg1 = null; 
-        return true }        
+        this.vatErrorMsg1 = null;
+        return true }
       else{
         this.vatError1 = true;
         this.vatErrorMsg1 = "Ingrese un nombre válido.";
@@ -243,7 +243,7 @@ export default {
       if(/^\d*$/.test(this.rut)){
         if(Object.keys(this.rut).length < 10){
           this.vatError2 = false;
-          this.vatErrorMsg2 = null; 
+          this.vatErrorMsg2 = null;
         }
         else{
           this.vatError2 = true;
@@ -259,7 +259,7 @@ export default {
       if(/^\d*$/.test(this.rutUsuario)){
         if(Object.keys(this.rutUsuario).length < 10){
           this.vatError = false;
-          this.vatErrorMsg = null; 
+          this.vatErrorMsg = null;
         }
         else{
           this.vatError = true;
@@ -275,7 +275,7 @@ export default {
       if(/^\d*$/.test(this.telefono)){
         if(Object.keys(this.telefono).length < 10){
           this.vatError3 = false;
-          this.vatErrorMsg3 = null; 
+          this.vatErrorMsg3 = null;
         }
         else{
           this.vatError3 = true;
@@ -301,7 +301,7 @@ export default {
       if(/^\d*$/.test(this.codigoReserva)){
         if(Object.keys(this.codigoReserva).length < 10){
           this.vatError5 = false;
-          this.vatErrorMsg5 = null; 
+          this.vatErrorMsg5 = null;
         }
         else{
           this.vatError5 = true;
@@ -317,7 +317,7 @@ export default {
       if(/^\d*$/.test(this.descuento)){
         if(Object.keys(this.descuento).length < 3){
           this.vatError6 = false;
-          this.vatErrorMsg6 = null; 
+          this.vatErrorMsg6 = null;
         }
         else{
           this.vatError6 = true;
@@ -333,7 +333,7 @@ export default {
       if(/^\d*$/.test(this.IdHab)){
         if(Object.keys(this.IdHab).length < 100){
           this.vatError6 = false;
-          this.vatErrorMsg6 = null; 
+          this.vatErrorMsg6 = null;
         }
         else{
           this.vatError6 = true;

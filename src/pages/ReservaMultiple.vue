@@ -2,7 +2,7 @@
   <form id="simple" charset=UTF-8″>
     <md-card>
       <md-card-header>
-        <h4 class="title">Crear Reserva Simple</h4>
+        <h4 class="title">Crear Reserva Multiple</h4>
         <p class="category">Completar con los datos</p>
       </md-card-header>
       <md-card-content>
@@ -14,14 +14,14 @@
                 <p class="error" v-if="vatError">{{vatErrorMsg}}</p>
           </div>
           <br><br><br>
-          <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ingrese la información de la reserva.</label>
+          <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ingrese la información del cliente y de la reserva.</label>
           <div class="md-layout-item md-small-size-100 md-size-80">
                 <b-form-input @keyup="validarNombre" v-model="nombre" placeholder="Nombre y Apellido del Cliente"></b-form-input>
                 <p class="error" v-if="vatError1">{{vatErrorMsg1}}</p>
           </div>
           <br><br><br>
           <div class="md-layout-item md-small-size-100 md-size-40">
-                <b-form-input @keyup="validarRut(rut)" v-model="rut" placeholder="Rut , ej: 191135709"></b-form-input>
+                <b-form-input @keyup="validarRut(rut)" v-model="rut" placeholder="Rut Cliente, ej: 191135709"></b-form-input>
                 <p class="error" v-if="vatError2">{{vatErrorMsg2}}</p>
           </div>
           <br><br><br>
@@ -40,13 +40,13 @@
           </div>
           <br><br><br>
           <div class="md-layout-item md-small-size-100 md-size-40">
-                <b-form-input  @keyup="validarCodigoReserva" v-model="codigoReserva" placeholder="Código de la reserva"></b-form-input>
-                <p class="error" v-if="vatError5">{{vatErrorMsg5}}</p>
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-40">
                 <b-form-input  @keyup="validarDescuento" v-model="descuento" placeholder="Descuento"></b-form-input>
                 <p class="error" v-if="vatError6">{{vatErrorMsg6}}</p>
           </div>
+          <br><br><br>
+            <div class="md-layout-item md-small-size-100 md-size-30">
+                  <b-form-input  @keyup="validarIdHab" v-model="id" placeholder="IDs Habitación, ej: 2 3 1"></b-form-input>
+            </div>-
           <br><br><br>
           <div class="md-layout-item md-small-size-100 md-size-33">
               <datepicker format="yyyy-MM-dd" :disabledDates="fechasInicio" v-model="fechaInicio" type="date"  placeholder=" Fecha inicio"></datepicker>
@@ -56,10 +56,6 @@
           <div class="md-layout-item md-small-size-100 md-size-33">
               <datepicker :disabledDates="fechasTermino" v-model="fechaTermino" type="date"  placeholder=" Fecha Termino"></datepicker>
           </div>
-          <br><br><br>
-          <div class="md-layout-item md-small-size-100 md-size-30">
-                <b-form-input  @keyup="validarIdHab" v-model="id" placeholder="ID Habitación"></b-form-input>
-          </div>-
             <!--<div v-if= "fechaInicio && fechaTermino">
               <b-table
                 selectable
@@ -94,14 +90,14 @@ export default {
   components: {
     Datepicker
   },
-    data(){ 
+    data(){
       return {
         disabled: {},
         vatError:'',
         vatErrorMsg: '',
         vatError1:'',
         vatErrorMsg1: '',
-        vatError2:'',  
+        vatError2:'',
         vatErrorMsg2:'',
         vatError3:'',
         vatErrorMsg3:'',
@@ -110,10 +106,10 @@ export default {
         vatError5:'',
         vatErrorMsg5:'',
         vatError6:'',
-        vatErrorMsg6:'',        
+        vatErrorMsg6:'',
         fechasInicio: {
           ranges: [
-            { 
+            {
               from: new Date(2019, 0, 1),
               to: hoy
             }
@@ -121,7 +117,7 @@ export default {
         },
         fechasTermino: {
             ranges: [
-              { 
+              {
                 from: new Date(2019, 0, 1),
                 to: hoy
               }
@@ -146,14 +142,13 @@ export default {
         correo:'',
         fechaInicio:'',
         fechaTermino:'',
-        codigoReserva:'',
         fechaInit:'',
         fechaTerm:'',
         id:'',
         estado:'',
         descuento:'',
       }
-  },  
+  },
   methods:{
     rowSelected3(items) {
         this.selected = items;
@@ -174,7 +169,6 @@ export default {
         correo:this.correo,
         fechaInicio:this.fechaInicio,
         fechaTermino:this.fechaTermino,
-        codigoReserva:this.codigoReserva,
         id:this.id,
         estado:'1',
         descuento:this.descuento,
@@ -188,7 +182,6 @@ export default {
         this.correo = "";
         this.fechaInicio = "";
         this.fechaTermino = "";
-        this.codigoReserva = "";
         this.id= "";
         this.estado="";
         this.descuento="";
@@ -196,7 +189,7 @@ export default {
         console.log(response.data.message);
         if(response.data[0].message == 'OK'){
           location.href = "http://159.203.94.72/#/rack";
-        }  
+        }
       })
       .catch(e => {
         this.errors.push(e)
@@ -213,7 +206,7 @@ export default {
       }
       else if(date.getDate() < 10){
         return date.getFullYear() + '-' + (date.getMonth() +1) + '-0' + date.getDate();
-      } 
+      }
     },
     seleccionada:function(inicio){
       this.seleccion = true;
@@ -221,7 +214,7 @@ export default {
     },
     validar: function(){
       if(this.nombre && this.fechaInicio && this.fechaTermino && this.rut && this.correo && this.telefono
-      && this.rutUsuario && this.fechaNacimiento && this.codigoReserva && this.descuento){
+      && this.rutUsuario && this.fechaNacimiento && this.descuento){
         this.createReserva();
       }
       else{
@@ -231,8 +224,8 @@ export default {
     validarNombre:function(nombre){
       if(/^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g.test(this.nombre)) {
         this.vatError1 = true;
-        this.vatErrorMsg1 = null; 
-        return true }        
+        this.vatErrorMsg1 = null;
+        return true }
       else{
         this.vatError1 = true;
         this.vatErrorMsg1 = "Ingrese un nombre válido.";
@@ -242,7 +235,7 @@ export default {
       if(/^\d*$/.test(this.rut)){
         if(Object.keys(this.rut).length < 10){
           this.vatError2 = false;
-          this.vatErrorMsg2 = null; 
+          this.vatErrorMsg2 = null;
         }
         else{
           this.vatError2 = true;
@@ -258,7 +251,7 @@ export default {
       if(/^\d*$/.test(this.rutUsuario)){
         if(Object.keys(this.rutUsuario).length < 10){
           this.vatError = false;
-          this.vatErrorMsg = null; 
+          this.vatErrorMsg = null;
         }
         else{
           this.vatError = true;
@@ -274,7 +267,7 @@ export default {
       if(/^\d*$/.test(this.telefono)){
         if(Object.keys(this.telefono).length < 10){
           this.vatError3 = false;
-          this.vatErrorMsg3 = null; 
+          this.vatErrorMsg3 = null;
         }
         else{
           this.vatError3 = true;
@@ -296,27 +289,11 @@ export default {
           this.vatErrorMsg4 = "Ingrese un correo válido."
         }
     },
-    validarCodigoReserva:function(codigoReserva){
-      if(/^\d*$/.test(this.codigoReserva)){
-        if(Object.keys(this.codigoReserva).length < 10){
-          this.vatError5 = false;
-          this.vatErrorMsg5 = null; 
-        }
-        else{
-          this.vatError5 = true;
-          this.vatErrorMsg5 = "Largo del Código inválido."
-        }
-      }
-      else{
-        this.vatError5 = true;
-        this.vatErrorMsg5 = "Ingrese un Código válido."
-      }
-    },
     validarDescuento:function(descuento){
       if(/^\d*$/.test(this.descuento)){
         if(Object.keys(this.descuento).length < 3){
           this.vatError6 = false;
-          this.vatErrorMsg6 = null; 
+          this.vatErrorMsg6 = null;
         }
         else{
           this.vatError6 = true;
@@ -332,7 +309,7 @@ export default {
       if(/^\d*$/.test(this.IdHab)){
         if(Object.keys(this.IdHab).length < 100){
           this.vatError6 = false;
-          this.vatErrorMsg6 = null; 
+          this.vatErrorMsg6 = null;
         }
         else{
           this.vatError6 = true;

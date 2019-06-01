@@ -14,7 +14,7 @@
                 <p class="error" v-if="vatError">{{vatErrorMsg}}</p>
           </div>
           <br><br><br>
-          <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ingrese la información de la reserva.</label>
+          <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ingrese la información del cliente y de la reserva.</label>
           <div class="md-layout-item md-small-size-100 md-size-80">
                 <b-form-input @keyup="validarNombre" v-model="nombre" placeholder="Nombre y Apellido del Cliente"></b-form-input>
                 <p class="error" v-if="vatError1">{{vatErrorMsg1}}</p>
@@ -40,13 +40,13 @@
           </div>
           <br><br><br>
           <div class="md-layout-item md-small-size-100 md-size-40">
-                <b-form-input  @keyup="validarCodigoReserva" v-model="codigoReserva" placeholder="Código de la reserva"></b-form-input>
-                <p class="error" v-if="vatError5">{{vatErrorMsg5}}</p>
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-40">
                 <b-form-input  @keyup="validarDescuento" v-model="descuento" placeholder="Descuento"></b-form-input>
                 <p class="error" v-if="vatError6">{{vatErrorMsg6}}</p>
           </div>
+          <br><br><br>
+            <div class="md-layout-item md-small-size-100 md-size-30">
+                  <b-form-input  @keyup="validarIdHab" v-model="IdHab" placeholder="ID Habitación"></b-form-input>
+            </div>-
           <br><br><br>
           <div class="md-layout-item md-small-size-100 md-size-33">
               <datepicker format="yyyy-MM-dd" :disabledDates="fechasInicio" v-model="fechaInicio" type="date"  placeholder=" Fecha inicio"></datepicker>
@@ -56,11 +56,6 @@
           <div class="md-layout-item md-small-size-100 md-size-33">
               <datepicker :disabledDates="fechasTermino" v-model="fechaTermino" type="date"  placeholder=" Fecha Termino"></datepicker>
           </div>
-          <br><br><br>
-          <div class="md-layout-item md-small-size-100 md-size-30">
-                <b-form-input  @keyup="validarIdHab" v-model="IdHab" placeholder="ID Habitación"></b-form-input>
-                <p class="error" v-if="vatError7">{{vatErrorMsg7}}</p>
-          </div>-
             <!--<div v-if= "fechaInicio && fechaTermino">
               <b-table
                 selectable
@@ -147,7 +142,6 @@ export default {
         correo:'',
         fechaInicio:'',
         fechaTermino:'',
-        codigoReserva:'',
         fechaInit:'',
         fechaTerm:'',
         IdHab:'',
@@ -175,7 +169,6 @@ export default {
         correo:this.correo,
         fechaInicio:this.fechaInicio,
         fechaTermino:this.fechaTermino,
-        codigoReserva:this.codigoReserva,
         IdHab:this.IdHab,
         estado:'1',
         descuento:this.descuento,
@@ -189,7 +182,6 @@ export default {
         this.correo = "";
         this.fechaInicio = "";
         this.fechaTermino = "";
-        this.codigoReserva = "";
         this.IdHab= "";
         this.estado="";
         this.descuento="";
@@ -222,7 +214,7 @@ export default {
     },
     validar: function(){
       if(this.nombre && this.fechaInicio && this.fechaTermino && this.rut && this.correo && this.telefono
-      && this.rutUsuario && this.fechaNacimiento && this.codigoReserva && this.descuento){
+      && this.rutUsuario && this.fechaNacimiento && this.descuento){
         this.createReserva();
       }
       else{
@@ -296,22 +288,6 @@ export default {
           this.vatError4 = true;
           this.vatErrorMsg4 = "Ingrese un correo válido."
         }
-    },
-    validarCodigoReserva:function(codigoReserva){
-      if(/^\d*$/.test(this.codigoReserva)){
-        if(Object.keys(this.codigoReserva).length < 10){
-          this.vatError5 = false;
-          this.vatErrorMsg5 = null;
-        }
-        else{
-          this.vatError5 = true;
-          this.vatErrorMsg5 = "Largo del Código inválido."
-        }
-      }
-      else{
-        this.vatError5 = true;
-        this.vatErrorMsg5 = "Ingrese un Código válido."
-      }
     },
     validarDescuento:function(descuento){
       if(/^\d*$/.test(this.descuento)){

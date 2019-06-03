@@ -2,7 +2,7 @@
   <div class="container">
         <md-card>
           <md-card-header data-background-color="green" style="position: relative;">
-            <h3 class="title">Visualizar el Rack</h3>
+            <h3 class="title">Visualizar el Rack (2019)</h3>
           </md-card-header>
             <md-card-content>
               <div class="md-layout">
@@ -45,7 +45,7 @@ export default {
           }
           else if(date.getDate() < 10){
             return date.getFullYear() + '-' + (date.getMonth() +1) + '-0' + date.getDate();
-          } 
+          }
         },
         methods: {
           getReservas(){

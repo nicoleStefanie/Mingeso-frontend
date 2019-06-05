@@ -20,6 +20,9 @@ import AgregarEmpleado from '@/pages/AgregarEmpleado.vue'
 import HabilitarHabitacion from '@/pages/HabilitarHabitacion.vue'
 import ModificarFechas from '@/pages/ModificarFechas.vue'
 import ModificarTodo from '@/pages/ModificarTodo.vue'
+import Servicios from '@/pages/Servicios.vue'
+import AgregarServicio from '@/pages/AgregarServicio.vue'
+import ModificarServicio from '@/pages/ModificarServicio.vue'
 /*##############################################################*/
 
 const routes = [
@@ -125,6 +128,21 @@ const routes = [
         name: 'modificartodo',
         component: ModificarTodo
 
+      },
+      {
+        path: 'servicios',
+        name: 'servicios',
+        component: Servicios
+      },
+      {
+        path: 'agregarServicio',
+        name: 'agregarServicio',
+        component: AgregarServicio
+      },
+      {
+        path: 'modificarServicio/:id',
+        name: 'modifcarServicio',
+        component: ModificarServicio
       },
     ]
   }

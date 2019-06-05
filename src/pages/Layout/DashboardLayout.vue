@@ -1,9 +1,9 @@
 <template>
   <div class="wrapper" :class="{'nav-open': $sidebar.showSidebar}">
-    <notifications></notifications>      
+    <notifications></notifications>
     <side-bar>
       <mobile-menu slot="content"></mobile-menu>
-   
+
       <sidebar-link to="/rack">
         <md-icon>notes</md-icon>
         <p>Rack</p>
@@ -22,6 +22,11 @@
       <sidebar-link to="/usuarios">
         <md-icon>people</md-icon>
         <p>Usuarios</p>
+      </sidebar-link>
+
+      <sidebar-link to="/servicios">
+        <md-icon>room_service</md-icon>
+        <p>Servicios</p>
       </sidebar-link>
 
     </side-bar>

@@ -63,14 +63,14 @@ export default {
                    if(!this.existe(this.items[i].nroHabitacion)){
                      this.reservas.push({"habitacion": this.items[i].nroHabitacion , "segments":{}});
                      var segments =[];
-                     segments.push({"id": this.items[i].idReserva,
+                     segments.push({"codigoReserva": this.items[i].codigoReserva,
                      "start": this.items[i].fechaInicio,
                       "end": this.items[i].fechaTermino,
                    "cliente": this.items[i].nombreCliente});
 
                     for(let j= i+1; j<this.items.length;j++){
                       if(this.items[j].nroHabitacion === this.items[i].nroHabitacion){
-                        segments.push({"id": this.items[j].idReserva,
+                        segments.push({"codigoReserva": this.items[j].codigoReserva,
                         "start": this.items[j].fechaInicio,
                         "end": this.items[j].fechaTermino,
                       "cliente": this.items[j].nombreCliente});
@@ -115,7 +115,7 @@ export default {
                     "lineAlpha": 1,
                     "lineColor": "#fff",
                     "fillAlphas": 0.85,
-                    "balloonText": "<b>[[cliente]] con ID Reserva [[id]]</b>:<br/> Desde [[open]] hasta [[value]]"
+                    "balloonText": "<b>[[cliente]] con Código Reserva [[codigoReserva]]</b>:<br/> Desde [[open]] hasta [[value]]"
                   },
                   "rotate": true,
                   "categoryField": "habitacion",
@@ -141,7 +141,7 @@ export default {
                     "event": "clickGraphItem",
                     "method": function(e) {
                       var ventana = window.open( "", "nombrePop-Up", "width=380,height=300, top=85,left=50");
-                      ventana.document.write("Información de la reserva: <br><br> ID Reserva: " + e.graph.segmentData.id +
+                      ventana.document.write("Información de la reserva: <br><br> Código Reserva: " + e.graph.segmentData.codigoReserva +
                       "<br>Fecha inicio: " + e.graph.segmentData.start +
                       "<br>Fecha término: " + e.graph.segmentData.end +
                       "<br>Cliente: " + e.graph.segmentData.cliente + "<br><br>");

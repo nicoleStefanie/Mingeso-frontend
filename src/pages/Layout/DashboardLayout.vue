@@ -14,6 +14,11 @@
         <p>Reservas</p>
       </sidebar-link>
 
+      <sidebar-link to="/checkin">
+        <md-icon>assignment</md-icon>
+        <p>Check-In</p>
+      </sidebar-link>
+
       <sidebar-link to="/habitaciones">
         <md-icon>meeting_room</md-icon>
         <p>Habitaciones</p>

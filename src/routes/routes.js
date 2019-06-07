@@ -1,7 +1,6 @@
 import DashboardLayout from '@/pages/Layout/DashboardLayout.vue'
 
 import Rack from '@/pages/Rack.vue'
-import Home from '@/pages/Home.vue'
 import Login from '@/pages/Login.vue'
 import Reservas from '@/pages/Reservas.vue'
 import ReservaSimple from '@/pages/ReservaSimple.vue'
@@ -23,6 +22,7 @@ import ModificarTodo from '@/pages/ModificarTodo.vue'
 import Servicios from '@/pages/Servicios.vue'
 import AgregarServicio from '@/pages/AgregarServicio.vue'
 import ModificarServicio from '@/pages/ModificarServicio.vue'
+import Checkin from '@/pages/Checkin.vue'
 /*##############################################################*/
 
 const routes = [
@@ -143,6 +143,11 @@ const routes = [
         path: 'modificarServicio/:id',
         name: 'modifcarServicio',
         component: ModificarServicio
+      },
+      {
+        path: 'checkin',
+        name: 'checkin',
+        component: Checkin
       },
     ]
   }

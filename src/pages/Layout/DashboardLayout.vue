@@ -9,14 +9,19 @@
         <p>Rack</p>
       </sidebar-link>
 
+      <sidebar-link to="/checkin">
+        <md-icon>chevron_right</md-icon>
+        <p>Check-In</p>
+      </sidebar-link>
+
+      <sidebar-link to="/checkOut">
+        <md-icon>chevron_left</md-icon>
+        <p>Check-Out</p>
+      </sidebar-link>
+
       <sidebar-link to="/reservas">
         <md-icon>assignment</md-icon>
         <p>Reservas</p>
-      </sidebar-link>
-
-      <sidebar-link to="/checkin">
-        <md-icon>assignment</md-icon>
-        <p>Check-In</p>
       </sidebar-link>
 
       <sidebar-link to="/habitaciones">

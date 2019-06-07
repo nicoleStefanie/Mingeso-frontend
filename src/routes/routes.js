@@ -22,6 +22,7 @@ import ModificarTodo from '@/pages/ModificarTodo.vue'
 import Servicios from '@/pages/Servicios.vue'
 import AgregarServicio from '@/pages/AgregarServicio.vue'
 import ModificarServicio from '@/pages/ModificarServicio.vue'
+import CheckOut from '@/pages/Check-out.vue'
 import Checkin from '@/pages/Checkin.vue'
 /*##############################################################*/
 
@@ -143,6 +144,11 @@ const routes = [
         path: 'modificarServicio/:id',
         name: 'modifcarServicio',
         component: ModificarServicio
+      },
+      {
+        path: 'checkOut',
+        name: 'checkOut',
+        component: CheckOut
       },
       {
         path: 'checkin',

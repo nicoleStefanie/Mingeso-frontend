@@ -52,11 +52,14 @@ export default{
           },
           body: aux
       }).then(response =>
-      console.log(response);
-        if(response.status === 200)
+        if(response.status === 200){
+          console.log(response);
           console.log("OK");
-        else
+        }
+        else{
+          console.log(response);
           console.log("ERROR!");
+        }
       });
 
     }

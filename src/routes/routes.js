@@ -155,6 +155,11 @@ const routes = [
         name: 'checkin',
         component: Checkin
       },
+      {
+        path: 'reservaHabitacion/:codigoReserva',
+        name: 'reservaHabitacion',
+        component: reservaHabitacion
+      },
     ]
   }
 ]

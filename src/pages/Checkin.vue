@@ -59,7 +59,7 @@
           console.log(this.codigoReserva);
         });
         if(this.reserva != null){
-          location.href = "http://159.203.94.72/#/agregarRegistro/" + this.codigoReserva;
+          location.href = "http://159.203.94.72/#/reservaHabitacion/" + this.reserva.idReserva;
         } else {
           alert("El código de la reserva no existe.");
         }

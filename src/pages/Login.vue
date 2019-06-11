@@ -51,9 +51,10 @@ export default{
             'Content-Type':'application/json'
           },
           body: aux
-      }).then(response => {
+      }).then(response =>
+      console.log(response);
         if(response.status === 200)
-          console.log(response);
+          console.log("OK");
         else
           console.log("ERROR!");
       });

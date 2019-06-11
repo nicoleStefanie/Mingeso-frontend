@@ -30,7 +30,7 @@ const routes = [
   {
     path: '/',
     component: DashboardLayout,
-    redirect: '/rack',
+    redirect: '/login',
     children: [
       {
         path: 'reservaSimple',

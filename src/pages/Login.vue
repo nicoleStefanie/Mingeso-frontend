@@ -28,7 +28,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 export default{
   data () {
     return {
@@ -37,29 +36,33 @@ export default{
     }
   },
   methods: {
-    /*inicio () {
+    inicio () {
       var json_data = {
         usuario: this.username,
         password: this.password
       }
       const aux = JSON.stringify(json_data)
       console.log(aux)
-      
-      fetch('http://localhost:3000/login',{
+
+      fetch('http://159.203.94.72:8060/backend/usuarios/login',{
           method: 'POST',
           headers:{
             'Access-Control-Allow-Origin': '*',
             'Content-Type':'application/json'
           },
           body: aux
-      }).then(response => {
-        if(response.status === 200)
-          console.log("OK!");
-        else
+      }).then(response =>
+        if(response.status === 200){
+          console.log(response);
+          console.log("OK");
+        }
+        else{
+          console.log(response);
           console.log("ERROR!");
+        }
       });
-    
-    }*/
+
+    }
   }
 }
 </script>

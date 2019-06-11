@@ -8,8 +8,8 @@
         <div class="md-layout">
           <div class="md-layout-item md-small-size-100 md-size-50">
             <md-field>
-              <label>Usuario</label>
-              <md-input v-model="username" type="text" @keyup="username = $event.target.value"></md-input>
+              <label>Correo</label>
+              <md-input v-model="email" type="text" @keyup="email = $event.target.value"></md-input>
             </md-field>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-51">
@@ -28,40 +28,34 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default{
   data () {
     return {
-      username: '',
+      email: '',
       password: ''
     }
   },
   methods: {
-    inicio () {
-      var json_data = {
-        usuario: this.username,
+    async inicio(){
+      let url = 'http://159.203.94.72:8060/backend/usuarios/login';
+      await axios.post(url, {
+        email: this.email,
         password: this.password
-      }
-      const aux = JSON.stringify(json_data)
-      console.log(aux)
-
-      fetch('http://159.203.94.72:8060/backend/usuarios/login',{
-          method: 'POST',
-          headers:{
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type':'application/json'
-          },
-          body: aux
-      }).then(response =>
-        if(response.status === 200){
-          console.log(response);
-          console.log("OK");
+      }).then((data) => {
+        let loginData = data['data'][0];
+        if(loginData['status'] == 200){
+          localStorage.setItem('role', loginData['role'])
+          localStorage.setItem('user_id', loginData['id'])
+          localStorage.setItem('login', loginData['login'])
+          localStorage.setItem('name', loginData['name'])
+          localStorage.setItem('email', loginData['email'])
+          location.href = "http://159.203.94.72/#/rack";
         }
         else{
-          console.log(response);
-          console.log("ERROR!");
+          console.log('ERROR: ' + loginData['message'])
         }
       });
-
     }
   }
 }

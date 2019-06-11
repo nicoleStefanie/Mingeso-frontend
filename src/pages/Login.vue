@@ -42,7 +42,7 @@ export default{
       await axios.post(url, {
         email: this.email,
         password: this.password
-      }).then((data) => {
+      }, { useCredentails: true }).then((data) => {
         let loginData = data['data'][0];
         if(loginData['status'] == 200){
           localStorage.setItem('role', loginData['role'])

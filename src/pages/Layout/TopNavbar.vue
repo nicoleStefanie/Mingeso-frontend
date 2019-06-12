@@ -1,4 +1,4 @@
-<template v-if="$localStorage.getItem('login') == true">
+<template v-if="this.$localStorage.getItem('login')">
   <md-toolbar md-elevation="0" class="md-transparent">
     <div class="md-toolbar-row">
       <div class="md-toolbar-section-end">

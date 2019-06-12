@@ -1,4 +1,4 @@
-<template v-if="$localStorage.getItem('login') == true">
+<template v-if="this.$localStorage.getItem('login')">
   <div class="wrapper" :class="{'nav-open': $sidebar.showSidebar}">
     <notifications></notifications>
     <side-bar>

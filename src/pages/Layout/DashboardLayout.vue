@@ -1,4 +1,4 @@
-<template v-if="this.$localStorage.getItem('login')">
+<template v-if="isLogin">
   <div class="wrapper" :class="{'nav-open': $sidebar.showSidebar}">
     <notifications></notifications>
     <side-bar>
@@ -87,11 +87,21 @@ import DashboardContent from './Content.vue'
 import MobileMenu from '@/pages/Layout/MobileMenu.vue'
 
 export default {
+  data () {
+    return {
+      isLogin: false
+    }
+  },
   components: {
     TopNavbar,
     DashboardContent,
     ContentFooter,
     MobileMenu
+  },
+  mounted () {
+    if (this.$localStorage.getItem('login')) {
+      this.isLogin = true
+    }
   }
 }
 </script>

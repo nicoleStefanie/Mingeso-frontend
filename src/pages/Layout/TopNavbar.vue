@@ -63,9 +63,9 @@ export default{
     }
   },
   mounted () {
-    if (this.$localStorage.getItem('login')) {
+    if (window.localStorage.getItem('login')) {
       this.isLogin = true
-      this.userName = this.$localStorage.getItem('name')
+      this.userName = window.localStorage.getItem('name')
     }
   }
 }

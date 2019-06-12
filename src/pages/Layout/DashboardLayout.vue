@@ -99,7 +99,7 @@ export default {
     MobileMenu
   },
   mounted () {
-    if (this.$localStorage.getItem('login')) {
+    if (window.localStorage.getItem('login')) {
       this.isLogin = true
     }
   }

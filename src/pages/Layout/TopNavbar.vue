@@ -1,4 +1,4 @@
-<template v-if="isLogin">
+<template v-if="window.localStorage.getItem('login')">
   <md-toolbar md-elevation="0" class="md-transparent">
     <div class="md-toolbar-row">
       <div class="md-toolbar-section-end">
@@ -11,7 +11,7 @@
             <md-list-item>
               <i class="material-icons">person</i>
               <p class="hidden-lg hidden-md">Profile</p>
-              <a>Bienvenido(a) {{ $userName }}</a>
+              <a>Bienvenido(a) DUDE</a>
             </md-list-item>
 
             <md-list-item href="/logout">
@@ -60,12 +60,6 @@ export default{
   methods: {
     toggleSidebar () {
       this.$sidebar.displaySidebar(!this.$sidebar.showSidebar)
-    }
-  },
-  mounted () {
-    if (window.localStorage.getItem('login')) {
-      this.isLogin = true
-      this.userName = window.localStorage.getItem('name')
     }
   }
 }

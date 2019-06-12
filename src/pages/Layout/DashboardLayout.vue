@@ -1,4 +1,4 @@
-<template>
+<template v-if="$localStorage.getItem("login")">
   <div class="wrapper" :class="{'nav-open': $sidebar.showSidebar}">
     <notifications></notifications>
     <side-bar>
@@ -37,6 +37,31 @@
       <sidebar-link to="/servicios">
         <md-icon>room_service</md-icon>
         <p>Servicios</p>
+      </sidebar-link>
+
+    </side-bar>
+
+    <div class="main-panel">
+       <top-navbar></top-navbar>
+
+      <dashboard-content>
+
+      </dashboard-content>
+
+      <content-footer v-if="!$route.meta.hideFooter"></content-footer>
+    </div>
+  </div>
+</template>
+
+<template v-else>
+  <div class="wrapper" :class="{'nav-open': $sidebar.showSidebar}">
+    <notifications></notifications>
+    <side-bar>
+      <mobile-menu slot="content"></mobile-menu>
+
+      <sidebar-link to="/">
+        <md-icon>notes</md-icon>
+        <p>Login</p>
       </sidebar-link>
 
     </side-bar>

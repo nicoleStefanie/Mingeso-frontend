@@ -74,7 +74,7 @@ export default {
       if(this.nombre_usuario && this.rut_usuario && this.rol_usuario && this.correo_usuario){
        this.agregarEmpleado();
       } else{
-          this.$vs.notify({title:'Se requiere completar los campos correctamente.',color:'danger',position:'top-center'});
+          this.$vs.notify({title:'Se requiere completar los campos correctamente.',color:'danger',position:'bottom-center'});
         }
     },
     agregarEmpleado() {
@@ -95,9 +95,9 @@ export default {
         this.pass_usuario = "";
         if(response.data[0].message == 'OK'){
           location.href = "http://159.203.94.72/#/usuarios";
-          this.$vs.notify({title:'El usuario ha sido creado correctamente.',color:'success',position:'top-center'});
+          this.$vs.notify({title:'El usuario ha sido creado correctamente.',color:'success',position:'bottom-center'});
         } else{
-          this.$vs.notify({title:'El usuario no se ha podido crear.',color:'danger',position:'top-center'});
+          this.$vs.notify({title:'El usuario no se ha podido crear.',color:'danger',position:'bottom-center'});
         }
       })
       .catch(e => {

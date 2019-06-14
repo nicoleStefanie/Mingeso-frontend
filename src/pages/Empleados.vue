@@ -94,10 +94,10 @@ export default {
         axios.post(url, {})
         .then(response => {
           if(response.data[0].message == 'OK, user erased!.'){
-            this.$vs.notify({title:'El usuario ha sido eliminado correctamente.',color:'success',position:'top-center'});
+            this.$vs.notify({title:'El usuario ha sido eliminado correctamente.',color:'success',position:'bottom-center'});
             this.refresh();
           } else {
-            this.$vs.notify({title:'No se ha podido eliminar el usuario.',color:'danger',position:'top-center'});
+            this.$vs.notify({title:'No se ha podido eliminar el usuario.',color:'danger',position:'bottom-center'});
           }
         });
       },

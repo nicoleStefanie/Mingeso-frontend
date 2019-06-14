@@ -68,7 +68,7 @@ export default {
        this.putEmpleado();
 
         else{
-          this.$vs.notify({title:'Se requiere completar los campos correctamente.',color:'danger',position:'top-center'});
+          this.$vs.notify({title:'Se requiere completar los campos correctamente.',color:'danger',position:'bottom-center'});
         }
     },
     getEmpleado(){
@@ -100,9 +100,9 @@ export default {
         this.rut_usuario = "";
         if(response.data[0].message == 'OK'){
           location.href = "http://159.203.94.72/#/usuarios";
-          this.$vs.notify({title:'El usuario se ha modificado correctamente.',color:'success',position:'top-center'});
+          this.$vs.notify({title:'El usuario se ha modificado correctamente.',color:'success',position:'bottom-center'});
         } else {
-          this.$vs.notify({title:'El usuario no se ha podido eliminar.',color:'danger',position:'top-center'});
+          this.$vs.notify({title:'El usuario no se ha podido eliminar.',color:'danger',position:'bottom-center'});
         }
       })
       .catch(e => {

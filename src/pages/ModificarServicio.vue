@@ -68,7 +68,7 @@ export default {
         this.putServicio();
       }
       else{
-        this.$vs.notify({title:'Se requiere completar los campos correctamente.',color:'danger',position:'top-center'});
+        this.$vs.notify({title:'Se requiere completar los campos correctamente.',color:'danger',position:'bottom-center'});
       }
     },
     getServicio(){
@@ -99,11 +99,11 @@ export default {
         this.precioServicio = "";
         this.categoriaServicio = "";
         if(response.data[0].message == 'El servicio ha sido editado'){
-          this.$vs.notify({title:'El servicio ha sido editado correctamente.',color:'success',position:'top-center'});
+          this.$vs.notify({title:'El servicio ha sido editado correctamente.',color:'success',position:'bottom-center'});
           location.href = "http://159.203.94.72/#/servicios";
         }
         else{
-          this.$vs.notify({title:'El servicio no se ha podido editar.',text:'Porfavor, verifique los datos ingresados.',color:'danger',position:'top-center'});
+          this.$vs.notify({title:'El servicio no se ha podido editar.',text:'Porfavor, verifique los datos ingresados.',color:'danger',position:'bottom-center'});
         }
       })
       .catch(e => {

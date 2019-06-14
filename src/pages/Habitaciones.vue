@@ -5,28 +5,70 @@
             <h3 class="title">Habitaciones</h3>
           </md-card-header>
             <md-card-content>
-            <div>
-              <b-table
-                selectable
-                :select-mode="selectMode"
-                selectedVariant="success"
-                :items="items"
-                :fields = "fields"
-                @row-selected="rowSelected"
-              ></b-table>
-            </div>
-              <md-card-actions>
-              <div  v-if="selected !== null">
-                <md-button type="button" :href="'#/modificarHabitacion/'+ this.habitacion" >Editar</md-button>
-                <md-button class="md-raised md-success" @click="deleteHabitacion">Eliminar Habitación</md-button>
-                <md-button  v-if= "arreglo !== 'Inhabilitada'" class="md-raised md-success" @click="deshabilitar" >Deshabilitar Habitación</md-button>
-                <md-button  v-else class="md-raised md-success" :href="'#/habilitarHabitacion/'+ this.habitacion">Habilitar Habitación</md-button>
+              <div v-if="isAdmin">
+                <md-button class="md-raised md-success" type="button" :href="'#/agregarHabitacion'" >Agregar Habitacion</md-button>
               </div>
+              <vs-table
+                    :data="items"
+                    class="text-center">
+                    <template slot="thead">
+                      <vs-th style="max-width: 20%;">
+                        Número de habitación
+                      </vs-th>
+                      <vs-th style="max-width: 20%;">
+                        Capacidad Adultos
+                      </vs-th>
+                      <vs-th style="max-width: 20%;">
+                        Capacidad Niños
+                      </vs-th>
+                      <vs-th style="max-width: 20%;">
+                        Precio por Noche
+                      </vs-th>
+                      <vs-th style="max-width: 20%;">
+                        Tipo de habitación
+                      </vs-th>
+                    </template>
+
+                    <template slot-scope="{data}">
+                      <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data" >
+                        <vs-td :data="tr.nroHabitacion">
+                          {{tr.nroHabitacion}}
+                        </vs-td>
+
+                        <vs-td :data="tr.capacidadAdultos">
+                          {{tr.capacidadAdultos}}
+                        </vs-td>
+
+                        <vs-td :data="tr.capacidadNinos">
+                          {{tr.capacidadNinos}}
+                        </vs-td>
+
+                        <vs-td :data="tr.precioNoche">
+                          {{tr.precioNoche}} CLP
+                        </vs-td>
+
+                        <vs-td :data="tr.tipoHabitacion">
+                          {{tr.tipoHabitacion}}
+                        </vs-td>
+                        <template class="expand-user" slot="expand">
+                          <div class="con-expand-users" v-if="isAdmin">
+                              <div>
+                                <md-button class="md-raised md-success" type="button" :href="'#/modificarHabitacion/'+ tr.idHabitacion" >Editar Habitación</md-button>
+                                <md-button v-show="tr.tipoHabitacion == 'Inhabilitada'" class="md-raised md-warning" @click="habilitar(tr.idHabitacion)">Habilitar Habitación</md-button>
+                                <md-button v-show="tr.tipoHabitacion != 'Inhabilitada'" class="md-raised md-warning" @click="deshabilitar(tr.idHabitacion)">Deshabilitar Habitación</md-button>
+                                <md-button class="md-raised md-danger" @click="deleteHabitacion(tr.idHabitacion)">Eliminar Habitación</md-button>
+                              </div>
+                          </div>
+                        </template>
+                      </vs-tr>
+                    </template>
+                  </vs-table>
+              <md-card-actions>
               </md-card-actions>
             </md-card-content>
             <md-card-actions>
-            <div>
-              <md-button type="button" :href="'#/agregarHabitacion'" >Agregar Habitacion</md-button>
+            <div v-if="isAdmin">
+              <md-button class="md-raised md-success" type="button" :href="'#/agregarHabitacion'" >Agregar Habitación</md-button>
             </div>
             </md-card-actions>
         </md-card>
@@ -36,24 +78,14 @@
 <script>
 /* eslint-disable */
 import axios from 'axios';
-const localhost = 'http://159.203.94.72:8060/backend/';
+const localhost = 'http://159.203.94.72:8060/backend';
 export default {
     components: {
     },
     data(){
       return{
-        fields: ["nroHabitacion",
-        "capacidadNinos",
-        "capacidadAdultos",
-        "precioNoche",
-        "tipoHabitacion"],
         items:[],
-        errors:[],
-        itemsCompleto: [],
-        selectMode: 'single',
-        selected: null,
-        habitacion: null,
-        arreglo : null,
+        isAdmin: false,
       }
     },
     methods: {
@@ -66,32 +98,40 @@ export default {
             this.items = data.data;
           });
         },
-      rowSelected(items) {
-        this.selected = items;
-        this.habitacion = this.selected[0].idHabitacion;
-        this.arreglo = this.selected[0].tipoHabitacion;
-
-      },
-      deshabilitar(){
-        const url = localhost + '/habitaciones/deshabilitar/' + this.habitacion;
+      deshabilitar(id){
+        const url = localhost + '/habitaciones/deshabilitar/' + id;
         axios.post(url, {
             tipo : "Inhabilitada",
           })
           .then(response => {
-            alert(response.data[0].message);
-            this.refresh();
+            if(response.data[0].message == 'Operación realizada con exito'){
+              this.$vs.notify({title:'La habitación ha sido deshabilitada correctamente',color:'success',position:'bottom-center'});
+              this.refresh();
+            }
+            else{
+              this.$vs.notify({title:'La habitación no se ha podido deshabilitar',color:'warning',position:'bottom-center'});
+            }
           })
           .catch(e => {
             this.errors.push(e)
           })
-      },
-      deleteHabitacion(){
-        const url = localhost + '/habitaciones/delete/'+ this.habitacion;
+        },
+        habilitar(id){
+          var url = "http://159.203.94.72/#/habilitarHabitacion/" + id;
+          location.href = url;
+        },
+      deleteHabitacion(id){
+        const url = localhost + '/habitaciones/delete/'+ id;
         axios.post(url, {
-
           })
           .then(response => {
-            alert(response.data[0].message);
+            if(response.data[0].message == 'La habitacion ha sido borrada'){
+              this.$vs.notify({title:'La habitación ha sido eliminada correctamente',color:'success',position:'bottom-center'});
+              this.refresh();
+            }
+            else{
+              this.$vs.notify({title:'La habitación no se ha podido eliminar',color:'danger',position:'bottom-center'});
+            }
           })
           .catch(e => {
             this.errors.push(e)
@@ -99,10 +139,13 @@ export default {
         },
       },
     mounted() {
-      this.getHabitaciones()
-      if (!localStorage.getItem('login')) {
-        this.$router.push('Login')
-      }
+    this.getHabitaciones();
+    if (localStorage.getItem('role') != 'Administrador') {
+      this.isAdmin = false
+    }
+    else {
+      this.isAdmin = true
+    }
     }
   }
 </script>

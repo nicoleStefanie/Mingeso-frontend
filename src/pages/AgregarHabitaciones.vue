@@ -1,7 +1,7 @@
 <template>
     <form>
         <md-card>
-            <md-card-header :data-background-color="dataBackgroundColor">
+            <md-card-header data-background-color="green">
                 <h4 class="title">Agregar Habitación</h4>
                 <p class="category">Completar los campos</p>
             </md-card-header>
@@ -13,16 +13,16 @@
                             <md-input v-model="nroHabitacion" type="number" min="1"></md-input>
                         </md-field>
                     </div>
-                    <div class="md-layout-item md-small-size-100 md-size-40">
+                    <div class="md-layout-item md-small-size-100 md-size-60">
                         <md-field>
-                            <b-form-select v-model="tipo">
-                              <option disabled value="">Seleccione un tipo</option>
-                              <option>Simple</option>
-                              <option>Doble</option>
-                              <option>Triple</option>
-                              <option>Cuadruple</option>
-                              <option>Matrimonial</option>
-                            </b-form-select>
+                          <vs-select v-model="tipo" placeholder="Seleccione un tipo de habitación">
+                            <vs-select-item value="Simple" text="Simple"/>
+                            <vs-select-item value="Doble" text="Doble"/>
+                            <vs-select-item value="Triple" text="Triple"/>
+                            <vs-select-item value="Cuadruple" text="Cuadruple"/>
+                            <vs-select-item value="Matrimonial" text="Matrimonial"/>
+                            <vs-select-item value="Inhabilitada" text="Inhabilitada"/>
+                          </vs-select>
                         </md-field>
                     </div>
                     <div class="md-layout-item md-small-size-100 md-size-40">
@@ -56,7 +56,7 @@
 <script>
 /* eslint-disable */
 import axios from 'axios';
-const localhost = 'http://159.203.94.72:8060/backend/';
+const localhost = 'http://159.203.94.72:8060/backend';
 export default {
   name : 'agregarEmpleado',
   components: {
@@ -68,25 +68,19 @@ export default {
       capacidadNinos:'',
       capacidadAdultos:'',
       precioNoche:'',
-      habitaciones: [],
-      errors: [],
     }
   },
   methods: {
     validar: function(){
       if(this.nroHabitacion && this.tipo && this.capacidadNinos && this.capacidadAdultos&& this.precioNoche)
        this.agregarHabitacion();
-
         else{
-          alert('Se requiere completar todos los campos.')
+          this.$vs.notify({title:'Se requiere completar todos los campos.',color:'danger',position:'bottom-center'});
         }
-
-
     },
     agregarHabitacion() {
       var url = localhost + '/habitaciones/create';
       axios.post(url, {
-
         tipo : this.tipo,
         nroHabitacion : this.nroHabitacion,
         capacidadNinos : this.capacidadNinos,
@@ -95,21 +89,13 @@ export default {
 
       })
       .then(response => {
-
-        this.tipo = "";
-        this.nroHabitacion = "";
-        this.capacidadNinos = "";
-        this.capacidadAdultos = "";
-        this.precioNoche= "";
-        alert(response.data[0].message);
-        console.log(response.data.message);
         if(response.data[0].message == 'Habitacion agregada con exito'){
+          this.$vs.notify({title:'La habitación se ha agregado correctamente.',color:'success',position:'bottom-center'});
           location.href = "http://159.203.94.72/#/habitaciones";
+        } else {
+          this.$vs.notify({title:'No se pudo agregar la habitación.',color:'danger',position:'bottom-center'});
         }
       })
-      .catch(e => {
-        this.errors.push(e)
-      });
     }
   },
   mounted () {

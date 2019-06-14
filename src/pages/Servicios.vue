@@ -40,13 +40,13 @@
                         </vs-td>
 
                         <vs-td :data="tr.precio">
-                          {{tr.precio}}
+                          {{tr.precio}} CLP
                         </vs-td>
 
                         <template class="expand-user" slot="expand">
                           <div class="con-expand-users" v-if="isAdmin">
                               <div>
-                                <md-button class="md-raised md-success" type="button" :href="'#/modificarServicio/'+ tr.idServicio" >Editar</md-button>
+                                <md-button class="md-raised md-success" type="button" :href="'#/modificarServicio/'+ tr.idServicio" >Editar Servicio</md-button>
                                 <md-button class="md-raised md-danger" @click="deleteServicio(tr.idServicio)">Eliminar Servicio</md-button>
                               </div>
                           </div>
@@ -75,16 +75,7 @@ export default {
     },
     data(){
         return{
-            fields: ["nombreServicio",
-                     "descripcionServicio",
-                     "precio",
-                     "categoriaServicio"],
             items: [],
-            selectMode: 'single',
-            selected: null,
-            selectMode: 'single',
-            selected: null,
-            servicioI: null,
             isAdmin: false
         }
     },
@@ -98,17 +89,16 @@ export default {
             this.items = data.data;
           });
         },
-
-      rowSelected(items) {
-        this.selected = items,
-        this.servicioI = this.selected[0].idServicio
-      },
       deleteServicio(id){
         const url = localhost + '/servicios/delete/'+ id;
         axios.post(url, {})
         .then(response => {
-          alert(response.data[0].message);
-          this.refresh();
+          if(response.data[0].message == 'El servicio ha sido borrado'){
+            this.$vs.notify({title:'Se eliminó el servicio correctamente.',color:'success',position:'bottom-center'});
+            this.refresh();
+          } else {
+            this.$vs.notify({title:'No se pudo eliminar el servicio.',color:'danger',position:'bottom-center'});
+          }
         })
         .catch(e => {
           this.errors.push(e)

@@ -66,7 +66,7 @@ export default {
        this.agregarServicio();
       }
       else{
-        alert('Se requiere completar todos los campos.');
+        this.$vs.notify({title:'Se requiere completar los campos correctamente.',color:'danger',position:'top-center'});
       }
     },
     agregarServicio() {
@@ -83,7 +83,7 @@ export default {
         this.categoriaServicio = "";
         this.precioServicio = "";
         alert(response.data[0].message);
-        console.log(response.data.message);
+        this.$vs.notify({title:'Error al crear servicio',text:'Porfavor, verifique los datos ingresados.', color:'danger',position:'top-center'});
         if(response.data[0].message == 'OK'){
           location.href = "http://159.203.94.72/#/servicios";
         }

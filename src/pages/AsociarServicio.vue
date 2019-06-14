@@ -140,13 +140,13 @@ export default {
       },
       toggle2(){
         this.step1 = !this.step1;
-        const url = localhost + '/servicios/';
+        const url = localhost + '/servicios';
         axios.get(url).then((data) => {
           this.servicios = data.data;
         })
       },
       incorporar(){
-        console.log(this.serviciosSeleccionados);
+
       },
     }
   }

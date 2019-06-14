@@ -25,6 +25,7 @@ import ModificarServicio from '@/pages/ModificarServicio.vue'
 import CheckOut from '@/pages/Check-out.vue'
 import Checkin from '@/pages/Checkin.vue'
 import AsociarServicio from '@/pages/AsociarServicio.vue'
+import reservaHabitacion from "../pages/reservaHabitacion";
 /*##############################################################*/
 
 const routes = [
@@ -161,11 +162,11 @@ const routes = [
         name: 'asociarServicio',
         component: AsociarServicio
       },
-      /*{
-        path: 'reservaHabitacion/:codigoReserva',
+      {
+        path: 'reservaHabitacion/:idReserva',
         name: 'reservaHabitacion',
         component: reservaHabitacion
-      },*/
+      },
     ]
   }
 ]

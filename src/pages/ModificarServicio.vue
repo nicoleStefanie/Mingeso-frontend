@@ -107,7 +107,10 @@ export default {
     }
   },
   mounted(){
-    this.getServicio();
+    this.getServicio()
+    if (localStorage.getItem('role') != 'Administrador') {
+      this.$router.push('Rack')
+    }
   }
 }
 

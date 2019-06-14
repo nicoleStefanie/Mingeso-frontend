@@ -74,6 +74,11 @@ export default {
         this.errors.push(e)
       });
     }
+  },
+  mounted () {
+    if (localStorage.getItem('role') != 'Administrador') {
+      this.$router.push('Rack')
+    }
   }
 }
 </script>

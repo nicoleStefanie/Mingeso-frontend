@@ -5,15 +5,17 @@
             <h3 class="title">Servicios</h3>
           </md-card-header>
             <md-card-content>
-              <div  v-if="selected !== null">
-                <md-button type="button" :href="'#/agregarServicio'" >Agregar Servicio</md-button>
-                <md-button type="button" :href="'#/modificarServicio/'+ this.servicioI" >Editar</md-button>
-                <md-button class="md-raised md-success" @click="deleteServicio">Eliminar Servicio</md-button>
-              </div>
-              <div v-else>
-                <md-button type="button" :href="'#/agregarServicio'" >Agregar Servicio</md-button>
-                <md-button type="button" :href="'#/modificarServicio/'+ this.servicioI" disabled>Editar</md-button>
-                <md-button class="md-raised md-success" @click="deleteServicio" disabled>Eliminar Servicio</md-button>
+              <div v-if="isAdmin">
+                <div  v-if="selected !== null">
+                  <md-button type="button" :href="'#/agregarServicio'" >Agregar Servicio</md-button>
+                  <md-button type="button" :href="'#/modificarServicio/'+ this.servicioI" >Editar</md-button>
+                  <md-button class="md-raised md-success" @click="deleteServicio">Eliminar Servicio</md-button>
+                </div>
+                <div v-else>
+                  <md-button type="button" :href="'#/agregarServicio'" >Agregar Servicio</md-button>
+                  <md-button type="button" :href="'#/modificarServicio/'+ this.servicioI" disabled>Editar</md-button>
+                  <md-button class="md-raised md-success" @click="deleteServicio" disabled>Eliminar Servicio</md-button>
+                </div>
               </div>
             <div>
               <b-table
@@ -26,14 +28,16 @@
               ></b-table>
             </div>
               <md-card-actions>
-              <div  v-if="selected !== null">
-                <md-button type="button" :href="'#/modificarServicio/'+ this.servicioI" >Editar</md-button>
-                <md-button class="md-raised md-success" @click="deleteServicio">Eliminar Servicio</md-button>
+              <div v-if="isAdmin">
+                <div  v-if="selected !== null">
+                  <md-button type="button" :href="'#/modificarServicio/'+ this.servicioI" >Editar</md-button>
+                  <md-button class="md-raised md-success" @click="deleteServicio">Eliminar Servicio</md-button>
+                </div>
               </div>
               </md-card-actions>
             </md-card-content>
             <md-card-actions>
-            <div>
+            <div v-if="isAdmin">
               <md-button type="button" :href="'#/agregarServicio'" >Agregar Servicio</md-button>
             </div>
             </md-card-actions>
@@ -60,6 +64,7 @@ export default {
             selectMode: 'single',
             selected: null,
             servicioI: null,
+            isAdmin: false
         }
     },
     methods: {
@@ -90,7 +95,13 @@ export default {
         },
       },
     mounted() {
-      this.getServicios();
+      this.getServicios()
+      if (localStorage.getItem('role') != 'Administrador') {
+        this.isAdmin = false
+      }
+      else {
+        this.isAdmin = true
+      }
     }
   }
 </script>

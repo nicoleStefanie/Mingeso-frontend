@@ -100,7 +100,7 @@ const routes = [
       },
       {
         path: 'usuarios',
-        name: 'uaurios',
+        name: 'usuarios',
         component: Empleados
       },
       {

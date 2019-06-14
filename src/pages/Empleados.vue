@@ -82,7 +82,7 @@ export default {
         },
       },
     mounted() {
-    this.getUsuarios();
+      this.getUsuarios()
     }
   }
 </script>

@@ -24,6 +24,7 @@ import AgregarServicio from '@/pages/AgregarServicio.vue'
 import ModificarServicio from '@/pages/ModificarServicio.vue'
 import CheckOut from '@/pages/Check-out.vue'
 import Checkin from '@/pages/Checkin.vue'
+import AsociarServicio from '@/pages/AsociarServicio.vue'
 /*##############################################################*/
 
 const routes = [
@@ -154,6 +155,11 @@ const routes = [
         path: 'checkin',
         name: 'checkin',
         component: Checkin
+      },
+      {
+        path: 'asociarServicio',
+        name: 'asociarServicio',
+        component: AsociarServicio
       },
       /*{
         path: 'reservaHabitacion/:codigoReserva',

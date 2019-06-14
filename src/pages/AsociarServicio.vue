@@ -19,33 +19,69 @@
             </div>
             <div class="md-layout-item md-small-size-100 md-size-40" v-show="step2">
 
-              <p>Seleccione un registro</p>
+              <br>
+              <br>
               <md-field>
-                <select v-model="registro">
-                  <option v-for="reg in registros" :value="reg.value" @onchange="toggle2">{{reg.representante}} con fecha de término: {{reg.fechaTermino}}</option>
-                </select>
+                <vs-select v-model="registro" placeholder="Seleccione un registro" @change="toggle2">
+                  <vs-select-item :value="reg" :text="reg.representante+' >> '+reg.fechaTermino" v-for="reg in registros"/>
+                </vs-select>
               </md-field>
             </div>
           </div>
         </md-card-content>
         <md-card-content v-show="!step1">
+          <form>
           <br>
           <div class="md-layout">
-            <div class="md-layout-item md-small-size-100 md-size-40">
-              <p>¿A qué habitación desea asociar un servicio?</p>
-              <md-field>
-                <label>Ingrese el número de la habitación deseada (ej: 1,2,3, etc.)</label>
-                <md-input v-model="nroHabitacion" type="number" min="1" @change="toggle1"></md-input>
-              </md-field>
-            </div>
-            <div class="md-layout-item md-small-size-100 md-size-40" v-show="step2">
-              <p>¿A qué habitación desea asociar un servicio?</p>
-              <md-field>
-                <label>Ingrese el número de la habitación deseada (ej: 1,2,3, etc.)</label>
-                <md-input v-model="nroHabitacion" type="number" min="1" @change="toggle1"></md-input>
-              </md-field>
+            <div class="md-layout-item md-small-size-100 text-center">
+                <vs-table
+                  multiple
+                  v-model="serviciosSeleccionados"
+                  :data="servicios">
+                <template slot="header">
+                  <h3>Seleccione el o los servicios que desea incorporar al registro</h3>
+                </template>
+                <template slot="thead">
+                  <vs-th>
+                    Servicio
+                  </vs-th>
+                  <vs-th>
+                    Descripción
+                  </vs-th>
+                  <vs-th>
+                    Categoría
+                  </vs-th>
+                  <vs-th>
+                    Precio
+                  </vs-th>
+                </template>
+
+                <template slot-scope="{data}">
+                  <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data" >
+                    <vs-td :data="data[indextr].nombreServicio">
+                      {{data[indextr].nombreServicio}}
+                    </vs-td>
+
+                    <vs-td :data="data[indextr].descripcionServicio">
+                      {{data[indextr].descripcionServicio}}
+                    </vs-td>
+
+                    <vs-td :data="data[indextr].categoriaServicio">
+                      {{data[indextr].categoriaServicio}}
+                    </vs-td>
+
+                    <vs-td :data="data[indextr].precio">
+                      {{data[indextr].precio}}
+                    </vs-td>
+                  </vs-tr>
+                </template>
+              </vs-table>
+              <md-card-actions>
+                <md-button class="md-raised md-success" type="button" @click="incorporar">Incorporar</md-button>
+              </md-card-actions>
             </div>
           </div>
+        </form>
         </md-card-content>
       </md-card>
     </div>
@@ -65,7 +101,9 @@ export default {
           nroHabitacion: 1,
           habitacion: [],
           registros: null,
-          registro: '',
+          registro: [],
+          servicios: [],
+          serviciosSeleccionados: [],
       }
     },
     methods: {
@@ -97,20 +135,19 @@ export default {
               aux = this.registros[i].fechaTermino.split("T");
               this.registros[i].fechaTermino = aux[0];
             }
-            this.organizarRegistros();
           }
         });
       },
-      organizarRegistros(){
-
-      },
       toggle2(){
-        console.log(this.registro);
         this.step1 = !this.step1;
-      }
-    },
-    mounted() {
-
+        const url = localhost + '/servicios/';
+        axios.get(url).then((data) => {
+          this.servicios = data.data;
+        })
+      },
+      incorporar(){
+        console.log(this.serviciosSeleccionados);
+      },
     }
   }
 </script>

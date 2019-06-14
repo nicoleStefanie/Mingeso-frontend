@@ -54,14 +54,19 @@
         var url = api + 'reservas/codigoReserva/';
         var codigoString = "" + this.codigoReserva;
         url = url + codigoString;
-        axios.get(url).then((data) => {
+        this.reserva = null;
+        if(this.codigoReserva != ''){
+          axios.get(url).then((data) => {
           this.reserva = data.data;
-          console.log(this.codigoReserva);
-        });
-        if(this.reserva != null){
-          location.href = "http://159.203.94.72/#/reservaHabitacion/" + this.reserva.idReserva;
-        } else {
-          alert("El código de la reserva no existe.");
+          if(this.reserva.idReserva != null){
+            location.href = "http://159.203.94.72/#/reservaHabitacion/" + this.reserva.idReserva;
+          }else {
+            alert("El código de la reserva no existe.");
+            this.codigoReserva =  '';
+          }
+        });}
+        else{
+          alert("No ha ingresado nada en el campo código reserva");
         }
       },
   },

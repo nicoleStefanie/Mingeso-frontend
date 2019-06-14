@@ -29,7 +29,7 @@
         <p>Habitaciones</p>
       </sidebar-link>
 
-      <sidebar-link to="/usuarios">
+      <sidebar-link to="/usuarios" v-if="isAdmin">
         <md-icon>people</md-icon>
         <p>Usuarios</p>
       </sidebar-link>
@@ -82,12 +82,16 @@ export default {
   data () {
     return {
       isLogin: false,
+      isAdmin: false,
       userName: null
     }
   },
   mounted () {
     if (localStorage.getItem('login')) {
       this.isLogin = true
+    }
+    if (localStorage.getItem('role') == 'Administrador') {
+      this.isAdmin = true
     }
     this.$root.$on('doLogin', (text) => {
       this.isLogin = true

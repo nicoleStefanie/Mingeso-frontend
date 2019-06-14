@@ -63,7 +63,7 @@ export default {
   components: {
     Datepicker
   },
-    data(){ 
+    data(){
       return {
         disabled: {},
         nombre: null,
@@ -90,12 +90,16 @@ export default {
   methods:{
     dateFormat: function() {
       let date = new Date(this.date);
-      return date.getFullYear() + '-' + 
-      	(date.getMonth() +1) + '-' + 
+      return date.getFullYear() + '-' +
+      	(date.getMonth() +1) + '-' +
         date.getDate();
-    }, 
+    },
   },
-  
+  mounted () {
+    if (!localStorage.getItem('login')) {
+      this.$router.push('Login')
+    }
+  }
 };
 </script>
 

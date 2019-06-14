@@ -117,6 +117,9 @@ export default {
       },
     mounted() {
       this.getServicios()
+      if (!localStorage.getItem('login')) {
+        this.$router.push('Login')
+      }
       if (localStorage.getItem('role') != 'Administrador') {
         this.isAdmin = false
       }

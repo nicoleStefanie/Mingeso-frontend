@@ -34,13 +34,13 @@
           <br><br><br>
             <div class="md-layout-item md-small-size-100 md-size-30">
                  <b-form-select v-model="habitacion" :options="options">
-                    <option :value="null" disabled>Seleccione Habitación</option>              
+                    <option :value="null" disabled>Seleccione Habitación</option>
                     <option>Simple</option>
                     <option>Doble</option>
                     <option>Triple</option>
                     <option>Cuádruple</option>
                     <option>Matrimonial</option>
-                    <option></option>              
+                    <option></option>
               </b-form-select>
                 <div class="mt-2">{{ habitacion }}</div>
           </div>
@@ -54,7 +54,7 @@
           </div>
           <div class="md-layout-item md-size-100 text-right">
             <md-button class="md-raised md-success" :href="'#/reservas'">Cancelar</md-button>
-            &nbsp; &nbsp; 
+            &nbsp; &nbsp;
             <md-button class="md-raised md-success" @click="verificar()">Crear Reserva</md-button>
           </div>
         </div>
@@ -72,7 +72,7 @@ export default {
   components: {
     Datepicker
   },
-    data(){ 
+    data(){
       return {
         disabled: {},
         nombre: '',
@@ -111,24 +111,24 @@ export default {
   methods:{
     dateFormat: function() {
       let date = new Date(this.date);
-      return date.getFullYear() + '-' + 
-      	(date.getMonth() +1) + '-' + 
+      return date.getFullYear() + '-' +
+      	(date.getMonth() +1) + '-' +
         date.getDate();
-      }, 
+      },
     verificar: function(){
-      if(this.nombre && this.habitacion && this.inicio && this.termino && this.rut && this.correo && this.telefono) return true;      
+      if(this.nombre && this.habitacion && this.inicio && this.termino && this.rut && this.correo && this.telefono) return true;
       if(this.nombre || this.habitacion || this.inicio || this.termino || this.rut || this.correo || this.telefono){
         alert('Falta algun campo por completar.')
       }
       else{
         alert('Se requiere completar todos los campos.')
       }
-    }, 
+    },
         validarNombre:function(nombre){
       if(/^[A-Za-z\s]+$/.test(this.nombre)) {
         this.vatError1 = true;
-        this.vatErrorMsg1 = null; 
-        return true }        
+        this.vatErrorMsg1 = null;
+        return true }
       else{
         this.vatError1 = true;
         this.vatErrorMsg1 = "Ingrese un nombre válido.";
@@ -138,7 +138,7 @@ export default {
       if(/^\d*$/.test(this.rut)){
         if(Object.keys(this.rut).length < 9){
           this.vatError2 = false;
-          this.vatErrorMsg2 = null; 
+          this.vatErrorMsg2 = null;
         }
         else{
           this.vatError2 = true;
@@ -152,7 +152,7 @@ export default {
     },
     validarTelefono:function(telefono){
       if(/^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/.test(this.telefono)){
-        this.vatError3 = false; 
+        this.vatError3 = false;
         this.vatErrorMsg3 = null;
         return true }
         else{
@@ -170,6 +170,11 @@ export default {
           this.vatErrorMsg4 = "Ingrese un correo válido."
         }
     },
+  },
+  mounted () {
+    if (!localStorage.getItem('login')) {
+      this.$router.push('Login')
+    }
   }
 };
 </script>

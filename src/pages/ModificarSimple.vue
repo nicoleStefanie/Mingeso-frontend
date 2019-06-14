@@ -152,7 +152,11 @@ export default {
         }
     },
   },
-
+  mounted () {
+    if (!localStorage.getItem('login')) {
+      this.$router.push('Login')
+    }
+  }
 };
 </script>
 

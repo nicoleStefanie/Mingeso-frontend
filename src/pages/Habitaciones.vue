@@ -99,7 +99,10 @@ export default {
         },
       },
     mounted() {
-    this.getHabitaciones();
+      this.getHabitaciones()
+      if (!localStorage.getItem('login')) {
+        this.$router.push('Login')
+      }
     }
   }
 </script>

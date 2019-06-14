@@ -148,6 +148,11 @@ export default {
       incorporar(){
 
       },
+    },
+    mounted () {
+      if (!localStorage.getItem('login')) {
+        this.$router.push('Login')
+      }
     }
   }
 </script>

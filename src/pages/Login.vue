@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
 export default{
   data () {
     return {
@@ -37,26 +37,31 @@ export default{
     }
   },
   methods: {
-    async inicio(){
-      let url = 'http://159.203.94.72:8060/backend/usuarios/login';
+    async inicio () {
+      let url = 'http://159.203.94.72:8060/backend/usuarios/login'
       await axios.post(url, {
         email: this.email,
         password: this.password
       }, { useCredentails: true }).then((data) => {
-        let loginData = data['data'][0];
-        if(loginData['status'] == 200){
+        let loginData = data['data'][0]
+        if (loginData['status'] === 200) {
           localStorage.setItem('role', loginData['role'])
           localStorage.setItem('user_id', loginData['id'])
           localStorage.setItem('login', loginData['login'])
           localStorage.setItem('name', loginData['name'])
           localStorage.setItem('email', loginData['email'])
-          location.href = "http://159.203.94.72/#/rack";
+          this.updateComponents(loginData['name'])
+          this.$router.push('Rack')
         }
-        else{
-          console.log('ERROR: ' + loginData['message'])
+        else {
+          alert(loginData['message'])
         }
-      });
+      })
+    },
+    updateComponents (name) {
+      this.$root.$emit('doLogin', name)
     }
   }
+
 }
 </script>

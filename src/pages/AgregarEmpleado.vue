@@ -1,8 +1,8 @@
 <template>
     <form>
         <md-card>
-            <md-card-header :data-background-color="dataBackgroundColor">
-                <h4 class="title">Agregar Empleado </h4>
+            <md-card-header data-background-color="green">
+                <h4 class="title">Agregar Usuario </h4>
                 <p class="category">Completar los campos </p>
             </md-card-header>
             <md-card-content>
@@ -21,11 +21,10 @@
                     </div>
                     <div class="md-layout-item md-small-size-100 md-size-30">
                         <md-field>
-                            <b-form-select v-model="rol_usuario">
-                              <option disabled value="">Seleccione un rol de usuario</option>
-                              <option>Operario</option>
-                              <option>Administrador</option>
-                            </b-form-select>
+                          <vs-select v-model="rol_usuario" placeholder="Seleccione un rol de usuario">
+                            <vs-select-item value="Operario" text="Operario"/>
+                            <vs-select-item value="Administrador" text="Administrador"/>
+                          </vs-select>
                         </md-field>
                     </div>
                     <div class="md-layout-item md-small-size-100 md-size-50">
@@ -34,8 +33,14 @@
                             <md-input v-model="correo_usuario" type="text"></md-input>
                         </md-field>
                     </div>
+                    <div class="md-layout-item md-small-size-100 md-size-50">
+                        <md-field>
+                            <label>Contraseña</label>
+                            <md-input v-model="pass_usuario" type="text"></md-input>
+                        </md-field>
+                    </div>
                     <div class="md-layout-item md-size-100 text-right">
-                        <md-button class="md-raised md-success" @click="validar">Agregar Empleado</md-button>
+                        <md-button class="md-raised md-success" @click="validar">Agregar Usuario</md-button>
                     </div>
                 </div>
             </md-card-content>
@@ -57,6 +62,7 @@ export default {
       rut_usuario:'',
       rol_usuario:'',
       correo_usuario:'',
+      pass_usuario:'',
       usuarios: [],
       errors: [],
       vatError2:'',
@@ -64,22 +70,21 @@ export default {
     }
   },
   methods: {
-    validar: function(){
-      if(this.nombre_usuario && this.rut_usuario&& this.rol_usuario && this.correo_usuario)
+    validar(){
+      if(this.nombre_usuario && this.rut_usuario && this.rol_usuario && this.correo_usuario){
        this.agregarEmpleado();
-        else{
-          alert('Se requiere completar todos los campos.')
+      } else{
+          this.$vs.notify({title:'Se requiere completar los campos correctamente.',color:'danger',position:'top-center'});
         }
     },
     agregarEmpleado() {
       var url = localhost + '/usuarios/create';
       axios.post(url, {
-
         nombre_usuario : this.nombre_usuario,
         rol_usuario : this.rol_usuario,
         correo_usuario : this.correo_usuario,
-        rut_usuario: this.rut_usuario
-
+        rut_usuario: this.rut_usuario,
+        password: this.pass_usuario
       })
       .then(response => {
 
@@ -87,10 +92,12 @@ export default {
         this.rol_usuario = "";
         this.correo_usuario = "";
         this.rut_usuario = "";
-        alert(response.data[0].message);
-        console.log(response.data.message);
+        this.pass_usuario = "";
         if(response.data[0].message == 'OK'){
           location.href = "http://159.203.94.72/#/usuarios";
+          this.$vs.notify({title:'El usuario ha sido creado correctamente.',color:'success',position:'top-center'});
+        } else{
+          this.$vs.notify({title:'El usuario no se ha podido crear.',color:'danger',position:'top-center'});
         }
       })
       .catch(e => {

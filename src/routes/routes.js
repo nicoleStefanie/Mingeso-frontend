@@ -105,7 +105,7 @@ const routes = [
         component: Empleados
       },
       {
-        path: 'modificarEmpleado/:rut',
+        path: 'modificarEmpleado/:id',
         name: 'modificarEmpleado',
         component: ModificarEmpleado
       },

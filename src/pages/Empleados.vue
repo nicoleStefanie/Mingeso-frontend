@@ -83,6 +83,9 @@ export default {
       },
     mounted() {
       this.getUsuarios()
+      if(localStorage.getItem('role') != 'Administrador') {
+        this.$router.push('Rack')
+      }
     }
   }
 </script>

@@ -1,7 +1,7 @@
-<template v-if="window.localStorage.getItem('login')">
+<template>
   <div class="wrapper" :class="{'nav-open': $sidebar.showSidebar}">
     <notifications></notifications>
-    <side-bar>
+    <side-bar v-if="isLogin">
       <mobile-menu slot="content"></mobile-menu>
 
       <sidebar-link to="/rack">
@@ -41,22 +41,7 @@
 
     </side-bar>
 
-    <div class="main-panel">
-       <top-navbar></top-navbar>
-
-      <dashboard-content>
-
-      </dashboard-content>
-
-      <content-footer v-if="!$route.meta.hideFooter"></content-footer>
-    </div>
-  </div>
-</template>
-
-<template v-else>
-  <div class="wrapper" :class="{'nav-open': $sidebar.showSidebar}">
-    <notifications></notifications>
-    <side-bar>
+    <side-bar v-else>
       <mobile-menu slot="content"></mobile-menu>
 
       <sidebar-link to="/">
@@ -77,6 +62,7 @@
     </div>
   </div>
 </template>
+
 <style lang="scss">
 
 </style>
@@ -92,6 +78,30 @@ export default {
     DashboardContent,
     ContentFooter,
     MobileMenu
+  },
+  data () {
+    return {
+      isLogin: false,
+      userName: null
+    }
+  },
+  mounted () {
+    if (localStorage.getItem('login')) {
+      this.isLogin = true
+    }
+    this.$root.$on('doLogin', (text) => {
+      this.isLogin = true
+    })
+    this.$root.$on('doLogout', (bool) => {
+      this.isLogin = false
+    })
+  },
+  watch: {
+    updateComponents: function () {
+      this.$root.$on('doLogin', (text) => {
+        this.isLogin = true
+      })
+    }
   }
 }
 </script>

@@ -10,7 +10,7 @@
                     <div class="md-layout-item md-small-size-100 md-size-40">
                         <md-field>
                             <label>Nombre</label>
-                            <md-input v-model="nombreServicio" type="text"></md-input>
+                            <md-input v-model="nombreServicio" type="text" value="nombre"></md-input>
                         </md-field>
                     </div>
                     <div class="md-layout-item md-small-size-100 md-size-40">
@@ -68,7 +68,7 @@ export default {
         this.putServicio();
       }
       else{
-        alert('Se requiere completar todos los campos.');
+        this.$vs.notify({title:'Se requiere completar los campos correctamente.',color:'danger',position:'top-center'});
       }
     },
     getServicio(){
@@ -77,7 +77,10 @@ export default {
       url = url + idString;
       axios.get(url).then((data) => {
         this.item = data.data;
-        console.log(item.precioServicio);
+        this.nombreServicio = this.item.nombreServicio;
+        this.descripcion = this.item.descripcionServicio;
+        this.precioServicio = this.item.precio;
+        this.categoriaServicio = this.item.categoriaServicio;
       });
     },
     putServicio() {
@@ -95,10 +98,12 @@ export default {
         this.descripcion = "";
         this.precioServicio = "";
         this.categoriaServicio = "";
-        alert(response.data[0].message);
-        console.log(response.data.message);
         if(response.data[0].message == 'El servicio ha sido editado'){
+          this.$vs.notify({title:'El servicio ha sido editado correctamente.',color:'success',position:'top-center'});
           location.href = "http://159.203.94.72/#/servicios";
+        }
+        else{
+          this.$vs.notify({title:'El servicio no se ha podido editar.',text:'Porfavor, verifique los datos ingresados.',color:'danger',position:'top-center'});
         }
       })
       .catch(e => {

@@ -58,8 +58,6 @@ export default {
 
       })
       .then(response => {
-        alert(response.data[0].message);
-        console.log(response.data.message);
         if(response.data[0].message == 'Operación realizada con exito'){
           this.$vs.notify({title:'Se ha habilitado la habitación.',color:'succes',position:'bottom-center'});
           location.href = "http://159.203.94.72/#/habitaciones";

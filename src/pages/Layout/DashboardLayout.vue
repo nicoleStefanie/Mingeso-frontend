@@ -2,7 +2,6 @@
   <div class="wrapper" :class="{'nav-open': $sidebar.showSidebar}">
     <notifications></notifications>
     <side-bar v-if="isLogin">
-      <mobile-menu slot="content"></mobile-menu>
 
       <sidebar-link to="/rack">
         <md-icon>notes</md-icon>
@@ -17,6 +16,11 @@
       <sidebar-link to="/checkOut">
         <md-icon>chevron_left</md-icon>
         <p>Check-Out</p>
+      </sidebar-link>
+
+      <sidebar-link to="/asociarServicio">
+        <md-icon>room_service</md-icon>
+        <p>Asociar Servicio</p>
       </sidebar-link>
 
       <sidebar-link to="/reservas">
@@ -35,7 +39,7 @@
       </sidebar-link>
 
       <sidebar-link to="/servicios">
-        <md-icon>room_service</md-icon>
+        <md-icon>notifications</md-icon>
         <p>Servicios</p>
       </sidebar-link>
 

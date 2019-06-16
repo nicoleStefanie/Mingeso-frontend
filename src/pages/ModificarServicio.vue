@@ -2,7 +2,7 @@
     <form>
         <md-card>
             <md-card-header data-background-color="green" style="position: relative;">
-                <h4 class="title">Modificar Servicio </h4>
+                <h4 class="title">Editar Servicio </h4>
                 <p class="category">Completar los campos </p>
             </md-card-header>
             <md-card-content>
@@ -33,7 +33,7 @@
                     </div>
 
                     <div class="md-layout-item md-size-100 text-right">
-                        <md-button class="md-raised md-success" @click="validar">Modificar Servicio</md-button>
+                        <md-button class="md-raised md-success" @click="validar">Editar Servicio</md-button>
                     </div>
                 </div>
             </md-card-content>

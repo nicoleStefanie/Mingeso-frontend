@@ -9,6 +9,9 @@
                 <md-button class="md-raised md-success" type="button" :href="'#/agregarHabitacion'" >Agregar Habitacion</md-button>
               </div>
               <vs-table
+                    search
+                    max-items="10"
+                    pagination
                     :data="items"
                     class="text-center">
                     <template slot="thead">

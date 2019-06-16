@@ -2,7 +2,7 @@
     <form>
         <md-card>
             <md-card-header data-background-color="green">
-                <h4 class="title">Modificar Habitación</h4>
+                <h4 class="title">Editar Habitación</h4>
                 <p class="category">Completar los campos</p>
             </md-card-header>
             <md-card-content>
@@ -45,7 +45,7 @@
                         </md-field>
                     </div>
                     <div class="md-layout-item md-size-100 text-right">
-                        <md-button class="md-raised md-success"  @click="validar" >Modificar Habitación</md-button>
+                        <md-button class="md-raised md-success"  @click="validar" >Editar Habitación</md-button>
                     </div>
                 </div>
             </md-card-content>

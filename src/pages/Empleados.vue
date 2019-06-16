@@ -9,6 +9,9 @@
                 <md-button class="md-raised md-success" type="button" :href="'#/agregarEmpleado'" >Agregar Usuario</md-button>
               </div>
               <vs-table
+                    search
+                    max-items="10"
+                    pagination
                     :data="items">
                     <template slot="thead">
                       <vs-th style="max-width: 25%;">

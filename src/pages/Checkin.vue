@@ -59,7 +59,7 @@
           axios.get(url).then((data) => {
           this.reserva = data.data;
           if(this.reserva.idReserva != null){
-            location.href = "http://159.203.94.72/#/reservaHabitacion/" + this.reserva.idReserva;
+            location.href = "#/reservaHabitacion/" + this.reserva.idReserva;
           }else {
             alert("El código de la reserva no existe.");
             this.codigoReserva =  '';

@@ -5,36 +5,64 @@
             <h3 class="title">Servicios</h3>
           </md-card-header>
             <md-card-content>
-              <div  v-if="selected !== null">
-                <md-button type="button" :href="'#/agregarServicio'" >Agregar Servicio</md-button>
-                <md-button type="button" :href="'#/modificarServicio/'+ this.servicioI" >Editar</md-button>
-                <md-button class="md-raised md-success" @click="deleteServicio">Eliminar Servicio</md-button>
+              <div v-if="isAdmin">
+                <md-button class="md-raised md-success" type="button" :href="'#/agregarServicio'" >Agregar Servicio</md-button>
               </div>
-              <div v-else>
-                <md-button type="button" :href="'#/agregarServicio'" >Agregar Servicio</md-button>
-                <md-button type="button" :href="'#/modificarServicio/'+ this.servicioI" disabled>Editar</md-button>
-                <md-button class="md-raised md-success" @click="deleteServicio" disabled>Eliminar Servicio</md-button>
-              </div>
-            <div>
-              <b-table
-                selectable
-                :select-mode="selectMode"
-                selectedVariant="success"
-                :items="items"
-                :fields = "fields"
-                @row-selected="rowSelected"
-              ></b-table>
-            </div>
+              <vs-table
+                    search
+                    max-items="10" 
+                    pagination
+                    :data="items">
+                    <template slot="thead">
+                      <vs-th style="max-width: 20%;">
+                        Servicio
+                      </vs-th>
+                      <vs-th style="max-width: 50%;">
+                        Descripción
+                      </vs-th>
+                      <vs-th style="max-width: 15%;">
+                        Categoría
+                      </vs-th>
+                      <vs-th style="max-width: 15%;">
+                        Precio
+                      </vs-th>
+                    </template>
+
+                    <template slot-scope="{data}">
+                      <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data" >
+                        <vs-td :data="tr.nombreServicio">
+                          {{tr.nombreServicio}}
+                        </vs-td>
+
+                        <vs-td :data="tr.descripcionServicio">
+                          {{tr.descripcionServicio}}
+                        </vs-td>
+
+                        <vs-td :data="tr.categoriaServicio">
+                          {{tr.categoriaServicio}}
+                        </vs-td>
+
+                        <vs-td :data="tr.precio">
+                          {{tr.precio}} CLP
+                        </vs-td>
+
+                        <template class="expand-user" slot="expand">
+                          <div class="con-expand-users" v-if="isAdmin">
+                              <div>
+                                <md-button class="md-raised md-success" type="button" :href="'#/modificarServicio/'+ tr.idServicio" >Editar Servicio</md-button>
+                                <md-button class="md-raised md-danger" @click="deleteServicio(tr.idServicio)">Eliminar Servicio</md-button>
+                              </div>
+                          </div>
+                        </template>
+                      </vs-tr>
+                    </template>
+                  </vs-table>
               <md-card-actions>
-              <div  v-if="selected !== null">
-                <md-button type="button" :href="'#/modificarServicio/'+ this.servicioI" >Editar</md-button>
-                <md-button class="md-raised md-success" @click="deleteServicio">Eliminar Servicio</md-button>
-              </div>
               </md-card-actions>
             </md-card-content>
             <md-card-actions>
-            <div>
-              <md-button type="button" :href="'#/agregarServicio'" >Agregar Servicio</md-button>
+            <div v-if="isAdmin">
+              <md-button class="md-raised md-success" type="button" :href="'#/agregarServicio'" >Agregar Servicio</md-button>
             </div>
             </md-card-actions>
         </md-card>
@@ -50,16 +78,8 @@ export default {
     },
     data(){
         return{
-            fields: ["nombreServicio",
-                     "descripcionServicio",
-                     "precio",
-                     "categoriaServicio"],
             items: [],
-            selectMode: 'single',
-            selected: null,
-            selectMode: 'single',
-            selected: null,
-            servicioI: null,
+            isAdmin: false
         }
     },
     methods: {
@@ -72,17 +92,16 @@ export default {
             this.items = data.data;
           });
         },
-
-      rowSelected(items) {
-        this.selected = items,
-        this.servicioI = this.selected[0].idServicio
-      },
-      deleteServicio(){
-        const url = localhost + '/servicios/delete/'+ this.servicioI;
+      deleteServicio(id){
+        const url = localhost + '/servicios/delete/'+ id;
         axios.post(url, {})
         .then(response => {
-          alert(response.data[0].message);
-          this.refresh();
+          if(response.data[0].message == 'El servicio ha sido borrado'){
+            this.$vs.notify({title:'Se eliminó el servicio correctamente.',color:'success',position:'bottom-center'});
+            this.refresh();
+          } else {
+            this.$vs.notify({title:'No se pudo eliminar el servicio.',color:'danger',position:'bottom-center'});
+          }
         })
         .catch(e => {
           this.errors.push(e)
@@ -90,7 +109,16 @@ export default {
         },
       },
     mounted() {
-      this.getServicios();
+      this.getServicios()
+      if (!localStorage.getItem('login')) {
+        this.$router.push('Login')
+      }
+      if (localStorage.getItem('role') != 'Administrador') {
+        this.isAdmin = false
+      }
+      else {
+        this.isAdmin = true
+      }
     }
   }
 </script>

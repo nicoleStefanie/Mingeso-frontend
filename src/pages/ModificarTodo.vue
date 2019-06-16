@@ -113,7 +113,7 @@ export default {
         console.log(response.data.message);
         if(response.data[0].message == 'OK'){
           location.href = "http://159.203.94.72/#/";
-        }  
+        }
       })
       .catch(e => {
         this.errors.push(e)
@@ -204,6 +204,11 @@ export default {
         }
     },
   },
+  mounted () {
+    if (!localStorage.getItem('login')) {
+      this.$router.push('Login')
+    }
+  }
 };
 </script>
 

@@ -60,7 +60,10 @@ export default{
       tipo_reserva: null,
     }
   },
-  mounted: function () {
+  mounted () {
+    if (!localStorage.getItem('login')) {
+      this.$router.push('Login')
+    }
   },
   methods: {
   }
@@ -69,5 +72,5 @@ export default{
 
 
 <style>
-  
+
 </style>

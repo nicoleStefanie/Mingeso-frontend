@@ -2,7 +2,7 @@
     <form>
         <md-card>
             <md-card-header data-background-color="green" style="position: relative;">
-                <h4 class="title">Modificar Servicio </h4>
+                <h4 class="title">Editar Servicio </h4>
                 <p class="category">Completar los campos </p>
             </md-card-header>
             <md-card-content>
@@ -10,7 +10,7 @@
                     <div class="md-layout-item md-small-size-100 md-size-40">
                         <md-field>
                             <label>Nombre</label>
-                            <md-input v-model="nombreServicio" type="text"></md-input>
+                            <md-input v-model="nombreServicio" type="text" value="nombre"></md-input>
                         </md-field>
                     </div>
                     <div class="md-layout-item md-small-size-100 md-size-40">
@@ -33,7 +33,7 @@
                     </div>
 
                     <div class="md-layout-item md-size-100 text-right">
-                        <md-button class="md-raised md-success" @click="validar">Modificar Servicio</md-button>
+                        <md-button class="md-raised md-success" @click="validar">Editar Servicio</md-button>
                     </div>
                 </div>
             </md-card-content>
@@ -68,7 +68,7 @@ export default {
         this.putServicio();
       }
       else{
-        alert('Se requiere completar todos los campos.');
+        this.$vs.notify({title:'Se requiere completar los campos correctamente.',color:'danger',position:'bottom-center'});
       }
     },
     getServicio(){
@@ -77,7 +77,10 @@ export default {
       url = url + idString;
       axios.get(url).then((data) => {
         this.item = data.data;
-        console.log(item.precioServicio);
+        this.nombreServicio = this.item.nombreServicio;
+        this.descripcion = this.item.descripcionServicio;
+        this.precioServicio = this.item.precio;
+        this.categoriaServicio = this.item.categoriaServicio;
       });
     },
     putServicio() {
@@ -95,10 +98,12 @@ export default {
         this.descripcion = "";
         this.precioServicio = "";
         this.categoriaServicio = "";
-        alert(response.data[0].message);
-        console.log(response.data.message);
         if(response.data[0].message == 'El servicio ha sido editado'){
+          this.$vs.notify({title:'El servicio ha sido editado correctamente.',color:'success',position:'bottom-center'});
           location.href = "http://159.203.94.72/#/servicios";
+        }
+        else{
+          this.$vs.notify({title:'El servicio no se ha podido editar.',text:'Porfavor, verifique los datos ingresados.',color:'danger',position:'bottom-center'});
         }
       })
       .catch(e => {
@@ -107,7 +112,13 @@ export default {
     }
   },
   mounted(){
-    this.getServicio();
+    this.getServicio()
+    if (localStorage.getItem('role') != 'Administrador') {
+      this.$router.push('Rack')
+    }
+    if (!localStorage.getItem('login')) {
+      this.$router.push('Login')
+    }
   }
 }
 

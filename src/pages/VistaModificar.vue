@@ -89,7 +89,10 @@ export default {
       },
     },
     mounted() {
-    this.getReservas();
+      this.getReservas()
+      if (!localStorage.getItem('login')) {
+        this.$router.push('Login')
+      }
     }
   }
 </script>

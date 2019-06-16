@@ -5,29 +5,37 @@
           <h3 class="title">Asociar Servicio</h3>
         </md-card-header>
         <md-card-content v-show="step1">
-          <br>
-          <div class="md-layout">
-            <div class="md-layout-item md-small-size-100 md-size-40">
-              <p>¿A qué habitación desea asociar un servicio?</p>
-              <md-field>
-                <label>Ingrese el número de la habitación deseada (ej: 1,2,3, etc.)</label>
-
-                <md-input v-model="nroHabitacion" type="number" min="1"></md-input>
-                <md-button class="md-raised md-success" @click="toggle1" style="margin-left:20px;">
-                  <md-icon>arrow_forward_ios</md-icon></md-button>
-              </md-field>
+            <div class="md-layout">
+              <div class="md-layout-item md-small-size-100 md-size-40">
+                <md-field>
+                  <label>Número de la habitación</label>
+                  <md-input v-model="nroHabitacion" type = "number" min="1" @change="getRegistro"></md-input>
+                </md-field>
+              </div>
+              <div class="md-layout-item md-small-size-100 md-size-40">
+                  <md-field>
+                      <label>Nombre del representante</label>
+                      <md-input v-model="nombre" type="text" disabled></md-input>
+                  </md-field>
+              </div>
+              <div class="md-layout-item md-small-size-100 md-size-40">
+                  <md-field>
+                      <label>Fecha de inicio</label>
+                      <md-input v-model="fechaI" type="text" disabled></md-input>
+                  </md-field>
+              </div>
+              <div class="md-layout-item md-small-size-100 md-size-40">
+                  <md-field>
+                      <label>Fecha de término</label>
+                      <md-input v-model="fechaT" type="text" disabled></md-input>
+                  </md-field>
+              </div>
             </div>
-            <div class="md-layout-item md-small-size-100 md-size-40" v-show="step2">
+            <md-card-actions>
+              <md-button class="md-raised md-success" type="button" @click="validar">Continuar</md-button>
+            </md-card-actions>
+        </md-card-content>
 
-              <br>
-              <br>
-              <md-field>
-                <vs-select v-model="registro" placeholder="Seleccione un registro" @change="toggle2">
-                  <vs-select-item :value="reg" :text="reg.representante+' >> '+reg.fechaTermino" v-for="reg in registros"/>
-                </vs-select>
-              </md-field>
-            </div>
-          </div>
         </md-card-content>
         <md-card-content v-show="!step1">
           <form>
@@ -35,11 +43,14 @@
           <div class="md-layout">
             <div class="md-layout-item md-small-size-100 text-center">
                 <vs-table
+                  search
                   multiple
+                  max-items="10"
+                  pagination
                   v-model="serviciosSeleccionados"
                   :data="servicios">
                 <template slot="header">
-                  <h3>Seleccione el o los servicios que desea incorporar al registro</h3>
+                  <h3>Seleccione los servicios que desea incorporar al registro</h3>
                 </template>
                 <template slot="thead">
                   <vs-th>
@@ -98,56 +109,80 @@ export default {
       return{
           step1: true,
           step2: false,
-          nroHabitacion: 1,
-          habitacion: [],
-          registros: null,
+          nroHabitacion: '',
+          nombre: '',
+          fechaI: '',
+          fechaT: '',
+          registros: [],
           registro: [],
+          habitacion: [],
           servicios: [],
           serviciosSeleccionados: [],
       }
     },
     methods: {
-      toggle1(){
-        const urltemp = localhost + '/habitaciones/nroHabitacion/' + this.nroHabitacion;
-        axios.get(urltemp).then((data) => {
-          this.habitacion = data.data;
-          if(!this.habitacion){
-            if(this.step2 == true){this.step2 = false;}
-             this.$vs.notify({title:'No se encuentra la habitación ingresada.',text:'Porfavor, ingrese una habitación válida.',color:'danger',position:'top-center'});
-          }
-          else{
-            this.getRegistros();
-          }
-        });
+      validar(){
+        if(this.nroHabitacion && this.registro){
+          this.step1 = !this.step1;
+          const url = localhost + '/servicios';
+          axios.get(url).then((data) => {
+            this.servicios = data.data;
+          });
+        } else {
+            this.$vs.notify({title:'Debe seleccionar una habitación.',color:'danger',position:'bottom-center'});
+        }
       },
-      getRegistros(){
-        const url = localhost + '/registro/nroHabitacion/' + this.nroHabitacion;
+      getRegistro(){
+        var url = localhost + '/registro/nroHabitacion/' + this.nroHabitacion;
         axios.get(url).then((data) => {
           this.registros = data.data;
-          if(this.registros.length == 0){
-            if(this.step2 == true){this.step2 = false;}
-            this.$vs.notify({title:'No se encuentran registros asociados a la habitación ingresada.',text:'Porfavor, ingrese otra habitación.',color:'danger',position:'top-center'});
-          }
-          else{
-            if(this.step2 == false){this.step2 = true;}
-            var i, aux;
-            for(i=0;i<this.registros.length;i++){
-              aux = this.registros[i].fechaTermino.split("T");
-              this.registros[i].fechaTermino = aux[0];
-            }
+          if(this.registros.length > 0){
+            this.obtenerRegistro();
+          } else {
+            this.$vs.notify({title:'No se encontró registros para la habitación ingresada.',color:'danger',position:'bottom-center'});
+            this.nroHabitacion = '';
           }
         });
       },
-      toggle2(){
-        this.step1 = !this.step1;
-        const url = localhost + '/servicios/';
-        axios.get(url).then((data) => {
-          this.servicios = data.data;
-        })
+      obtenerRegistro(){
+        var ultimoInicio = this.registros[0].fechaInicio.split("T")[0];
+        var ultimoIndice = this.registros[0];
+        for(var i=0;i<this.registros.length;i++){
+          this.registros[i].fechaInicio = this.registros[i].fechaInicio.split("T")[0];
+          this.registros[i].fechaTermino = this.registros[i].fechaTermino.split("T")[0];
+          if(this.registros[i].fechaInicio >= ultimoInicio){
+            ultimoInicio = this.registros[i].fechaInicio;
+            ultimoIndice = this.registros[i];
+          }
+        }
+        this.registro = ultimoIndice;
+        this.fechaI = this.registro.fechaInicio;
+        this.fechaT = this.registro.fechaTermino;
+        this.nombre = this.registro.representante;
       },
       incorporar(){
-        console.log(this.serviciosSeleccionados);
+        var url = localhost + 'registroServicio/create';
+        for(var i=0;i<this.serviciosSeleccionados.length;i++){
+          axios.post(url, {
+            idServicio: this.serviciosSeleccionados[i].idServicio,
+            idRegistro: this.registro.idRegistro
+          }).then(response => {
+            if(response.data[0].message == 'RegistroServicio agregado con exito'){
+              location.href = "http://159.203.94.72/#/rack";
+              this.$vs.notify({title:'Se incorporó el, o los servicios correctamente.',color:'success',position:'bottom-center'});
+            } else{
+              this.$vs.notify({title:'No se pudo incorporar el, o los servicios solicitados.',color:'danger',position:'bottom-center'});
+            }
+          }).catch(e => {
+            this.$vs.notify({title:'No se pudo incorporar el, o los servicios solicitados.',color:'danger',position:'bottom-center'});
+          });
+        }
       },
+    },
+    mounted () {
+      if (!localStorage.getItem('login')) {
+        this.$router.push('Login')
+      }
     }
   }
 </script>

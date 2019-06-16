@@ -1,8 +1,8 @@
 <template>
     <form>
         <md-card>
-            <md-card-header :data-background-color="dataBackgroundColor">
-                <h4 class="title">Modificar Empleado Seleccionado </h4>
+            <md-card-header data-background-color="green">
+                <h4 class="title">Editar Empleado </h4>
                 <p class="category">Completar con los campos que quiere modificar</p>
             </md-card-header>
             <md-card-content>
@@ -19,13 +19,12 @@
                             <md-input v-model="rut_usuario" type="number"></md-input>
                         </md-field>
                     </div>
-                    <div class="md-layout-item md-small-size-100 md-size-50">
+                    <div class="md-layout-item md-small-size-100 md-size-30">
                         <md-field>
-                            <select v-model="rol_usuario">
-                              <option disabled value="">Seleccione un rol de usuario</option>
-                              <option>Operario</option>
-                              <option>Administrador</option>
-                            </select>
+                          <vs-select v-model="rol_usuario" placeholder="Seleccione un rol de usuario">
+                            <vs-select-item value="Operario" text="Operario"/>
+                            <vs-select-item value="Administrador" text="Administrador"/>
+                          </vs-select>
                         </md-field>
                     </div>
                     <div class="md-layout-item md-small-size-100 md-size-50">
@@ -35,7 +34,7 @@
                         </md-field>
                     </div>
                     <div class="md-layout-item md-size-100 text-right">
-                        <md-button class="md-raised md-success" @click="validar" >Modificar Empleado</md-button>
+                        <md-button class="md-raised md-success" @click="validar" >Editar Empleado</md-button>
                     </div>
                 </div>
             </md-card-content>
@@ -52,14 +51,15 @@ export default {
 
   components: {
   },
-  data(){_usuario
+  data(){
       return{
         nombre_usuario: '',
         rut_usuario:'',
         rol_usuario:'',
         correo_usuario:'',
         usuarios: [],
-        errors: []
+        errors: [],
+        item: []
       }
   },
   methods: {
@@ -68,38 +68,55 @@ export default {
        this.putEmpleado();
 
         else{
-          alert('Se requiere completar todos los campos.')
+          this.$vs.notify({title:'Se requiere completar los campos correctamente.',color:'danger',position:'bottom-center'});
         }
-
-
+    },
+    getEmpleado(){
+      var url = localhost + '/usuarios/';
+      var idString = "" + this.$route.params.id;
+      url = url + idString;
+      axios.get(url).then((data) => {
+        this.item = data.data;
+        this.nombre_usuario = this.item.nombreUsuario;
+        this.rut_usuario = this.item.rutUsuario;
+        this.rol_usuario = this.item.rolUsuario;
+        this.correo_usuario = this.item.correoUsuario;
+      });
     },
     putEmpleado() {
       var url = localhost + '/usuarios/update/';
-      var idString = "" + this.$route.params.rut;
+      var idString = "" + this.item.rutUsuario;
       url = url + idString;
       axios.post(url, {
-
         nombre_usuario : this.nombre_usuario,
         rol_usuario : this.rol_usuario,
         correo_usuario : this.correo_usuario,
         rut_usuario: this.rut_usuario
-
       })
       .then(response => {
-
         this.nombre_usuario = "";
         this.rol_usuario = "";
         this.correo_usuario = "";
         this.rut_usuario = "";
-        alert(response.data[0].message);
-        console.log(response.data.message);        
         if(response.data[0].message == 'OK'){
           location.href = "http://159.203.94.72/#/usuarios";
-        }  
+          this.$vs.notify({title:'El usuario se ha modificado correctamente.',color:'success',position:'bottom-center'});
+        } else {
+          this.$vs.notify({title:'El usuario no se ha podido eliminar.',color:'danger',position:'bottom-center'});
+        }
       })
       .catch(e => {
         this.errors.push(e)
       });
+    }
+  },
+  mounted () {
+    this.getEmpleado();
+    if (localStorage.getItem('role') != 'Administrador') {
+      this.$router.push('Rack')
+    }
+    if (!localStorage.getItem('login')) {
+      this.$router.push('Login')
     }
   }
 }

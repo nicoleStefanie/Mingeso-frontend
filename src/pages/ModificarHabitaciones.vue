@@ -1,8 +1,8 @@
 <template>
     <form>
         <md-card>
-            <md-card-header :data-background-color="dataBackgroundColor">
-                <h4 class="title">Modificar Habitación</h4>
+            <md-card-header data-background-color="green">
+                <h4 class="title">Editar Habitación</h4>
                 <p class="category">Completar los campos</p>
             </md-card-header>
             <md-card-content>
@@ -13,16 +13,16 @@
                             <md-input  v-model="nroHabitacion" type="number"></md-input>
                         </md-field>
                     </div>
-                    <div class="md-layout-item md-small-size-100 md-size-50">
+                    <div class="md-layout-item md-small-size-100 md-size-40">
                         <md-field>
-                            <select v-model="tipo">
-                              <option disabled value="">Seleccione un tipo de habitacion</option>
-                              <option>Simple</option>
-                              <option>Doble</option>
-                              <option>Triple</option>
-                              <option>Cuadruple</option>
-                              <option>Matrimonial</option>
-                            </select>
+                          <vs-select v-model="tipo" placeholder="Seleccione un tipo de habitación">
+                            <vs-select-item value="Simple" text="Simple"/>
+                            <vs-select-item value="Doble" text="Doble"/>
+                            <vs-select-item value="Triple" text="Triple"/>
+                            <vs-select-item value="Cuadruple" text="Cuadruple"/>
+                            <vs-select-item value="Matrimonial" text="Matrimonial"/>
+                            <vs-select-item value="Inhabilitada" text="Inhabilitada"/>
+                          </vs-select>
                         </md-field>
                     </div>
                     <div class="md-layout-item md-small-size-100 md-size-50">
@@ -45,7 +45,7 @@
                         </md-field>
                     </div>
                     <div class="md-layout-item md-size-100 text-right">
-                        <md-button class="md-raised md-success"  @click="validar" >Modificar Habitación</md-button>
+                        <md-button class="md-raised md-success"  @click="validar" >Editar Habitación</md-button>
                     </div>
                 </div>
             </md-card-content>
@@ -58,22 +58,18 @@
 import axios from 'axios';
 const localhost = 'http://159.203.94.72:8060/backend';
 export default {
-  name : 'modificarProducto',
+  name : 'modificarHabitacion',
 
   components: {
   },
   data(){
     return{
       nroHabitacion: '',
-        nroHabitacion2: '',
       tipo:'',
       capacidadNinos:'',
       capacidadAdultos:'',
       precioNoche:'',
-      habitaciones: [],
-      items:[],
-      errors: [],
-
+      habitacion: [],
     }
   },
   methods: {
@@ -82,41 +78,53 @@ export default {
        this.putHabitacion();
 
         else{
-          alert('Se requiere completar todos los campos.')
+          this.$vs.notify({title:'Se requiere completar todos los campos.',color:'danger',position:'bottom-center'});
         }
 
+    },
+    getHabitacion(){
+      var url = localhost + '/habitaciones/';
+      var idString = "" + this.$route.params.id;
+      url = url + idString;
+      axios.get(url).then((data) => {
+        this.habitacion = data.data;
+        this.nroHabitacion = this.habitacion.nroHabitacion;
+        this.capacidadNinos = this.habitacion.capacidadNinos;
+        this.capacidadAdultos = this.habitacion.capacidadAdultos;
+        this.precioNoche = this.habitacion.precioNoche;
+        this.tipo = this.habitacion.tipoHabitacion;
+      })
     },
     putHabitacion() {
       var url = localhost + '/habitaciones/update/';
       var idString = "" + this.$route.params.id;
       url = url + idString;
       axios.post(url, {
-
         nroHabitacion : this.nroHabitacion,
         tipo : this.tipo,
         capacidadNinos : this.capacidadNinos,
         capacidadAdultos: this.capacidadAdultos,
         precioNoche: this.precioNoche
-
       })
       .then(response => {
-
-        this.tipo = "";
-        this.nroHabitacion = "";
-        this.capacidadNinos = "";
-        this.capacidadAdultos = "";
-        this.precioNoche= "";
-        alert(response.data[0].message);
-        console.log(response.data.message);
         if(response.data[0].message == 'La Habitacion ha sido editada'){
+          this.$vs.notify({title:'La habitación ha sido editada correctamente',color:'success',position:'bottom-center'});
           location.href = "http://159.203.94.72/#/habitaciones";
-        }  
+        } else {
+          this.$vs.notify({title:'La habitación no se ha podido editar',color:'danger',position:'bottom-center'});
+        }
       })
-      .catch(e => {
-        this.errors.push(e)
-      });
     }
   },
+  mounted () {
+    this.getHabitacion();
+    if (localStorage.getItem('role') != 'Administrador') {
+      this.$router.push('Rack')
+    }
+    if (!localStorage.getItem('login')) {
+      this.$router.push('Login')
+    }
+  }
 }
 
 </script>

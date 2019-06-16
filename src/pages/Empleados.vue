@@ -5,26 +5,64 @@
             <h3 class="title">Usuarios</h3>
           </md-card-header>
             <md-card-content>
-            <div>
-              <b-table
-                selectable
-                :select-mode="selectMode"
-                selectedVariant="success"
-                :items="items"
-                :fields = "fields"
-                @row-selected="rowSelected"
-              ></b-table>
-            </div>
-              <md-card-actions>
-              <div  v-if="selected !== null">
-                <md-button type="button" :href="'#/modificarEmpleado/'+ this.usuarioR" >Editar</md-button>
-                <md-button class="md-raised md-success" @click="deleteUsuario">Eliminar Usuario</md-button>
+              <div v-if="isAdmin">
+                <md-button class="md-raised md-success" type="button" :href="'#/agregarEmpleado'" >Agregar Usuario</md-button>
               </div>
+              <vs-table
+                    search
+                    max-items="10"
+                    pagination
+                    :data="items">
+                    <template slot="thead">
+                      <vs-th style="max-width: 25%;">
+                        Nombre
+                      </vs-th>
+                      <vs-th style="max-width: 25%;">
+                        Rol
+                      </vs-th>
+                      <vs-th style="max-width: 25%;">
+                        Correo
+                      </vs-th>
+                      <vs-th style="max-width: 25%;">
+                        Rut
+                      </vs-th>
+                    </template>
+
+                    <template slot-scope="{data}">
+                      <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data" >
+                        <vs-td :data="tr.nombreUsuario">
+                          {{tr.nombreUsuario}}
+                        </vs-td>
+
+                        <vs-td :data="tr.rolUsuario">
+                          {{tr.rolUsuario}}
+                        </vs-td>
+
+                        <vs-td :data="tr.correoUsuario">
+                          {{tr.correoUsuario}}
+                        </vs-td>
+
+                        <vs-td :data="tr.rutUsuario">
+                          {{tr.rutUsuario}}
+                        </vs-td>
+
+                        <template class="expand-user" slot="expand">
+                          <div class="con-expand-users" v-if="isAdmin">
+                              <div>
+                                <md-button class="md-raised md-success" type="button" :href="'#/modificarEmpleado/'+ tr.idUser" >Editar Usuario</md-button>
+                                <md-button class="md-raised md-danger" @click="deleteUsuario(tr.idUser)">Eliminar Usuario</md-button>
+                              </div>
+                          </div>
+                        </template>
+                      </vs-tr>
+                    </template>
+                  </vs-table>
+              <md-card-actions>
               </md-card-actions>
             </md-card-content>
             <md-card-actions>
-            <div>
-              <md-button type="button" :href="'#/agregarEmpleado'" >Agregar Usuario</md-button>
+            <div v-if="isAdmin">
+              <md-button class="md-raised md-success" type="button" :href="'#/agregarEmpleado'" >Agregar Usuario</md-button>
             </div>
             </md-card-actions>
         </md-card>
@@ -40,17 +78,8 @@ export default {
     },
     data(){
         return{
-            fields: ["nombreUsuario",
-                     "rolUsuario",
-                     "correoUsuario",
-                     "rutUsuario"],
             items: [],
-            selectMode: 'single',
-            selected: null,
-            selectMode: 'single',
-            selected: null,
-            usuarioI: null,
-            usuarioR: null
+            isAdmin: false,
         }
     },
     methods: {
@@ -63,26 +92,30 @@ export default {
             this.items = data.data;
           });
         },
-
-      rowSelected(items) {
-        this.selected = items,
-        this.usuarioI = this.selected[0].idUsuario
-        this.usuarioR = this.selected[0].rutUsuario
-      },
-      deleteUsuario(){
-        const url = localhost + '/usuarios/delete/'+ this.usuarioI;
+      deleteUsuario(id){
+        const url = localhost + '/usuarios/delete/'+ id;
         axios.post(url, {})
         .then(response => {
-          alert(response.data[0].message);
-          this.refresh();
-        })
-        .catch(e => {
-          this.errors.push(e)
+          if(response.data[0].message == 'OK, user erased!.'){
+            this.$vs.notify({title:'El usuario ha sido eliminado correctamente.',color:'success',position:'bottom-center'});
+            this.refresh();
+          } else {
+            this.$vs.notify({title:'No se ha podido eliminar el usuario.',color:'danger',position:'bottom-center'});
+          }
         });
-        },
       },
+    },
     mounted() {
-    this.getUsuarios();
+      this.getUsuarios();
+      if (!localStorage.getItem('login')) {
+        this.$router.push('Login')
+      }
+      if (localStorage.getItem('role') != 'Administrador') {
+        this.isAdmin = false
+      }
+      else {
+        this.isAdmin = true
+      }
     }
   }
 </script>

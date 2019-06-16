@@ -47,11 +47,16 @@ export default{
     evento: function() {
       alert('Se elimina reserva');
     }
+  },
+  mounted () {
+    if (!localStorage.getItem('login')) {
+      this.$router.push('Login')
+    }
   }
 }
 </script>
 
 
 <style>
-  
+
 </style>

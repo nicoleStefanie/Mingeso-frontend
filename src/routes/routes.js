@@ -101,11 +101,11 @@ const routes = [
       },
       {
         path: 'usuarios',
-        name: 'uaurios',
+        name: 'usuarios',
         component: Empleados
       },
       {
-        path: 'modificarEmpleado/:rut',
+        path: 'modificarEmpleado/:id',
         name: 'modificarEmpleado',
         component: ModificarEmpleado
       },

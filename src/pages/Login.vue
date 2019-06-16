@@ -61,6 +61,11 @@ export default{
     updateComponents (name) {
       this.$root.$emit('doLogin', name)
     }
+  },
+  mounted () {
+    if (localStorage.getItem('login')) {
+      this.$router.push('Rack')
+    }
   }
 
 }

@@ -47,7 +47,7 @@ export default{
       this.$sidebar.displaySidebar(!this.$sidebar.showSidebar)
     },
     logout () {
-      if (localStorage.get('login')) {
+      if (localStorage.getItem('login')) {
         localStorage.clear()
         this.$router.push('Login')
       }

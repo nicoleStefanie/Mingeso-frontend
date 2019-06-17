@@ -13,7 +13,7 @@
             <p class="hidden-lg hidden-md">Profile</p>
             <a>Bienvenido {{ userName }} </a>
           </md-list-item>
-            <md-list-item href="/logout">
+            <md-list-item v-on:click="logout">
               <i class="material-icons">arrow_right_alt</i>
               <p class="hidden-lg hidden-md">Profile</p>
               <a>Desconectar</a>
@@ -44,6 +44,12 @@ export default{
   methods: {
     toggleSidebar () {
       this.$sidebar.displaySidebar(!this.$sidebar.showSidebar)
+    }
+    logout () {
+      if (localStorage.get('login')) {
+        localStorage.clear()
+        this.$router.push('Login')
+      }
     }
   },
   mounted () {

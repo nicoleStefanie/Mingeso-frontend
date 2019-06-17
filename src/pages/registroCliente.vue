@@ -1,7 +1,7 @@
 <template>
     <div class="container">
       <md-card>
-        <md-card-header data-background-color="white" style="position: relative;">
+        <md-card-header data-background-color="green" style="position: relative;">
         <h3 class="title">Registrar Clientes en Habitación n°{{this.habitacion.nroHabitacion}}</h3>
         </md-card-header>
         <md-card-content>
@@ -19,7 +19,7 @@
             </div>
           </div>
           <br>
-          <md-card-header data-background-color="white" style="position: relative; margin-top: 40px; height: 55px;">
+          <md-card-header data-background-color="green" style="position: relative; margin-top: 40px; height: 55px;">
             <h5 class="title">Agregar cliente a habitación</h5>
           </md-card-header>
           <br>
@@ -44,8 +44,7 @@
               <p class="error" v-if="vatError4">{{vatErrorMsg4}}</p>
             </div>
             <div class="md-layout-item md-small-size-100 md-size-33 text-center">
-              <datepicker style="font-size: 20px" v-model="fechaNacimiento" type="date" placeholder=" Fecha de Nacimiento"></datepicker>
-              <p v-if="fechaNacimiento">{{ dateFormat(fechaNacimiento) }}</p>
+              <b-form-input  v-model="fechaNacimiento" type="date" placeholder=" Fecha de Nacimiento"></b-form-input>
             </div>
             <div class="md-layout-item md-small-size-33 md-size-33">
               <b-form-checkbox v-model="representante" aria-placeholder="Representante" value="si" unchecked-value="no">Representante</b-form-checkbox>
@@ -212,10 +211,13 @@
         },
         registrar(){
           var url = localhost + 'registro/create?idHab='+this.$route.params.idHab+'&&fechaInicio='+this.$route.params.fechaInicio+'&&fechaTermino='+this.$route.params.fechaTermino+'&&descuento='+this.reserva.descuento;
+          var url2 = localhost + 'reservahabitacion/desactivar?idHab='+this.$route.params.idHab+'&&idReserva='+this.$route.params.idReserva;
           axios.post(url,this.items)
             .then(response => {
-              alert("Registro exitoso");
-              location.href ="#/reservaHabitacion/"+this.$route.params.idReserva;
+              axios.get(url2).then(response => {
+                alert("Registro exitoso");
+                location.href ="#/reservaHabitacion/"+this.$route.params.idReserva;
+              })
             })
         }
       },

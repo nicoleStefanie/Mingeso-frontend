@@ -66,8 +66,8 @@
 <script>
   import Datepicker from 'vuejs-datepicker';
   import axios from 'axios';
-  const localhost2 = 'http://159.203.94.72:8060/backend/';
-  const localhost = 'https://localhost:8060/';
+  const localhost = 'http://159.203.94.72:8060/backend/';
+  const localhost2 = 'https://localhost:8060/';
     export default {
       name: "registroCliente",
       components: {

@@ -10,14 +10,15 @@
               </div>
               <vs-table
                     search
-                    max-items="10" 
+                    max-items="10"
                     pagination
-                    :data="items">
+                    :data="items"
+                    class="text-center">
                     <template slot="thead">
                       <vs-th style="max-width: 20%;">
                         Servicio
                       </vs-th>
-                      <vs-th style="max-width: 50%;">
+                      <vs-th style="max-width: 50%;position: relative;">
                         Descripción
                       </vs-th>
                       <vs-th style="max-width: 15%;">
@@ -43,7 +44,7 @@
                         </vs-td>
 
                         <vs-td :data="tr.precio">
-                          {{tr.precio}} CLP
+                          ${{tr.precio}} CLP
                         </vs-td>
 
                         <template class="expand-user" slot="expand">

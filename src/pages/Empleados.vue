@@ -12,7 +12,8 @@
                     search
                     max-items="10"
                     pagination
-                    :data="items">
+                    :data="items"
+                    class="text-center">
                     <template slot="thead">
                       <vs-th style="max-width: 25%;">
                         Nombre

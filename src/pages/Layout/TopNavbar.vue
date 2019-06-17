@@ -49,6 +49,7 @@ export default{
     logout () {
       if (localStorage.getItem('login')) {
         localStorage.clear()
+        this.$root.$emit('doLogout', true)
         this.$router.push('Login')
       }
     }

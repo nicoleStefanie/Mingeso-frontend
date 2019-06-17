@@ -44,7 +44,7 @@ export default{
   methods: {
     toggleSidebar () {
       this.$sidebar.displaySidebar(!this.$sidebar.showSidebar)
-    }
+    },
     logout () {
       if (localStorage.get('login')) {
         localStorage.clear()

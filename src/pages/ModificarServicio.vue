@@ -33,7 +33,8 @@
                     </div>
 
                     <div class="md-layout-item md-size-100 text-right">
-                        <md-button class="md-raised md-success" @click="validar">Editar Servicio</md-button>
+                      <md-button class="md-raised md-success" @click="volver">Volver</md-button>
+                      <md-button class="md-raised md-success" @click="validar">Editar Servicio</md-button>
                     </div>
                 </div>
             </md-card-content>
@@ -109,7 +110,10 @@ export default {
       .catch(e => {
         this.errors.push(e)
       });
-    }
+    },
+    volver(){
+      location.href = "http://159.203.94.72/#/servicios";
+    },
   },
   mounted(){
     this.getServicio()

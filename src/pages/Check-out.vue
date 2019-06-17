@@ -39,43 +39,161 @@
                   <md-button class="md-raised md-warning" @click="toggle">Finalizar</md-button>
               </div>
             </div>
+            <div class="text-center" v-show="this.registrosCheckOut.length > 0">
+              <vs-table
+                multiple
+                v-model="registrosSeleccionados"
+                :data="registrosCheckOut"
+                class="text-center">
+              <template slot="header">
+                <h3 style="margin-left: 20%;">Registros incorporados</h3>
+              </template>
+              <template slot="thead">
+                <vs-th style="max-width: 25%;">
+                  Representante
+                </vs-th>
+                <vs-th style="max-width: 25%;">
+                  Número de habitación
+                </vs-th>
+                <vs-th style="max-width: 25%;">
+                  Fecha de Inicio
+                </vs-th>
+                <vs-th style="max-width: 25%;">
+                  Fecha de Término
+                </vs-th>
+              </template>
+
+              <template slot-scope="{data}">
+                <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data" >
+                  <vs-td :data="data[indextr].representante">
+                    {{data[indextr].representante}}
+                  </vs-td>
+
+                  <vs-td :data="data[indextr].nroHabitacion">
+                    {{data[indextr].nroHabitacion}}
+                  </vs-td>
+
+                  <vs-td :data="data[indextr].fechaI">
+                    {{data[indextr].fechaI}}
+                  </vs-td>
+
+                  <vs-td :data="data[indextr].fechaT">
+                    {{data[indextr].fechaT}}
+                  </vs-td>
+                </vs-tr>
+              </template>
+            </vs-table>
+            <div class="md-layout-item md-size-100 text-right">
+              <md-button class="md-raised md-success" @click="remover">Remover</md-button>
+            </div>
+            </div>
         </md-card-content>
 
 
         <md-card-content v-show="!step1">
           <div class="md-layout">
-            <vs-table stripe :data="registrosCheckOut">
-              <template slot="header">
-                <h3>Registros</h3>
-              </template>
+            <vs-table
+              :data="registrosCheckOut"
+              class="text-center">
               <template slot="thead">
-                <vs-th>Representante</vs-th>
-                <vs-th>Habitación</vs-th>
-                <vs-th>Días en uso</vs-th>
-                <vs-th>Precio</vs-th>
+                <vs-th style="max-width: 15%;">
+                  Representante
+                </vs-th>
+                <vs-th style="max-width: 15%;">
+                  Número de habitación
+                </vs-th>
+                <vs-th style="max-width: 15%;">
+                  Fecha de Inicio
+                </vs-th>
+                <vs-th style="max-width: 15%;">
+                  Fecha de término
+                </vs-th>
+                <vs-th style="max-width: 10%;">
+                  Total de días
+                </vs-th>
+                <vs-th style="max-width: 10%;">
+                  Precio por día
+                </vs-th>
+                <vs-th style="max-width: 10%;">
+                  Precio total
+                </vs-th>
               </template>
+
               <template slot-scope="{data}">
-                <vs-tr :key="indextr" v-for="(tr, indextr) in data" >
-                  <vs-td :data="data[indextr].representante">
-                    {{data[indextr].representante}}
+                <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data" >
+                  <vs-td :data="tr.representante">
+                    {{tr.representante}}
                   </vs-td>
 
-                  <vs-td :data="data[indextr].idHab">
-                    {{data[indextr].idHab}}
+                  <vs-td :data="tr.nroHabitacion">
+                    {{tr.nroHabitacion}}
                   </vs-td>
 
-                  <vs-td :data="data[indextr].id">
-                    {{data[indextr].website}}
+                  <vs-td :data="tr.fechaI">
+                    {{tr.fechaI}}
                   </vs-td>
 
-                  <vs-td :data="data[indextr].id">
-                    {{data[indextr].id}}
+                  <vs-td :data="tr.fechaT">
+                    {{tr.fechaTermino}}
                   </vs-td>
+
+                  <vs-td :data="tr.fechaT">
+                    {{tr.fechaTermino}}
+                  </vs-td>
+
+                  <vs-td :data="tr.fechaTermino">
+                    {{tr.fechaTermino}}
+                  </vs-td>
+
+                  <template class="expand-user" slot="expand">
+                    <div class="con-expand-users">
+                      <vs-table
+                        :data="tr.servicios"
+                        class="text-center">
+                        <template slot="header">
+                          <h3>Servicios consumidos</h3>
+                        </template>
+                        <template slot="thead">
+                          <vs-th style="max-width: 20%;">
+                            Servicio
+                          </vs-th>
+                          <vs-th style="max-width: 60%;">
+                            Descripción
+                          </vs-th>
+                          <vs-th style="max-width: 10%;">
+                            Categoría
+                          </vs-th>
+                          <vs-th style="max-width: 10%;">
+                            Precio
+                          </vs-th>
+                        </template>
+
+                        <template slot-scope="{data}">
+                          <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data" >
+                            <vs-td :data="tr.servicios.nombreServicio">
+                              {{tr.servicios.nombreServicio}}
+                            </vs-td>
+
+                            <vs-td :data="tr.servicios.descripcionServicio">
+                              {{tr.servicios.descripcionServicio}}
+                            </vs-td>
+
+                            <vs-td :data="tr.servicios.categoriaServicio">
+                              {{tr.servicios.categoriaServicio}}
+                            </vs-td>
+
+                            <vs-td :data="tr.servicios.precio">
+                              ${{tr.servicios.precio}} CLP
+                            </vs-td>
+                          </vs-tr>
+                        </template>
+                      </vs-table>
+                    </div>
+                  </template>
                 </vs-tr>
               </template>
             </vs-table>
           </div>
-
         </md-card-content>
       </md-card>
     </div>
@@ -90,20 +208,33 @@ export default {
     },
     data(){
       return{
-          step1: true,
-          nroHabitacion: '',
           nombre: '',
-          registros: [],
-          registro: [],
           fechaI: '',
           fechaT: '',
-          registrosCheckOut: [],
+          step1: true,
+          registro: [],
+          registros: [],
           servicios: [],
           habitaciones: [],
+          nroHabitacion: '',
           servicioRegistro: [],
+          registrosCheckOut: [],
+          registrosSeleccionados: [],
+          dataRegistrosCheckOut: ["representante","nroHabitacion","fechaI","fechaT"],
+          registrosFinal: ["representante","nroHabitacion","fechaI","fechaT","totalD","precioD","totalPrecio","servicios"],
       }
     },
     methods: {
+      remover(){
+        for(var i=0;i<this.registrosSeleccionados.length; i++){
+          for(var j=0;j<this.registrosCheckOut.length;j++){
+            if(this.registrosCheckOut[j].idRegistro == this.registrosSeleccionados[i].idRegistro){
+              this.registrosCheckOut.splice(j,1);
+              j--;
+            }
+          }
+        }
+      },
       toggle(){
         if(this.registrosCheckOut.length > 0){
           this.step1 = !this.step1;
@@ -135,6 +266,7 @@ export default {
       },
       validar(){
         if(this.nroHabitacion && this.registro){
+
          this.incorporar();
         } else {
             this.$vs.notify({title:'Debe agregar un número de habitación.',color:'danger',position:'bottom-center'});
@@ -179,20 +311,19 @@ export default {
         if(isRegistro == false){
           this.$vs.notify({title:'El registro de la habitación que desea incorporar ya se encuentra ingresado.',text:'Porfavor, ingrese otra habitación',color:'danger',position:'bottom-center'});
         } else {
-          this.registrosCheckOut.push(this.registro);
-          this.registro = '';
+          this.dataRegistrosCheckOut.representante = this.registro.representante;
+          this.dataRegistrosCheckOut.nroHabitacion = this.nroHabitacion;
+          this.dataRegistrosCheckOut.fechaI = this.registro.fechaInicio;
+          this.dataRegistrosCheckOut.fechaT = this.registro.fechaTermino;
+          this.registrosCheckOut.push(this.dataRegistrosCheckOut);
           this.nroHabitacion = '';
+          this.registro = '';
           this.fechaI = '';
           this.fechaT = '';
           this.nombre = '';
           this.$vs.notify({title:'Se incorporó el registro al check-out correctamente.',color:'success',position:'bottom-center'});
         }
       },
-
-
-
-
-
       finalizar(){
         this.$vs.notify({title:'Entregue el comprobante al cliente.',color:'success',position:'bottom-center'});
       }

@@ -48,21 +48,22 @@
                   max-items="10"
                   pagination
                   v-model="serviciosSeleccionados"
-                  :data="servicios">
+                  :data="servicios"
+                  class="text-center">
                 <template slot="header">
                   <h3>Seleccione los servicios que desea incorporar al registro</h3>
                 </template>
                 <template slot="thead">
-                  <vs-th>
+                  <vs-th style="max-width: 25%;">
                     Servicio
                   </vs-th>
-                  <vs-th>
+                  <vs-th style="max-width: 25%;">
                     Descripción
                   </vs-th>
-                  <vs-th>
+                  <vs-th style="max-width: 25%;">
                     Categoría
                   </vs-th>
-                  <vs-th>
+                  <vs-th style="max-width: 25%;">
                     Precio
                   </vs-th>
                 </template>
@@ -82,13 +83,14 @@
                     </vs-td>
 
                     <vs-td :data="data[indextr].precio">
-                      {{data[indextr].precio}}
+                      ${{data[indextr].precio}} CLP
                     </vs-td>
                   </vs-tr>
                 </template>
               </vs-table>
               <md-card-actions>
-                <md-button class="md-raised md-success" type="button" @click="incorporar">Incorporar</md-button>
+                <md-button class="md-raised md-success" @click="volver">Volver</md-button>
+                <md-button class="md-raised md-success" type="button" @click="validar2">Asociar Servicios</md-button>
               </md-card-actions>
             </div>
           </div>
@@ -121,6 +123,13 @@ export default {
       }
     },
     methods: {
+      validar2(){
+        if(this.serviciosSeleccionados.length > 0){
+          this.incorporar();
+        } else {
+          this.$vs.notify({title:'Debe seleccionar al menos un servicio.',color:'danger',position:'bottom-center'});
+        }
+      },
       validar(){
         if(this.nroHabitacion && this.registro){
           this.step1 = !this.step1;
@@ -177,6 +186,9 @@ export default {
             this.$vs.notify({title:'No se pudo incorporar el, o los servicios solicitados.',color:'danger',position:'bottom-center'});
           });
         }
+      },
+      volver(){
+        location.href = "http://159.203.94.72/#/asociarServicio";
       },
     },
     mounted () {

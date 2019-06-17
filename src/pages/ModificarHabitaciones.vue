@@ -45,7 +45,8 @@
                         </md-field>
                     </div>
                     <div class="md-layout-item md-size-100 text-right">
-                        <md-button class="md-raised md-success"  @click="validar" >Editar Habitación</md-button>
+                      <md-button class="md-raised md-success" @click="volver">Volver</md-button>
+                      <md-button class="md-raised md-success"  @click="validar" >Editar Habitación</md-button>
                     </div>
                 </div>
             </md-card-content>
@@ -114,7 +115,10 @@ export default {
           this.$vs.notify({title:'La habitación no se ha podido editar',color:'danger',position:'bottom-center'});
         }
       })
-    }
+    },
+    volver(){
+      location.href = "http://159.203.94.72/#/habitaciones";
+    },
   },
   mounted () {
     this.getHabitacion();

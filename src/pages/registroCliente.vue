@@ -208,6 +208,9 @@
             this.correo = '';
             this.representante = 'no';
           }
+          else{
+            alert("Debes llenar todos los campos")
+          }
         },
         registrar(){
           var url = localhost + 'registro/create?idHab='+this.$route.params.idHab+'&&fechaInicio='+this.$route.params.fechaInicio+'&&fechaTermino='+this.$route.params.fechaTermino+'&&descuento='+this.reserva.descuento;

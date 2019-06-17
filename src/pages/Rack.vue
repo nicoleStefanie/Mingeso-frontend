@@ -158,6 +158,7 @@ export default {
           if (!localStorage.getItem('login')) {
             this.$router.push('Login')
           }
+          this.getReservas();
         }
     }
 </script>

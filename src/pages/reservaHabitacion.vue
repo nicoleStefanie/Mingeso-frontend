@@ -1,18 +1,18 @@
 <template>
   <div class="container">
     <md-card>
-      <md-card-header data-background-color="white" style="position: relative;">
+      <md-card-header data-background-color="green" style="position: relative;">
         <h3 class="title">Reserva #{{this.reserva.codigoReserva}}</h3>
       </md-card-header>
       <md-card-content>
         <div>
-          <div class="md-layout-item md-small-size-50 md-size-50"><p>Nombre Cliente: {{reserva.nombreCliente}}</p></div>
-          <div class="md-layout-item md-small-size-50 md-size-50"><p>Rut Cliente: {{reserva.rutCliente}}</p></div>
-          <div class="md-layout-item md-small-size-50 md-size-50"><p>Correo Cliente: {{reserva.correoCliente}}</p></div>
-          <div class="md-layout-item md-small-size-50 md-size-50"><p>Descuento aplicado: {{reserva.descuento}}%</p></div>
+          <div class="md-layout-item md-small-size-50 md-size-50"><p><b>Nombre Cliente: {{reserva.nombreCliente}}</b></p></div>
+          <div class="md-layout-item md-small-size-50 md-size-50"><p><b>Rut Cliente: {{reserva.rutCliente}}</b></p></div>
+          <div class="md-layout-item md-small-size-50 md-size-50"><p><b>Correo Cliente: {{reserva.correoCliente}}</b></p></div>
+          <div class="md-layout-item md-small-size-50 md-size-50"><p><b>Descuento aplicado: {{reserva.descuento}}%</b></p></div>
         </div>
         <div>
-        <md-card-header data-background-color="white" style="position: relative; margin-top: 40px; height: 55px;">
+        <md-card-header data-background-color="green" style="position: relative; margin-top: 40px; height: 55px;">
           <h5 class="title">Habitaciones reservadas</h5>
         </md-card-header>
         </div>
@@ -28,7 +28,7 @@
         </div>
         <md-card-actions>
           <div  v-if="selected !== null">
-            <md-button type="button" :href="'#/registroCliente/'+ this.habitacion +'/'+ this.fechaInicio+'/'+this.fechaTermino+'/'+this.reserva.idReserva" >Registrar Clientes</md-button>
+            <md-button type="button" class="md-raised md-success" :href="'#/registroCliente/'+ this.habitacion +'/'+ this.fechaInicio+'/'+this.fechaTermino+'/'+this.reserva.idReserva" >Registrar Clientes</md-button>
           </div>
 
         </md-card-actions>
@@ -51,6 +51,7 @@
             "capacidadNinos",
             "capacidadAdultos",
             "precioNoche",
+            "precioConDescuento",
             "tipoHabitacion"],
           items:[],
           errors:[],

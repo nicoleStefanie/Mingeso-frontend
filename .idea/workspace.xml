@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ea454e7-8113-4e49-ac21-0683b74413a3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/pages/registroCliente.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/registroCliente.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/registroCliente.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/reservaHabitacion.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/reservaHabitacion.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/routes.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,7 +20,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/routes/routes.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
+            <state relative-caret-position="2431">
               <caret line="171" column="65" selection-start-line="171" selection-start-column="65" selection-end-line="171" selection-end-column="65" />
               <folding>
                 <element signature="e#0#64#0" expanded="true" />
@@ -44,8 +43,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/reservaHabitacion.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1020">
-              <caret line="3" column="50" selection-start-line="3" selection-start-column="50" selection-end-line="3" selection-end-column="50" />
+            <state relative-caret-position="187">
+              <caret line="11" column="118" selection-start-line="11" selection-start-column="118" selection-end-line="11" selection-end-column="118" />
               <folding>
                 <element signature="n#style#0;n#md-card-header#0;n#div#1;n#md-card-content#0;n#md-card#0;n#div#0;n#template#0;n#!!top" expanded="true" />
               </folding>
@@ -56,7 +55,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/Checkin.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
+            <state relative-caret-position="1122">
               <caret line="66" column="11" selection-start-line="66" selection-start-column="11" selection-end-line="66" selection-end-column="11" />
               <folding>
                 <element signature="n#style#0;n#md-card-header#0;n#md-card#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -69,20 +68,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/registroCliente.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="68" column="18" selection-start-line="68" selection-start-column="18" selection-end-line="68" selection-end-column="18" />
+            <state relative-caret-position="421">
+              <caret line="220" column="14" lean-forward="true" selection-start-line="220" selection-start-column="14" selection-end-line="220" selection-end-column="14" />
               <folding>
-                <element signature="n#style#0;n#md-card-header#0;n#md-card#0;n#div#0;n#template#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#md-card-header#0;n#md-card-content#0;n#md-card#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#298#304#0" expanded="true" />
-                <element signature="e#304#310#0" expanded="true" />
-                <element signature="e#310#316#0" expanded="true" />
-                <element signature="e#316#322#0" expanded="true" />
-                <element signature="e#322#328#0" expanded="true" />
-                <element signature="e#328#334#0" expanded="true" />
-                <element signature="n#style#0;n#datepicker#0;n#div#4;n#div#1;n#md-card-content#0;n#md-card#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#md-button#0;n#div#5;n#div#0;n#md-card-content#0;n#md-card#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#2418#2460#0" expanded="true" />
+                <element signature="e#3430#3472#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -91,7 +81,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/ReservaSimple.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1628">
+            <state relative-caret-position="2703">
               <caret line="161" column="6" selection-start-line="161" selection-start-column="6" selection-end-line="161" selection-end-column="47" />
               <folding>
                 <element signature="e#4198#4240#0" expanded="true" />
@@ -274,12 +264,13 @@
       <workItem from="1560265560781" duration="1043000" />
       <workItem from="1560524030874" duration="5659000" />
       <workItem from="1560660277301" duration="6542000" />
-      <workItem from="1560711317826" duration="17968000" />
+      <workItem from="1560711317826" duration="18195000" />
+      <workItem from="1560801053318" duration="4127000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43446000" />
+    <option name="totallyTimeSpent" value="47800000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -375,12 +366,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2431">
+          <caret line="171" column="65" selection-start-line="171" selection-start-column="65" selection-end-line="171" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/routes/routesAdmin.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <folding>
             <element signature="e#0#74#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/ReservaSimple.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2703">
+          <caret line="161" column="6" selection-start-line="161" selection-start-column="6" selection-end-line="161" selection-end-column="47" />
+          <folding>
+            <element signature="e#4198#4240#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/Empleados.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="1" selection-start-line="1" selection-start-column="1" selection-end-line="7" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -394,26 +412,9 @@
     <entry file="file://$PROJECT_DIR$/src/pages/Layout/MobileMenu.vue">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/routes/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="171" column="65" selection-start-line="171" selection-start-column="65" selection-end-line="171" selection-end-column="65" />
-          <folding>
-            <element signature="e#0#64#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/Empleados.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="1" selection-start-line="1" selection-start-column="1" selection-end-line="7" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/Checkin.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
+        <state relative-caret-position="1122">
           <caret line="66" column="11" selection-start-line="66" selection-start-column="11" selection-end-line="66" selection-end-column="11" />
           <folding>
             <element signature="n#style#0;n#md-card-header#0;n#md-card#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -422,42 +423,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/AsociarServicio.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="56" column="28" selection-start-line="56" selection-start-column="28" selection-end-line="56" selection-end-column="28" />
+          <folding>
+            <element signature="n#style#0;n#vs-th#0;n#template#1;n#vs-table#0;n#div#0;n#div#0;n#form#0;n#md-card-content#1;n#md-card#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/reservaHabitacion.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1020">
-          <caret line="3" column="50" selection-start-line="3" selection-start-column="50" selection-end-line="3" selection-end-column="50" />
+        <state relative-caret-position="187">
+          <caret line="11" column="118" selection-start-line="11" selection-start-column="118" selection-end-line="11" selection-end-column="118" />
           <folding>
             <element signature="n#style#0;n#md-card-header#0;n#div#1;n#md-card-content#0;n#md-card#0;n#div#0;n#template#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/ReservaSimple.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1628">
-          <caret line="161" column="6" selection-start-line="161" selection-start-column="6" selection-end-line="161" selection-end-column="47" />
-          <folding>
-            <element signature="e#4198#4240#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/registroCliente.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="68" column="18" selection-start-line="68" selection-start-column="18" selection-end-line="68" selection-end-column="18" />
+        <state relative-caret-position="421">
+          <caret line="220" column="14" lean-forward="true" selection-start-line="220" selection-start-column="14" selection-end-line="220" selection-end-column="14" />
           <folding>
-            <element signature="n#style#0;n#md-card-header#0;n#md-card#0;n#div#0;n#template#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#md-card-header#0;n#md-card-content#0;n#md-card#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#298#304#0" expanded="true" />
-            <element signature="e#304#310#0" expanded="true" />
-            <element signature="e#310#316#0" expanded="true" />
-            <element signature="e#316#322#0" expanded="true" />
-            <element signature="e#322#328#0" expanded="true" />
-            <element signature="e#328#334#0" expanded="true" />
-            <element signature="n#style#0;n#datepicker#0;n#div#4;n#div#1;n#md-card-content#0;n#md-card#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#md-button#0;n#div#5;n#div#0;n#md-card-content#0;n#md-card#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#2418#2460#0" expanded="true" />
+            <element signature="e#3430#3472#0" expanded="true" />
           </folding>
         </state>
       </provider>

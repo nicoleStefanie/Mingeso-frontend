@@ -125,6 +125,7 @@ export default {
     methods: {
       validar2(){
         if(this.serviciosSeleccionados.length > 0){
+          console.log(this.serviciosSeleccionados[0].idServicio);
           this.incorporar();
         } else {
           this.$vs.notify({title:'Debe seleccionar al menos un servicio.',color:'danger',position:'bottom-center'});
@@ -170,7 +171,7 @@ export default {
         this.nombre = this.registro.representante;
       },
       incorporar(){
-        var url = localhost + 'registroServicio/create';
+        var url = localhost + '/registroServicio/create';
         for(var i=0;i<this.serviciosSeleccionados.length;i++){
           axios.post(url, {
             idServicio: this.serviciosSeleccionados[i].idServicio,
@@ -179,8 +180,6 @@ export default {
             if(response.data[0].message == 'RegistroServicio agregado con exito'){
               location.href = "http://159.203.94.72/#/rack";
               this.$vs.notify({title:'Se incorporó el, o los servicios correctamente.',color:'success',position:'bottom-center'});
-            } else{
-              this.$vs.notify({title:'No se pudo incorporar el, o los servicios solicitados.',color:'danger',position:'bottom-center'});
             }
           }).catch(e => {
             this.$vs.notify({title:'No se pudo incorporar el, o los servicios solicitados.',color:'danger',position:'bottom-center'});
@@ -188,7 +187,7 @@ export default {
         }
       },
       volver(){
-        location.href = "http://159.203.94.72/#/asociarServicio";
+        location.reload();
       },
     },
     mounted () {

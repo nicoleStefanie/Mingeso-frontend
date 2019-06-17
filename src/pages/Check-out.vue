@@ -220,7 +220,6 @@ export default {
           servicioRegistro: [],
           registrosCheckOut: [],
           registrosSeleccionados: [],
-          dataRegistrosCheckOut: ["representante","nroHabitacion","fechaI","fechaT"],
           registrosFinal: ["representante","nroHabitacion","fechaI","fechaT","totalD","precioD","totalPrecio","servicios"],
       }
     },
@@ -311,11 +310,11 @@ export default {
         if(isRegistro == false){
           this.$vs.notify({title:'El registro de la habitación que desea incorporar ya se encuentra ingresado.',text:'Porfavor, ingrese otra habitación',color:'danger',position:'bottom-center'});
         } else {
-          this.dataRegistrosCheckOut.representante = this.registro.representante;
-          this.dataRegistrosCheckOut.nroHabitacion = this.nroHabitacion;
-          this.dataRegistrosCheckOut.fechaI = this.registro.fechaInicio;
-          this.dataRegistrosCheckOut.fechaT = this.registro.fechaTermino;
-          this.registrosCheckOut.push(this.dataRegistrosCheckOut);
+          this.registrosCheckOut.push({
+            representante: this.registro.representante,
+            nroHabitacion: this.nroHabitacion,
+            fechaI: this.registro.fechaInicio,
+            fechaT: this.registro.fechaTermino});
           this.nroHabitacion = '';
           this.registro = '';
           this.fechaI = '';

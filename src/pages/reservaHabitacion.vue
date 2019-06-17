@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <md-card>
-      <md-card-header data-background-color="green" style="position: relative;">
-        <h3 class="title">Reserva #{{reserva.codigoReserva}}</h3>
+      <md-card-header data-background-color="white" style="position: relative;">
+        <h3 class="title">Reserva #{{this.reserva.codigoReserva}}</h3>
       </md-card-header>
       <md-card-content>
         <div>
@@ -10,6 +10,11 @@
           <div class="md-layout-item md-small-size-50 md-size-50"><p>Rut Cliente: {{reserva.rutCliente}}</p></div>
           <div class="md-layout-item md-small-size-50 md-size-50"><p>Correo Cliente: {{reserva.correoCliente}}</p></div>
           <div class="md-layout-item md-small-size-50 md-size-50"><p>Descuento aplicado: {{reserva.descuento}}%</p></div>
+        </div>
+        <div>
+        <md-card-header data-background-color="white" style="position: relative; margin-top: 40px; height: 55px;">
+          <h5 class="title">Habitaciones reservadas</h5>
+        </md-card-header>
         </div>
         <div>
           <b-table
@@ -23,7 +28,7 @@
         </div>
         <md-card-actions>
           <div  v-if="selected !== null">
-            <md-button type="button" :href="'#/registroCliente/'+ this.habitacion" >Registrar Clientes</md-button>
+            <md-button type="button" :href="'#/registroCliente/'+ this.habitacion +'/'+ this.fechaInicio+'/'+this.fechaTermino+'/'+this.reserva.idReserva" >Registrar Clientes</md-button>
           </div>
 
         </md-card-actions>
@@ -53,8 +58,9 @@
           selectMode: 'single',
           selected: null,
           habitacion: null,
-          arreglo : null,
-          reserva : null,
+          fechaInicio : null,
+          fechaTermino : null,
+          reserva:null,
         }
       },
       methods: {
@@ -72,13 +78,13 @@
           const url = localhost + 'reservahabitacion/habitaciones/'+ this.reserva.idReserva;
           axios.get(url).then((data) => {
             this.items = data.data;
-            console.log(this.items);
           });
         },
         rowSelected(items) {
           this.selected = items;
           this.habitacion = this.selected[0].idHab;
-          this.arreglo = this.selected[0].tipoHabitacion;
+          this.fechaInicio = this.selected[0].fechaInicio;
+          this.fechaTermino = this.selected[0].fechaTermino;
 
         },
       },

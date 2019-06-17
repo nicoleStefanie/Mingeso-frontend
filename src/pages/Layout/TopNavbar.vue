@@ -11,9 +11,9 @@
           <md-list-item>
             <i class="material-icons">person_pin</i>
             <p class="hidden-lg hidden-md">Profile</p>
-            <a>Bienvenido {{ userName }} </a>
+            <a>Bienvenido {{ role }}: {{ userName }} </a>
           </md-list-item>
-            <md-list-item href="/logout">
+            <md-list-item v-on:click="logout">
               <i class="material-icons">arrow_right_alt</i>
               <p class="hidden-lg hidden-md">Profile</p>
               <a>Desconectar</a>
@@ -38,25 +38,39 @@ export default{
   data () {
     return {
       isLogin: false,
-      userName: null
+      userName: null,
+      role: null
     }
   },
   methods: {
     toggleSidebar () {
       this.$sidebar.displaySidebar(!this.$sidebar.showSidebar)
+    },
+    logout () {
+      if (localStorage.getItem('login')) {
+        localStorage.clear()
+        this.$root.$emit('doLogout', true)
+        this.$router.push('Login')
+      }
     }
   },
   mounted () {
     if (localStorage.getItem('login')) {
       this.userName = localStorage.getItem('name')
       this.isLogin = true
+      this.role = localStorage.getItem('role')
     }
     this.$root.$on('doLogin', (text) => {
       this.userName = text
       this.isLogin = true
     })
+    this.$root.$on('setRole', (text) => {
+      this.role = text
+    })
     this.$root.$on('doLogout', (bool) => {
       this.isLogin = false
+      this.role = null
+      this.userName = null
     })
   },
   watch: {

@@ -107,6 +107,8 @@ export default {
     })
     this.$root.$on('doLogout', (bool) => {
       this.isLogin = false
+      this.isAdmin = false
+      this.userName = null
     })
   },
   watch: {

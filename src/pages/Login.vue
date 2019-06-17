@@ -60,7 +60,7 @@ export default{
     },
     updateComponents (name, role) {
       this.$root.$emit('doLogin', name)
-      this.$root.$emit('isAdmin', role)
+      this.$root.$emit('setRole', role)
     }
   },
   mounted () {

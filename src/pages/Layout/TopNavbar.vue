@@ -11,7 +11,7 @@
           <md-list-item>
             <i class="material-icons">person_pin</i>
             <p class="hidden-lg hidden-md">Profile</p>
-            <a>Bienvenido {{ userName }} </a>
+            <a>Bienvenido {{ role }}: {{ userName }} </a>
           </md-list-item>
             <md-list-item v-on:click="logout">
               <i class="material-icons">arrow_right_alt</i>
@@ -38,7 +38,8 @@ export default{
   data () {
     return {
       isLogin: false,
-      userName: null
+      userName: null,
+      role: null
     }
   },
   methods: {
@@ -56,10 +57,14 @@ export default{
     if (localStorage.getItem('login')) {
       this.userName = localStorage.getItem('name')
       this.isLogin = true
+      this.role = localStorage.getItem('role')
     }
     this.$root.$on('doLogin', (text) => {
       this.userName = text
       this.isLogin = true
+    })
+    this.$root.$on('setRole', (text) => {
+      this.role = text
     })
     this.$root.$on('doLogout', (bool) => {
       this.isLogin = false

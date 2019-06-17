@@ -97,7 +97,7 @@ export default {
     if (localStorage.getItem('role') === 'Administrador') {
       this.isAdmin = true
     }
-    this.$root.$on('isAdmin', (text) => {
+    this.$root.$on('setRole', (text) => {
       if (text === 'Administrador') {
         this.isAdmin = true
       }

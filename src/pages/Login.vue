@@ -50,7 +50,7 @@ export default{
           localStorage.setItem('login', loginData['login'])
           localStorage.setItem('name', loginData['name'])
           localStorage.setItem('email', loginData['email'])
-          this.updateComponents(loginData['name'])
+          this.updateComponents(loginData['name'], loginData['role'])
           this.$router.push('Rack')
         }
         else {
@@ -58,8 +58,9 @@ export default{
         }
       })
     },
-    updateComponents (name) {
+    updateComponents (name, role) {
       this.$root.$emit('doLogin', name)
+      this.$root.$emit('isAdmin', role)
     }
   },
   mounted () {

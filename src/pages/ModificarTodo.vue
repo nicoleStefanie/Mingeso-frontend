@@ -1,7 +1,7 @@
 <template>
   <form id="simple">
     <md-card>
-      <md-card-header :data-background-color="dataBackgroundColor">
+      <md-card-header data-background-color="green">
         <h4 class="title">Modificar los datos del cliente</h4>
         <p class="category">Completar con los datos</p>
       </md-card-header>
@@ -139,7 +139,6 @@ export default {
     validar(){
       if(this.nombre || this.fechaNacimiento|| this.rut || this.correo || this.telefono || this.estado || this.descuento){
         this.putReserva();
-        console.log("hola")
       }
       else{
         alert('Se requiere completar todos los campos.')

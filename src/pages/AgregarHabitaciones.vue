@@ -73,10 +73,10 @@ export default {
   },
   methods: {
     validar: function(){
-      if(this.nroHabitacion && this.tipo && this.capacidadNinos && this.capacidadAdultos&& this.precioNoche)
+      if(this.nroHabitacion > 0 && this.tipo && this.capacidadNinos > 0 && this.capacidadAdultos > 0 && this.precioNoche > 0)
        this.agregarHabitacion();
         else{
-          this.$vs.notify({title:'Se requiere completar todos los campos.',color:'danger',position:'bottom-center'});
+          this.$vs.notify({title:'Se requiere completar todos los campos correctamente.',color:'danger',position:'bottom-center'});
         }
     },
     agregarHabitacion() {

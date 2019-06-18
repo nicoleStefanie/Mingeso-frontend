@@ -72,7 +72,7 @@ export default {
   },
   methods: {
     validar(){
-      if(this.nombre_usuario && this.rut_usuario && this.rol_usuario && this.correo_usuario){
+      if(this.nombre_usuario && this.rut_usuario > 0 && this.rol_usuario && this.correo_usuario){
        this.agregarEmpleado();
       } else{
           this.$vs.notify({title:'Se requiere completar los campos correctamente.',color:'danger',position:'bottom-center'});

@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     validar: function(){
-      if(this.nombre_usuario && this.rut_usuario&& this.rol_usuario && this.correo_usuario)
+      if(this.nombre_usuario && this.rut_usuario > 0 && this.rol_usuario && this.correo_usuario)
        this.putEmpleado();
 
         else{

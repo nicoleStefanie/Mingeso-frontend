@@ -221,14 +221,18 @@ export default {
     },
     methods: {
       remover(){
-        var nuevosRegistrosCheckOut = new Array();
-        for(var i=0;i<this.registrosCheckOut.length;i++){
-          if(this.registrosSeleccionados.includes(this.registrosCheckOut[i])){}
-          else{
-              nuevosRegistrosCheckOut.push(this.registrosCheckOut[i]);
+        if(this.registrosSeleccionados.length > 0){
+          var nuevosRegistrosCheckOut = new Array();
+          for(var i=0;i<this.registrosCheckOut.length;i++){
+            if(this.registrosSeleccionados.includes(this.registrosCheckOut[i])){}
+            else{
+                nuevosRegistrosCheckOut.push(this.registrosCheckOut[i]);
+            }
           }
+          this.registrosCheckOut = nuevosRegistrosCheckOut;
+        } else {
+          this.$vs.notify({title:'Debe seleccionar al menos un registro.',color:'danger',position:'bottom-center'});
         }
-        this.registrosCheckOut = nuevosRegistrosCheckOut;
       },
       validar(){
         if(this.nroHabitacion && this.registro){

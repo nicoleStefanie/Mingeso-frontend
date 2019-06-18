@@ -35,8 +35,6 @@
               <md-button class="md-raised md-success" type="button" @click="validar">Continuar</md-button>
             </md-card-actions>
         </md-card-content>
-
-        </md-card-content>
         <md-card-content v-show="!step1">
           <form>
           <br>

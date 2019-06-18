@@ -36,7 +36,7 @@
                 <p v-show="this.registrosCheckOut.length > 1">Ha incorporado: {{this.registrosCheckOut.length}} registros.</p>
                 <p v-show="this.registrosCheckOut.length == 1">Ha incorporado: {{this.registrosCheckOut.length}} registro.</p>
                   <md-button class="md-raised md-success" @click="validar">Incorporar</md-button>
-                  <md-button class="md-raised md-warning" @click="toggle">Finalizar</md-button>
+                  <md-button class="md-raised md-warning" @click="toggle">Continuar</md-button>
               </div>
             </div>
             <div class="text-center" v-show="this.registrosCheckOut.length > 0">
@@ -65,20 +65,20 @@
 
               <template slot-scope="{data}">
                 <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data" >
-                  <vs-td :data="data[indextr].representante">
-                    {{data[indextr].representante}}
+                  <vs-td :data="data[indextr].registro.representante">
+                    {{data[indextr].registro.representante}}
                   </vs-td>
 
                   <vs-td :data="data[indextr].nroHabitacion">
                     {{data[indextr].nroHabitacion}}
                   </vs-td>
 
-                  <vs-td :data="data[indextr].fechaI">
-                    {{data[indextr].fechaI}}
+                  <vs-td :data="data[indextr].registro.fechaInicio">
+                    {{data[indextr].registro.fechaInicio}}
                   </vs-td>
 
-                  <vs-td :data="data[indextr].fechaT">
-                    {{data[indextr].fechaT}}
+                  <vs-td :data="data[indextr].registro.fechaTermino">
+                    {{data[indextr].registro.fechaTermino}}
                   </vs-td>
                 </vs-tr>
               </template>
@@ -91,12 +91,11 @@
 
 
         <md-card-content v-show="!step1">
-          <div class="md-layout">
             <vs-table
               :data="registrosCheckOut"
               class="text-center">
               <template slot="thead">
-                <vs-th style="max-width: 15%;">
+                <vs-th style="max-width: 25%;">
                   Representante
                 </vs-th>
                 <vs-th style="max-width: 15%;">
@@ -108,41 +107,38 @@
                 <vs-th style="max-width: 15%;">
                   Fecha de término
                 </vs-th>
-                <vs-th style="max-width: 10%;">
-                  Total de días
+                <vs-th style="max-width: 15%;">
+                  Total por la habitación
                 </vs-th>
-                <vs-th style="max-width: 10%;">
-                  Precio por día
-                </vs-th>
-                <vs-th style="max-width: 10%;">
-                  Precio total
+                <vs-th style="max-width: 15%;">
+                  Total con servicios
                 </vs-th>
               </template>
 
               <template slot-scope="{data}">
                 <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data" >
-                  <vs-td :data="tr.representante">
-                    {{tr.representante}}
+                  <vs-td :data="tr.registro.representante">
+                    {{tr.registro.representante}}
                   </vs-td>
 
                   <vs-td :data="tr.nroHabitacion">
                     {{tr.nroHabitacion}}
                   </vs-td>
 
-                  <vs-td :data="tr.fechaI">
-                    {{tr.fechaI}}
+                  <vs-td :data="tr.registro.fechaInicio">
+                    {{tr.registro.fechaInicio}}
                   </vs-td>
 
-                  <vs-td :data="tr.fechaT">
-                    {{tr.fechaTermino}}
+                  <vs-td :data="tr.registro.fechaTermino">
+                    {{tr.registro.fechaTermino}}
                   </vs-td>
 
-                  <vs-td :data="tr.fechaT">
-                    {{tr.fechaTermino}}
+                  <vs-td :data="tr.registro.precio">
+                    ${{tr.registro.precio}} CLP
                   </vs-td>
 
-                  <vs-td :data="tr.fechaTermino">
-                    {{tr.fechaTermino}}
+                  <vs-td :data="tr.total">
+                    ${{tr.total}} CLP
                   </vs-td>
 
                   <template class="expand-user" slot="expand">
@@ -150,9 +146,6 @@
                       <vs-table
                         :data="tr.servicios"
                         class="text-center">
-                        <template slot="header">
-                          <h3>Servicios consumidos</h3>
-                        </template>
                         <template slot="thead">
                           <vs-th style="max-width: 20%;">
                             Servicio
@@ -170,20 +163,20 @@
 
                         <template slot-scope="{data}">
                           <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data" >
-                            <vs-td :data="tr.servicios.nombreServicio">
-                              {{tr.servicios.nombreServicio}}
+                            <vs-td :data="tr.nombreServicio">
+                              {{tr.nombreServicio}}
                             </vs-td>
 
-                            <vs-td :data="tr.servicios.descripcionServicio">
-                              {{tr.servicios.descripcionServicio}}
+                            <vs-td :data="tr.descripcionServicio">
+                              {{tr.descripcionServicio}}
                             </vs-td>
 
-                            <vs-td :data="tr.servicios.categoriaServicio">
-                              {{tr.servicios.categoriaServicio}}
+                            <vs-td :data="tr.categoriaServicio">
+                              {{tr.categoriaServicio}}
                             </vs-td>
 
-                            <vs-td :data="tr.servicios.precio">
-                              ${{tr.servicios.precio}} CLP
+                            <vs-td :data="tr.precio">
+                              ${{tr.precio}} CLP
                             </vs-td>
                           </vs-tr>
                         </template>
@@ -193,7 +186,10 @@
                 </vs-tr>
               </template>
             </vs-table>
-          </div>
+            <div class="md-layout-item md-size-100 text-right">
+              <md-button class="md-raised md-success" @click="step1 = !step1">Volver</md-button>
+              <md-button class="md-raised md-success" @click="finalizar">Finalizar</md-button>
+            </div>
         </md-card-content>
       </md-card>
     </div>
@@ -214,54 +210,25 @@ export default {
           step1: true,
           registro: [],
           registros: [],
-          servicios: [],
-          habitaciones: [],
           nroHabitacion: '',
           servicioRegistro: [],
           registrosCheckOut: [],
           registrosSeleccionados: [],
-          registrosFinal: ["representante","nroHabitacion","fechaI","fechaT","totalD","precioD","totalPrecio","servicios"],
-      }
+          registroServicio: [],
+          serviciosAsociados: [],
+          total: 0,
+        }
     },
     methods: {
       remover(){
-        for(var i=0;i<this.registrosSeleccionados.length; i++){
-          for(var j=0;j<this.registrosCheckOut.length;j++){
-            if(this.registrosCheckOut[j].idRegistro == this.registrosSeleccionados[i].idRegistro){
-              this.registrosCheckOut.splice(j,1);
-              j--;
-            }
+        var nuevosRegistrosCheckOut = new Array();
+        for(var i=0;i<this.registrosCheckOut.length;i++){
+          if(this.registrosSeleccionados.includes(this.registrosCheckOut[i])){}
+          else{
+              nuevosRegistrosCheckOut.push(this.registrosCheckOut[i]);
           }
         }
-      },
-      toggle(){
-        if(this.registrosCheckOut.length > 0){
-          this.step1 = !this.step1;
-          var url = localhost + '/servicios';
-          axios.get(url).then((data) => {
-            this.servicios = data.data;
-            this.getHabitaciones();
-          });
-        } else {
-          this.$vs.notify({title:'Debe incorporar al menos un registro.',color:'danger',position:'bottom-center'});
-        }
-      },
-      getHabitaciones(){
-        var url = localhost + '/habitaciones';
-        axios.get(url).then((data) => {
-          this.habitaciones = data.data;
-          this.getServicioRegistro();
-        });
-      },
-      getServicioRegistro(){
-        var url = localhost + '/servicios';
-        axios.get(url).then((data) => {
-          this.servicios = data.data;
-          this.getHabitaciones();
-        });
-      },
-      organizarDatos(){
-
+        this.registrosCheckOut = nuevosRegistrosCheckOut;
       },
       validar(){
         if(this.nroHabitacion && this.registro){
@@ -302,7 +269,7 @@ export default {
       incorporar(){
         var isRegistro = true;
         for(var i=0; i<this.registrosCheckOut.length;i++){
-          if(this.registrosCheckOut[i].idRegistro == this.registro.idRegistro){
+          if(this.registrosCheckOut[i].registro.idRegistro == this.registro.idRegistro){
               isRegistro = false;
               break;
           }
@@ -310,21 +277,55 @@ export default {
         if(isRegistro == false){
           this.$vs.notify({title:'El registro de la habitación que desea incorporar ya se encuentra ingresado.',text:'Porfavor, ingrese otra habitación',color:'danger',position:'bottom-center'});
         } else {
-          this.registrosCheckOut.push({
-            representante: this.registro.representante,
-            nroHabitacion: this.nroHabitacion,
-            fechaI: this.registro.fechaInicio,
-            fechaT: this.registro.fechaTermino});
-          this.nroHabitacion = '';
-          this.registro = '';
-          this.fechaI = '';
-          this.fechaT = '';
-          this.nombre = '';
-          this.$vs.notify({title:'Se incorporó el registro al check-out correctamente.',color:'success',position:'bottom-center'});
+          var url = localhost + '/registroServicio/registro/' + this.registro.idRegistro;
+          this.total = this.registro.precio;
+          axios.get(url).then((data) => {
+            this.registroServicio = data.data;
+            for(var i=0;i<this.registroServicio.length;i++){
+              this.serviciosAsociados.push(this.registroServicio[i].servicio);
+              this.total = this.total + this.registroServicio[i].servicio.precio;
+            }
+            this.registrosCheckOut.push({
+              registro: this.registro,
+              nroHabitacion: this.nroHabitacion,
+              servicios: this.serviciosAsociados,
+              total: this.total,
+            });
+            this.nroHabitacion = '';
+            this.registro = '';
+            this.fechaI = '';
+            this.fechaT = '';
+            this.nombre = '';
+            this.serviciosAsociados = '';
+            this.total = 0;
+            this.$vs.notify({title:'Se incorporó el registro al check-out correctamente.',color:'success',position:'bottom-center'});
+          });
+        }
+      },
+      toggle(){
+        if(this.registrosCheckOut.length > 0){
+          this.step1 = !this.step1;
+        } else {
+          this.$vs.notify({title:'Debe incorporar al menos un registro.',color:'danger',position:'bottom-center'});
         }
       },
       finalizar(){
-        this.$vs.notify({title:'Entregue el comprobante al cliente.',color:'success',position:'bottom-center'});
+        var postComprobante = new Array();
+        var url = localhost + '/comprobante/create';
+        var ok = true;
+        for(var i=0;i<this.registrosCheckOut.length;i++){
+          axios.post(url,{
+            idRegistro: this.registrosCheckOut[i].registro.idRegistro,
+            fechaInicio: this.registrosCheckOut[i].registro.fechaInicio,
+            fechaTermino: this.registrosCheckOut[i].registro.fechaTermino
+          }).catch(e => {
+            ok = false;
+          });
+          if(ok){
+            location.href = "http://159.203.94.72/#/rack";
+            this.$vs.notify({title:'Entregue el comprobante al cliente.',color:'success',position:'bottom-center'});
+          } else {this.$vs.notify({title:'No se pudo emitir el comprobante',color:'danger',position:'bottom-center'});}
+        }
       }
     },
     mounted() {

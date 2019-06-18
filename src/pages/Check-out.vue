@@ -296,7 +296,7 @@ export default {
             this.fechaI = '';
             this.fechaT = '';
             this.nombre = '';
-            this.serviciosAsociados = '';
+            this.serviciosAsociados = [];
             this.total = 0;
             this.$vs.notify({title:'Se incorporó el registro al check-out correctamente.',color:'success',position:'bottom-center'});
           });
@@ -321,11 +321,11 @@ export default {
           }).catch(e => {
             ok = false;
           });
-          if(ok){
-            location.href = "http://159.203.94.72/#/rack";
-            this.$vs.notify({title:'Entregue el comprobante al cliente.',color:'success',position:'bottom-center'});
-          } else {this.$vs.notify({title:'No se pudo emitir el comprobante',color:'danger',position:'bottom-center'});}
         }
+        if(ok){
+          location.href = "http://159.203.94.72/#/rack";
+          this.$vs.notify({title:'Entregue el comprobante al cliente.',color:'success',position:'bottom-center'});
+        } else {this.$vs.notify({title:'No se pudo emitir el comprobante',color:'danger',position:'bottom-center'});}
       }
     },
     mounted() {

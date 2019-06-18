@@ -318,17 +318,18 @@ export default {
         var url = localhost + '/comprobante/create';
         var ok = true;
         for(var i=0;i<this.registrosCheckOut.length;i++){
-          axios.post(url,{
-            idRegistro: this.registrosCheckOut[i].registro.idRegistro,
-            fechaInicio: this.registrosCheckOut[i].registro.fechaInicio,
-            fechaTermino: this.registrosCheckOut[i].registro.fechaTermino
-          }).catch(e => {
-            ok = false;
-          });
+          postComprobante.push({idRegistro: this.registrosCheckOut[i].registro.idRegistro,
+          fechaInicio: this.registrosCheckOut[i].registro.fechaInicio,
+          fechaTermino: this.registrosCheckOut[i].registro.fechaTermino})
         }
+        axios.post(url, postComprobante, { headers: {'Access-Control-Allow-Headers':'Content-Type', 'Access-Control-Allow-Credentials': true, 'Access-Control-Allow-Origin': '*'} } )
+        .then(console.log)
+        .catch(e => {
+          ok = false;
+        });
         if(ok){
-          location.href = "http://159.203.94.72/#/rack";
           this.$vs.notify({title:'Entregue el comprobante al cliente.',color:'success',position:'bottom-center'});
+          this.$router.push('Rack')
         } else {this.$vs.notify({title:'No se pudo emitir el comprobante',color:'danger',position:'bottom-center'});}
       }
     },

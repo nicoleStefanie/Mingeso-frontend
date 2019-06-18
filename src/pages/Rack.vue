@@ -99,7 +99,7 @@ export default {
                   "theme":"light",
                   "marginRight": 70,
                   "period": "DD",
-                  "dataDateFormat": "YYYY-MM-DD",
+                  "dataDateFormat": "DD-MM-YYYY",
                   "columnWidth": 0.5,
                   "valueAxis": {
                     "type": "date",
@@ -116,7 +116,7 @@ export default {
                     "lineAlpha": 1,
                     "lineColor": "#fff",
                     "fillAlphas": 0.85,
-                    "balloonText": "<b>Cliente: [[cliente]] con Código [[codigoReserva]]</b><br/>Estado de la habitación: [[tipo]]</b>:<br/> Desde [[open]] hasta [[value]]"
+                    "balloonText": "<b>Cliente: [[cliente]]</b><br/>Estado de la habitación: [[tipo]]</b><br/> Desde [[open]] hasta [[value]]"
                   },
                   "rotate": true,
                   "categoryField": "habitacion",

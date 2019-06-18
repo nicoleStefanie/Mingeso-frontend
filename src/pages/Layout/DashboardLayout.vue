@@ -8,6 +8,11 @@
         <p>Rack</p>
       </sidebar-link>
 
+      <sidebar-link to="/filtrarHabitaciones">
+        <md-icon>assignment</md-icon>
+        <p>Registro</p>
+      </sidebar-link>
+
       <sidebar-link to="/checkin">
         <md-icon>chevron_right</md-icon>
         <p>Check-In</p>

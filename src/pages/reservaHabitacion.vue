@@ -30,7 +30,6 @@
           <div  v-if="selected !== null">
             <md-button type="button" class="md-raised md-success" :href="'#/registroCliente/'+ this.habitacion +'/'+ this.fechaInicio+'/'+this.fechaTermino+'/'+this.reserva.idReserva" >Registrar Clientes</md-button>
           </div>
-
         </md-card-actions>
       </md-card-content>
     </md-card>
@@ -84,9 +83,8 @@
         rowSelected(items) {
           this.selected = items;
           this.habitacion = this.selected[0].idHab;
-          this.fechaInicio = this.selected[0].fechaInicio;
           this.fechaTermino = this.selected[0].fechaTermino;
-
+          this.fechaInicio = this.selected[0].fechaInicio;
         },
       },
       mounted() {

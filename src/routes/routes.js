@@ -27,6 +27,9 @@ import Checkin from '@/pages/Checkin.vue'
 import AsociarServicio from '@/pages/AsociarServicio.vue'
 import reservaHabitacion from "../pages/reservaHabitacion";
 import registroCliente from "../pages/registroCliente";
+import filtrarHabitaciones from "../pages/filtrarHabitaciones";
+import seleccionarHabitacion from "../pages/seleccionarHabitacion";
+import registroSinReserva from "../pages/registroSinReserva";
 /*##############################################################*/
 
 const routes = [
@@ -172,6 +175,21 @@ const routes = [
         path: 'registroCliente/:idHab/:fechaInicio/:fechaTermino/:idReserva',
         name: 'registroCliente',
         component: registroCliente
+      },
+      {
+        path: 'filtrarHabitaciones',
+        name: 'filtrarHabitaciones',
+        component: filtrarHabitaciones
+      },
+      {
+        path: 'seleccionarHabitacion/:fechaInicio/:fechaTermino/:tipo',
+        name: 'seleccionarHabitacion',
+        component: seleccionarHabitacion
+      },
+      {
+        path: 'registroSinReserva/:idHab/:fechaInicio/:fechaTermino',
+        name: 'registroSinReserva',
+        component: registroSinReserva
       },
     ]
   }

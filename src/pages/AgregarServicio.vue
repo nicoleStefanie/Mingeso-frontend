@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     validar: function(){
-      if(this.nombreServicio && this.descripcion&& this.categoriaServicio && this.precioServicio){
+      if(this.nombreServicio && this.descripcion&& this.categoriaServicio && this.precioServicio > 0){
        this.agregarServicio();
       }
       else{

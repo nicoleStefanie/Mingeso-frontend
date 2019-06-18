@@ -75,7 +75,7 @@ export default {
   },
   methods: {
     validar: function(){
-      if(this.nroHabitacion && this.tipo && this.capacidadNinos && this.capacidadAdultos&& this.precioNoche)
+      if(this.nroHabitacion > 0 && this.tipo && this.capacidadNinos > 0 && this.capacidadAdultos > 0&& this.precioNoche > 0)
        this.putHabitacion();
 
         else{

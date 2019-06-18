@@ -1,7 +1,7 @@
 <template>
   <form id="simple">
     <md-card>
-      <md-card-header :data-background-color="dataBackgroundColor">
+      <md-card-header data-background-color="dataBackgroundColor">
         <h4 class="title">Modificar fechas de la reserva N°{{this.$route.params.codigoReserva}}</h4>
         <p class="category">Completar con los datos</p>
       </md-card-header>
@@ -29,7 +29,7 @@
 <script>
 /* eslint-disable */
 import axios from 'axios';
-const localhost = 'http://159.203.94.72:8060/backend/';
+const localhost = 'http://159.203.94.72:8060/backend';
 import Datepicker from 'vuejs-datepicker'
 import { access } from 'fs';
 var hoy = new Date()

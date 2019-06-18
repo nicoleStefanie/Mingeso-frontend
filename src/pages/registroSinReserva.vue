@@ -24,31 +24,36 @@
         </md-card-header>
         <br>
         <div class="md-layout">
-          <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ingrese los datos del Cliente</label>
-          <div class="md-layout-item md-small-size-100 md-size-100">
+          <div class="md-layout-item md-small-size-100 md-size-100 text-center">
+            <label>Nombre y Apellido del Cliente</label>
             <b-form-input @keyup="validarNombre" v-model="nombre" placeholder="Nombre y Apellido del Cliente"></b-form-input>
             <p class="error" v-if="vatError1">{{vatErrorMsg1}}</p>
           </div>
           <br><br>
-          <div class="md-layout-item md-small-size-100 md-size-50">
+          <div class="md-layout-item md-small-size-100 md-size-50 text-center">
+            <label>Rut</label>
             <b-form-input @keyup="validarRut(rut)" v-model="rut" placeholder="Rut , ej: 191135709"></b-form-input>
             <p class="error" v-if="vatError2">{{vatErrorMsg2}}</p>
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-50">
+          <div class="md-layout-item md-small-size-100 md-size-50 text-center">
+            <label>Teléfono</label>
             <b-form-input @keyup="validarTelefono(telefono)" v-model="telefono" placeholder="Teléfono , ej: 983897060"></b-form-input>
             <p class="error" v-if="vatError3">{{vatErrorMsg3}}</p>
           </div>
-          <br><br>
-          <div class="md-layout-item md-small-size-100 md-size-33">
+          <br><br><br><br>
+          <div class="md-layout-item md-small-size-100 md-size-33 text-center">
+            <label>Correo</label>
             <b-form-input @keyup="validarEmail" v-model="correo" placeholder="Correo , ej: example@example.com"></b-form-input>
             <p class="error" v-if="vatError4">{{vatErrorMsg4}}</p>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33 text-center">
+            <label>Fecha de Nacimiento</label>
             <b-form-input  v-model="fechaNacimiento" type="date" placeholder=" Fecha de Nacimiento"></b-form-input>
           </div>
           <div class="md-layout-item md-small-size-33 md-size-33">
             <b-form-checkbox v-model="representante" aria-placeholder="Representante" value="si" unchecked-value="no">Representante</b-form-checkbox>
           </div>
+          <br><br><br><br>
           <div class="md-layout-item md-size-50 text-left">
             <md-button class="md-raised md-success" style="text-align: left" @click="$router.go(-1)">Volver</md-button>
           </div>

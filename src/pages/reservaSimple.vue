@@ -38,7 +38,7 @@
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33 text-center">
             <label>Descuento</label>
-            <b-form-input  v-model="descuento" type="int" placeholder="Descuento"></b-form-input>
+            <b-form-input  v-model="descuento" type= "number" placeholder="Descuento"></b-form-input>
           </div>
           <br><br><br><br>
           <div class="md-layout-item md-size-50 text-left">
@@ -58,9 +58,8 @@
   import Datepicker from 'vuejs-datepicker';
   import axios from 'axios';
   const localhost = 'http://159.203.94.72:8060/backend/';
-  const localhost2 = 'https://localhost:8060/';
   export default {
-    name: "registroCliente",
+    name: "reserva",
     components: {
       Datepicker
     },
@@ -86,7 +85,9 @@
         vatError4: '',
         vatErrorMsg4: '',
         habitacion: null,
-        representante: 'no',
+        fechaInicio:'',
+        fechaTermino:'',
+        estado : '',
         descuento: '',
         cliente: null,
       }
@@ -99,7 +100,7 @@
         this.rutUsuario = localStorage.getItem('rut');
       },
       createReserva:function(){
-        var url = localhost + '/reservas/create';
+        var url = localhost + 'reservas/create';
         axios.post(url, {
           nombre:this.nombre,
           rut:this.rut,
@@ -107,9 +108,9 @@
           telefono:this.telefono,
           rutUsuario:this.rutUsuario,
           correo:this.correo,
-          fechaInicio:this.fechaInicio,
-          fechaTermino:this.fechaTermino,
-          IdHab:this.habitacion.idHab,
+          fechaInicio:this.$route.params.fechaInicio,
+          fechaTermino:this.$route.params.fechaTermino,
+          IdHab:this.habitacion.idHabitacion,
           estado:'1',
           descuento:this.descuento,
         })

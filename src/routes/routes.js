@@ -2,6 +2,7 @@ import DashboardLayout from '@/pages/Layout/DashboardLayout.vue'
 
 import Rack from '@/pages/Rack.vue'
 import Login from '@/pages/Login.vue'
+import Historial from '@/pages/Historial.vue'
 import Reservas from '@/pages/Reservas.vue'
 import ReservaSimple from '@/pages/ReservaSimple.vue'
 import VistaEliminar from '@/pages/VistaEliminar.vue'
@@ -80,6 +81,11 @@ const routes = [
         path: 'vistaModificar',
         name: 'VistaModificar',
         component: VistaModificar
+      },
+      {
+        path: 'historial',
+        name: 'Historial',
+        component: Historial
       },
       {
         path: 'rack',

@@ -198,7 +198,7 @@
         }
       },
       registrar(){
-        var url = localhost + 'registro/create?idHab='+this.$route.params.idHab+'&&fechaInicio='+this.$route.params.fechaInicio+'&&fechaTermino='+this.$route.params.fechaTermino+'&&descuento='+this.descuento;
+        var url = localhost + 'registro/create?idHab='+this.$route.params.idHab+'&&fechaInicio='+this.$route.params.fechaInicio+'&&fechaTermino='+this.$route.params.fechaTermino+'&&descuento='+this.descuento+'&&user='+localStorage.getItem('user_id');
         axios.post(url,this.items)
           .then(response => {
             alert("Registro exitoso");

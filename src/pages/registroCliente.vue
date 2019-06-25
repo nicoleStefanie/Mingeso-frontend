@@ -219,7 +219,7 @@
           }
         },
         registrar(){
-          var url = localhost + 'registro/create?idHab='+this.$route.params.idHab+'&&fechaInicio='+this.$route.params.fechaInicio+'&&fechaTermino='+this.$route.params.fechaTermino+'&&descuento='+this.reserva.descuento;
+          var url = localhost + 'registro/create?idHab='+this.$route.params.idHab+'&&fechaInicio='+this.$route.params.fechaInicio+'&&fechaTermino='+this.$route.params.fechaTermino+'&&descuento='+this.reserva.descuento+'&&user='+localStorage.getItem('user_id');
           var url2 = localhost + 'reservahabitacion/desactivar?idHab='+this.$route.params.idHab+'&&idReserva='+this.$route.params.idReserva;
           axios.post(url,this.items)
             .then(response => {

@@ -52,6 +52,7 @@ export default{
             localStorage.setItem('login', loginData['login'])
             localStorage.setItem('name', loginData['name'])
             localStorage.setItem('email', loginData['email'])
+            localStorage.setItem('rut', loginData['rut'])
             this.updateComponents(loginData['name'], loginData['role'])
             this.$router.push('Rack')
           }

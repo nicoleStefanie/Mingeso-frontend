@@ -28,20 +28,20 @@
 
                     <template slot-scope="{data}">
                       <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data" >
-                        <vs-td :data="tr.nombreUsuario">
-                          {{tr.nombreUsuario}}
+                        <vs-td :data="tr.Empleado">
+                          {{tr.Empleado}}
                         </vs-td>
 
-                        <vs-td :data="tr.rolUsuario">
-                          {{tr.rolUsuario}}
+                        <vs-td :data="tr.Correo">
+                          {{tr.Correo}}
                         </vs-td>
 
-                        <vs-td :data="tr.correoUsuario">
-                          {{tr.correoUsuario}}
+                        <vs-td :data="tr.Descripcion">
+                          {{tr.Descripcion}}
                         </vs-td>
 
-                        <vs-td :data="tr.rutUsuario">
-                          {{tr.rutUsuario}}
+                        <vs-td :data="tr.Fecha">
+                          {{tr.Fecha}}
                         </vs-td>
                       </vs-tr>
                     </template>
@@ -50,9 +50,6 @@
               </md-card-actions>
             </md-card-content>
             <md-card-actions>
-            <div v-if="isAdmin">
-              <md-button class="md-raised md-success" type="button" :href="'#/agregarEmpleado'" >Agregar Usuario</md-button>
-            </div>
             </md-card-actions>
         </md-card>
     </div>
@@ -75,15 +72,15 @@ export default {
       refresh(){
         location.reload(true);
       },
-      getUsuarios(){
-          const url = localhost + '/usuarios';
+      getHistorial(){
+          const url = localhost + '/historial/history';
           axios.get(url).then((data) => {
             this.items = data.data;
           });
         },
     },
     mounted() {
-      this.getUsuarios();
+      this.getHistorial();
       if (!localStorage.getItem('login')) {
         this.$router.push('Login')
       }

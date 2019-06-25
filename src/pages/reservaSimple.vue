@@ -10,8 +10,6 @@
           <h5 class="title">Agregar cliente a habitación</h5>
         </md-card-header>
         <br>
-        {{"hola"}}
-        {{rutUsuario}}
         <div class="md-layout">
           <div class="md-layout-item md-small-size-100 md-size-50 text-center">
             <label>Rut</label>

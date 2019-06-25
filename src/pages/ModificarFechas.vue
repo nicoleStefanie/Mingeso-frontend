@@ -124,8 +124,14 @@ export default {
         for(var i=0;i<reservas.length;i++){
           if(reservas[i].activa == true){
             if(reservas[i].habitacion.nroHabitacion == this.$route.params.nroHabitacion && reservas[i].reserva.codigoReserva == this.$route.params.codigoReserva){
-              this.fechaInicio = reservas[i].fechaInicioRH;
-              this.fechaTermino = reservas[i].fechaTerminoRH;
+              var auxFechaInicio = reservas[i].fechaInicioRH.split("T")[0];
+              var auxFechaTermino = reservas[i].fechaTerminoRH.split("T")[0];
+              var diaInicio = parseInt(auxFechaInicio.split("-")[2])+1;
+              var diaTermino = parseInt(auxFechaTermino.split("-")[2])+1;
+              var mesInicio = parseInt(auxFechaInicio.split("-")[1])-1;
+              var mesTermino = parseInt(auxFechaTermino.split("-")[1])-1;
+              this.fechaInicio = new Date(auxFechaInicio.split("-")[0], mesInicio, diaInicio);
+              this.fechaTermino = new Date(auxFechaTermino.split("-")[0], mesTermino, diaTermino);
             }
           }
         }

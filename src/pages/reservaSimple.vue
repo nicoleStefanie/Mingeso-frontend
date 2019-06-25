@@ -2,7 +2,7 @@
   <div class="container">
     <md-card>
       <md-card-header data-background-color="green" style="position: relative;">
-        <h3 class="title">Reservar la Habitación n°{{this.habitacion.nroHabitacion}}</h3>
+        <h3 class="title">Reservar la Habitación n°{{this.nroHabitacion}}</h3>
       </md-card-header>
       <md-card-content>
         <br>
@@ -90,6 +90,7 @@
         estado : '',
         descuento: '',
         cliente: null,
+        nroHabitacion: 0,
       }
     },
     methods: {
@@ -113,7 +114,7 @@
           IdHab:this.habitacion.idHabitacion,
           estado:'1',
           descuento:this.descuento,
-        })
+        }, { useCredentails: true })
         .then(response => {
           this.nombre = "";
           this.rut = "";
@@ -193,6 +194,7 @@
         const url = localhost + 'habitaciones/'+ this.$route.params.idHab;
         axios.get(url).then((data) => {
           this.habitacion = data.data;
+          this.nroHabitacion = this.habitacion.nroHabitacion;
         });
       },
       getCliente(){

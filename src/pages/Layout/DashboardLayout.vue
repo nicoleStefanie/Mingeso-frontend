@@ -43,6 +43,11 @@
         <p>Usuarios</p>
       </sidebar-link>
 
+      <sidebar-link to="/historial" v-if="isAdmin">
+        <md-icon>poll</md-icon>
+        <p>Historial</p>
+      </sidebar-link>
+
       <sidebar-link to="/servicios">
         <md-icon>notifications</md-icon>
         <p>Servicios</p>

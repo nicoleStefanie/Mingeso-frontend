@@ -113,7 +113,7 @@
           IdHab:this.habitacion.idHabitacion,
           estado:'1',
           descuento:this.descuento,
-        })
+        }, { useCredentails: true })
         .then(response => {
           this.nombre = "";
           this.rut = "";

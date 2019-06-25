@@ -2,7 +2,7 @@
   <div class="container">
     <md-card>
       <md-card-header data-background-color="green" style="position: relative;">
-        <h3 class="title">Reservar Habitación n°{{this.habitacion.nroHabitacion}}</h3>
+        <h3 class="title">Reservar la Habitación n°{{this.habitacion.nroHabitacion}}</h3>
       </md-card-header>
       <md-card-content>
         <br>

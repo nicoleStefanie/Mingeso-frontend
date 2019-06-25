@@ -125,7 +125,7 @@ const routes = [
 
       },
       {
-        path: 'modificarfechas/:codigoReserva/:idHabitacion',
+        path: 'modificarfechas/:codigoReserva/:nroHabitacion/:idHabitacion',
         name: 'modificarfechas',
         component: ModificarFechas
 

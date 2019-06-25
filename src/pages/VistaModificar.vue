@@ -60,9 +60,9 @@
                 </vs-td>
                 <template class="expand-user" slot="expand">
                   <div>
-                    <md-button type="button" :href="'#/modificartodo/'+ tr.codigoReserva" >Editar todos los datos</md-button>
-                    <md-button type="button" :href="'#/modificarfechas/'+ tr.codigoReserva +'/'+ tr.nroHabitacion">Editar fecha de reserva</md-button>
-                    <md-button type="button" @click="eliminaReserva(tr.codigoReserva)">Eliminar reserva</md-button>
+                    <md-button class="md-raised md-success" type="button" :href="'#/modificartodo/'+ tr.codigoReserva" >Editar todos los datos</md-button>
+                    <md-button class="md-raised md-success" type="button" :href="'#/modificarfechas/'+tr.codigoReserva+'/'+tr.nroHabitacion+'/'+tr.idHab">Editar fecha de reserva</md-button>
+                    <md-button class="md-raised md-danger" type="button" @click="eliminaReserva(tr.codigoReserva)">Eliminar reserva</md-button>
                   </div>
                 </template>
               </vs-tr>
@@ -109,8 +109,7 @@ export default {
         url = url + idString;
         axios.post(url, {})
         .then(response => {
-          alert(response.data[0].message);
-          console.log(response.data.message);
+          this.$vs.notify({title:'Se eliminó la reserva correctamente.',color:'success',position:'bottom-center'});
         })
         .catch(e => {
           this.errors.push(e)

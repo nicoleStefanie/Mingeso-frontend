@@ -9,51 +9,52 @@
         <br>
         <div class="md-layout">
           <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ingrese los datos del Usuario que esta haciendo la reserva</label>
-          <div class="md-layout-item md-small-size-100 md-size-80">
+          <div class="md-layout-item md-small-size-100 md-size-70">
                 <b-form-input @keyup="validarrut(rutUsuario)" v-model="rutUsuario" placeholder="Rut Usuario , ej: 191135709"></b-form-input>
                 <p class="error" v-if="vatError">{{vatErrorMsg}}</p>
           </div>
           <br><br><br>
           <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ingrese la información del cliente y de la reserva.</label>
-          <div class="md-layout-item md-small-size-100 md-size-80">
+          <div class="md-layout-item md-small-size-100 md-size-70">
                 <b-form-input @keyup="validarNombre" v-model="nombre" placeholder="Nombre y Apellido del Cliente"></b-form-input>
-                <p class="error" v-if="vatError1">{{vatErrorMsg1}}</p>
+                <p class="error" v-if="vatError1">{{vatErrorMsg1}}</p><br>
           </div>
           <br><br><br>
-          <div class="md-layout-item md-small-size-100 md-size-40">
-                <b-form-input @keyup="validarRut(rut)" v-model="rut" placeholder="Rut , ej: 191135709"></b-form-input>
+          <div class="md-layout-item md-small-size-400 md-size-35">
+                <b-form-input @keyup="validarRut(rut)" v-model="rut" placeholder="Rut, ej: 191135709"></b-form-input>
                 <p class="error" v-if="vatError2">{{vatErrorMsg2}}</p>
           </div>
           <br><br><br>
-          <div class="md-layout-item md-small-size-100 md-size-40">
+          <div class="md-layout-item md-small-size-100 md-size-80">
               <datepicker v-model="fechaNacimiento" type="date" placeholder=" Fecha de Nacimiento"></datepicker>
                 <p v-if="fechaNacimiento">{{ dateFormat(fechaNacimiento) }}</p>
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-30">
+          <br><br><br>
+          <div class="md-layout-item md-small-size-100 md-size-35">
                 <b-form-input @keyup="validarTelefono(telefono)" v-model="telefono" placeholder="Teléfono , ej: 983897060"></b-form-input>
                   <p class="error" v-if="vatError3">{{vatErrorMsg3}}</p>
           </div>
           <br><br><br>
-          <div class="md-layout-item md-small-size-100 md-size-50">
+          <div class="md-layout-item md-small-size-100 md-size-70">
                 <b-form-input @keyup="validarEmail" v-model="correo" placeholder="Correo , ej: example@example.com"></b-form-input>
                   <p class="error" v-if="vatError4">{{vatErrorMsg4}}</p>
           </div>
           <br><br><br>
-          <div class="md-layout-item md-small-size-100 md-size-40">
+          <div class="md-layout-item md-small-size-100 md-size-35">
                 <b-form-input  @keyup="validarDescuento" v-model="descuento" placeholder="Descuento"></b-form-input>
                 <p class="error" v-if="vatError6">{{vatErrorMsg6}}</p>
           </div>
           <br><br><br>
-            <div class="md-layout-item md-small-size-100 md-size-30">
+            <div class="md-layout-item md-small-size-100 md-size-70">
                   <b-form-input  @keyup="validarIdHab" v-model="IdHab" placeholder="ID Habitación"></b-form-input>
             </div>-
           <br><br><br>
-          <div class="md-layout-item md-small-size-100 md-size-33">
+          <div class="md-layout-item md-small-size-100 md-size-80">
               <datepicker format="yyyy-MM-dd" :disabledDates="fechasInicio" v-model="fechaInicio" type="date"  placeholder=" Fecha inicio"></datepicker>
                 <p v-if="fechaInicio">{{ fechaInicio }}</p>
           </div>
           <br><br><br>
-          <div class="md-layout-item md-small-size-100 md-size-33">
+          <div class="md-layout-item md-small-size-100 md-size-80">
               <datepicker :disabledDates="fechasTermino" v-model="fechaTermino" type="date"  placeholder=" Fecha Termino"></datepicker>
           </div>
             <!--<div v-if= "fechaInicio && fechaTermino">

@@ -2,7 +2,7 @@
   <form id="simple" charset=UTF-8″>
     <md-card>
       <md-card-header>
-        <h4 class="title">Crear Reserva Simple</h4>
+        <h3 class="title">Reservar Habitación n°{{this.habitacion.nroHabitacion}}</h3>
         <p class="category">Completar con los datos</p>
       </md-card-header>
       <md-card-content>
@@ -56,7 +56,7 @@
           <div class="md-layout-item md-small-size-100 md-size-80">
               <datepicker format="yyyy-MM-dd" :disabledDates="fechasTermino" v-model="fechaTermino" type="date"  placeholder=" Fecha Termino"></datepicker>
           </div>
-            <!--<div v-if= "fechaInicio && fechaTermino">
+            <div v-if= "fechaInicio && fechaTermino">
               <b-table
                 selectable
                 :select-mode="selectMode"
@@ -66,7 +66,7 @@
                 @row-selected="rowSelected3"
               ></b-table>
               {{items}}
-            </div>-->
+            </div>
           <div class="md-layout-item md-size-100 text-right">
             <md-button class="md-raised md-success" :href="'#/reservas'">Cancelar</md-button>
             &nbsp;&nbsp;
@@ -196,6 +196,12 @@ export default {
       });
 
      },
+     getHabitaciones(){
+       const url = localhost + '/habitaciones/filtrar?fechaInicio='+this.fechaInicio+'&&fechaTermino='+this.fechaTermino+'&&tipo='+ 'Simple';
+       axios.get(url).then((data) => {
+         this.items = data.data;
+       });
+       },
     dateFormat: function(date) {
       if(date.getMonth()< 10 && date.getDate() < 10)
       {
@@ -325,7 +331,8 @@ export default {
   mounted () {
     if (!localStorage.getItem('login')) {
       this.$router.push('Login')
-    }
+    };
+    this.getHabitaciones();
   }
 };
 </script>

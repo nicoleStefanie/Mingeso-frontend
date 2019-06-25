@@ -7,14 +7,14 @@
       <md-card-content>
          <div class="md-layout-item md-size-100">
            <div class="places-buttons text-center">
-                  <md-button type="button"  :href="'#/reservaSimple'" class=" md-primary md-wd md-sm md-theme-default">
+                  <md-button type="button"  :href="'#/filtrarReserva'" class=" md-primary md-wd md-sm md-theme-default">
                     <div class="md-ripple">
                       <div class="md-button-content"><b>Simple</b></div>
                         <span></span>
                     </div>
                    </md-button>
                    <br>
-                   <md-button type="button" :href="'#/reservaMultiple'" class="md-primary md-wd md-sm md-theme-default">
+                   <md-button type="button" :href="'#/filtrarReserva'" class="md-primary md-wd md-sm md-theme-default">
                       <div class="md-ripple">
                          <div class="md-button-content"><b>Múltiple</b></div>
                          <span></span>

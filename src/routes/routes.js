@@ -30,6 +30,9 @@ import registroCliente from "../pages/registroCliente";
 import filtrarHabitaciones from "../pages/filtrarHabitaciones";
 import seleccionarHabitacion from "../pages/seleccionarHabitacion";
 import registroSinReserva from "../pages/registroSinReserva";
+import filtrarReserva from "../pages/filtrarReserva";
+import seleccionarReservaSimple from "../pages/seleccionarReservaSimple";
+import reservaSimple from "../pages/reservaSimple";
 /*##############################################################*/
 
 const routes = [
@@ -182,14 +185,30 @@ const routes = [
         component: filtrarHabitaciones
       },
       {
+        path: 'filtrarReserva',
+        name: 'filtrarReserva',
+        component: filtrarReserva
+      },
+      {
         path: 'seleccionarHabitacion/:fechaInicio/:fechaTermino/:tipo',
         name: 'seleccionarHabitacion',
         component: seleccionarHabitacion
       },
       {
+        path: 'seleccionarReservaSimple/:fechaInicio/:fechaTermino/:tipo',
+        name: 'seleccionarReservaSimple',
+        component: seleccionarReservaSimple
+      },
+      {
         path: 'registroSinReserva/:idHab/:fechaInicio/:fechaTermino',
         name: 'registroSinReserva',
         component: registroSinReserva
+      },
+
+      {
+        path: 'reservaSimple/:idHab/:fechaInicio/:fechaTermino',
+        name: 'reservaSimple',
+        component: reservaSimple
       },
     ]
   }

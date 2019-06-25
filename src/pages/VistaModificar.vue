@@ -1,34 +1,77 @@
 <template>
   <div class="container">
-        <md-card>
-          <md-card-header data-background-color="green" style="position: relative;">
-            <h3 class="title">Reservas</h3>
-          </md-card-header>
-            <md-card-content>
-            <div>
-              <b-table
-                selectable
-                :select-mode="selectMode"
-                selectedVariant="success"
-                :items="items"
-                :fields = "fields"
-                @row-selected="rowSelected"
-              ></b-table>
-            </div>
-              <md-card-actions>
-              <div  v-if="selected !== null">
-                <md-button type="button" :href="'#/modificartodo/'+ this.codigoreserva" >Editar todos los datos</md-button>
-                <md-button type="button" :href="'#/modificarfechas/'+ this.codigoreserva +'/'+ this.idHabitacion ">Editar fecha de reserva</md-button>
-                <md-button type="button" @click="eliminaReserva()">Eliminar reserva</md-button>
-              </div>
-              </md-card-actions>
-            </md-card-content>
-            <md-card-actions>
-            <div>
-            </div>
-            </md-card-actions>
-        </md-card>
-    </div>
+    <md-card>
+      <md-card-header data-background-color="green" style="position: relative;">
+        <h3 class="title">Reservas</h3>
+      </md-card-header>
+      <md-card-content>
+        <div>
+          <vs-table
+            search
+            max-items="10"
+            pagination
+            :data="items"
+            class="text-center">
+            <template slot="thead">
+              <vs-th style="max-width: 15%;">
+                Código reserva
+              </vs-th>
+              <vs-th style="max-width: 15%;">
+                Rut
+              </vs-th>
+              <vs-th style="max-width: 15%;">
+                Estado
+              </vs-th>
+              <vs-th style="max-width: 15%;">
+                Nombre cliente
+              </vs-th>
+              <vs-th style="max-width: 10%;">
+                Número habitación
+              </vs-th>
+              <vs-th style="max-width: 15%;">
+                Fecha inicio
+              </vs-th>
+              <vs-th style="max-width: 15%;">
+                Fecha termino
+              </vs-th>
+            </template>
+            <template slot-scope="{data}">
+              <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data" >
+                <vs-td :data="tr.codigoReserva">
+                  {{tr.codigoReserva}}
+                </vs-td>
+                <vs-td :data="tr.rut">
+                  {{tr.rut}}
+                </vs-td>
+                <vs-td :data="tr.estado">
+                  {{tr.estado}}
+                </vs-td>
+                <vs-td :data="tr.nombreCliente">
+                  {{tr.nombreCliente}}
+                </vs-td>
+                <vs-td :data="tr.nroHabitacion">
+                  {{tr.nroHabitacion}}
+                </vs-td>
+                <vs-td :data="tr.fechaInicio">
+                  {{tr.fechaInicio}}
+                </vs-td>
+                <vs-td :data="tr.fechaTermino">
+                  {{tr.fechaTermino}}
+                </vs-td>
+                <template class="expand-user" slot="expand">
+                  <div>
+                    <md-button type="button" :href="'#/modificartodo/'+ tr.codigoReserva" >Editar todos los datos</md-button>
+                    <md-button type="button" :href="'#/modificarfechas/'+ tr.codigoReserva +'/'+ tr.nroHabitacion">Editar fecha de reserva</md-button>
+                    <md-button type="button" @click="eliminaReserva(tr.codigoReserva)">Eliminar reserva</md-button>
+                  </div>
+                </template>
+              </vs-tr>
+            </template>
+          </vs-table>
+        </div>
+      </md-card-content>
+    </md-card>
+  </div>
 </template>
 
 <script>
@@ -40,46 +83,32 @@ export default {
     },
     data(){
       return{
-        fields: [ "codigoReserva",
-            "rut",
-            "estado",
-            "idCliente",
-            "nombreCliente",
-            "fechaInicio",
-            "fechaTermino",
-            "nroHabitacion"],
         items:[],
         errors:[],
-        itemsCompleto: [],
-        selectMode: 'single',
-        selected: null,
-        codigoreserva: null,
-        idHabitacion:[],
-        arreglo : null,
-        estado:'',
       }
     },
     methods: {
       getReservas(){
-          const url = localhost + '/reservas/mostrarReservas/';
+          const url = localhost + '/reservas/mostrarReservas';
           axios.get(url).then((data) => {
             this.items = data.data;
+            for(var i=0;i<this.items.length;i++){
+              if(this.items[i].estado == 0){
+                this.items[i].estado = "Cancelada";
+              } else {
+                this.items[i].estado = "Vigente";
+              }
+              this.items[i].fechaInicio = this.items[i].fechaInicio.split(" ")[0];
+              this.items[i].fechaTermino = this.items[i].fechaTermino.split(" ")[0];
+            }
           });
         },
-      rowSelected(items) {
-        this.selected = items;
-        this.codigoreserva = this.selected[0].codigoReserva;
-        this.idHabitacion = this.selected[0].idHab;
-      },
-      eliminaReserva() {
+      eliminaReserva(codigo) {
         var url = localhost + '/reservas/delete/';
-        var idString = "" + this.codigoreserva;
+        var idString = "" + codigo;
         url = url + idString;
         axios.post(url, {})
-
         .then(response => {
-
-          this.estado = "";
           alert(response.data[0].message);
           console.log(response.data.message);
         })

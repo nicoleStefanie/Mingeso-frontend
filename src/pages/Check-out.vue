@@ -317,6 +317,7 @@ export default {
         var postComprobante = new Array();
         var url = localhost + '/comprobante/create';
         var ok = true;
+        console.log(this.registrosCheckOut.length);
         for(var i=0;i<this.registrosCheckOut.length;i++){
           postComprobante.push({idRegistro: this.registrosCheckOut[i].registro.idRegistro,
           fechaInicio: this.registrosCheckOut[i].registro.fechaInicio,

@@ -51,11 +51,10 @@
           <br><br><br>
           <div class="md-layout-item md-small-size-100 md-size-80">
               <datepicker format="yyyy-MM-dd" :disabledDates="fechasInicio" v-model="fechaInicio" type="date"  placeholder=" Fecha inicio"></datepicker>
-                <p v-if="fechaInicio">{{ fechaInicio }}</p>
           </div>
           <br><br><br>
           <div class="md-layout-item md-small-size-100 md-size-80">
-              <datepicker :disabledDates="fechasTermino" v-model="fechaTermino" type="date"  placeholder=" Fecha Termino"></datepicker>
+              <datepicker format="yyyy-MM-dd" :disabledDates="fechasTermino" v-model="fechaTermino" type="date"  placeholder=" Fecha Termino"></datepicker>
           </div>
             <!--<div v-if= "fechaInicio && fechaTermino">
               <b-table

@@ -9,11 +9,11 @@
         <div class="md-layout">
           <div class="md-layout-item md-small-size-100 md-size-40">
             <label>Fecha de Inicio</label>
-            <b-form-input v-model="fechaInicio" placeholder="Fecha Inicio" type="date"></b-form-input>
+            <b-form-input v-model="fechaInicio" @change="maximo" placeholder="Fecha Inicio" type="date" v-bind:min="today" v-bind:max="maxInicio"></b-form-input>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-40">
             <label>Fecha de Termino</label>
-            <b-form-input  v-model="fechaTermino" placeholder="Fecha Termino" type="date"></b-form-input>
+            <b-form-input  v-model="fechaTermino" @change="minimo" placeholder="Fecha Termino" type="date" v-bind:min="minTermino"></b-form-input>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-20">
             <label>Tipo de Habitación</label>
@@ -23,7 +23,6 @@
                 <vs-select-item value="Triple" text="Triple"/>
                 <vs-select-item value="Cuadruple" text="Cuadruple"/>
                 <vs-select-item value="Matrimonial" text="Matrimonial"/>
-                <vs-select-item value="Inhabilitada" text="Inhabilitada"/>
               </vs-select>
           </div>
           <br><br>
@@ -45,6 +44,9 @@
           fechaTermino: '',
           fechaInicio: '',
           tipo: 'Simple',
+          today: new Date().toISOString().slice(0, 10),
+          minTermino: new Date().toISOString().slice(0,10),
+          maxInicio: '',
         }
       },
       methods: {
@@ -56,6 +58,12 @@
             alert("No se han ingresado datos a todos los campos");
           }
         },
+        maximo(){
+          this.minTermino= this.fechaInicio;
+        },
+        minimo(){
+          this.maxInicio = this.fechaTermino;
+        }
       },
     }
 

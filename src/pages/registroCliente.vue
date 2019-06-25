@@ -24,15 +24,9 @@
           </md-card-header>
           <br>
           <div class="md-layout">
-            <div class="md-layout-item md-small-size-100 md-size-100 text-center">
-              <label>Nombre y Apellido del Cliente</label>
-              <b-form-input @keyup="validarNombre" v-model="nombre" placeholder="Nombre y Apellido del Cliente"></b-form-input>
-              <p class="error" v-if="vatError1">{{vatErrorMsg1}}</p>
-            </div>
-            <br><br>
             <div class="md-layout-item md-small-size-100 md-size-50 text-center">
               <label>Rut</label>
-              <b-form-input @keyup="validarRut(rut)" v-model="rut" placeholder="Rut , ej: 191135709"></b-form-input>
+              <b-form-input @keyup="validarRut(rut)" @change="getCliente" v-model="rut" placeholder="Rut , ej: 191135709"></b-form-input>
               <p class="error" v-if="vatError2">{{vatErrorMsg2}}</p>
             </div>
             <div class="md-layout-item md-small-size-100 md-size-50 text-center">
@@ -40,7 +34,12 @@
               <b-form-input @keyup="validarTelefono(telefono)" v-model="telefono" placeholder="Teléfono , ej: 983897060"></b-form-input>
               <p class="error" v-if="vatError3">{{vatErrorMsg3}}</p>
             </div>
-            <br><br><br><br>
+            <div class="md-layout-item md-small-size-100 md-size-100 text-center" style="margin-top: 1%">
+              <label>Nombre y Apellido del Cliente</label>
+              <b-form-input @keyup="validarNombre" v-model="nombre" placeholder="Nombre y Apellido del Cliente"></b-form-input>
+              <p class="error" v-if="vatError1">{{vatErrorMsg1}}</p>
+            </div>
+            <br><br>
             <div class="md-layout-item md-small-size-100 md-size-33 text-center">
               <label>Correo</label>
               <b-form-input @keyup="validarEmail" v-model="correo" placeholder="Correo , ej: example@example.com"></b-form-input>
@@ -51,7 +50,7 @@
               <b-form-input  v-model="fechaNacimiento" type="date" placeholder=" Fecha de Nacimiento"></b-form-input>
             </div>
             <div class="md-layout-item md-small-size-33 md-size-33">
-              <b-form-checkbox v-model="representante" aria-placeholder="Representante" value="si" unchecked-value="no">Representante</b-form-checkbox>
+              <b-form-checkbox v-model="representante" aria-placeholder="Representante" value="si" style="margin-top: 10%" unchecked-value="no" :disabled="hayRepresentante">Representante</b-form-checkbox>
             </div>
             <br><br><br><br>
             <div class="md-layout-item md-size-50 text-left">
@@ -107,6 +106,8 @@
           vatErrorMsg4: '',
           habitacion: null,
           representante: 'no',
+          cliente: null,
+          hayRepresentante: false,
         }
       },
       methods: {
@@ -122,9 +123,6 @@
         },
         rowSelected(items) {
           this.selected = items;
-          this.habitacion = this.selected[0].idHab;
-          this.fechaInicio = this.selected[0].fechaInicio;
-          this.fechaTermino = this.selected[0].fechaTermino;
         },
         dateFormat: function(date) {
           if(date.getMonth()< 10 && date.getDate() < 10)
@@ -206,6 +204,9 @@
               fechaNacimiento: this.fechaNacimiento,
               representante: this.representante,
             });
+            if(this.representante == 'si'){
+              this.hayRepresentante = true;
+            }
             this.nombre = '';
             this.rut = '';
             this.telefono = '';
@@ -227,6 +228,20 @@
                 location.href ="#/reservaHabitacion/"+this.$route.params.idReserva;
               })
             })
+        },
+        getCliente(){
+          var url = localhost+'clientes/rut/'+this.rut;
+          if(!this.vatError2){
+            axios.get(url).then((data) => {
+              this.cliente = data.data;
+              if(this.cliente != null){
+                this.nombre = this.cliente.nombreCliente;
+                this.telefono = this.cliente.telefonoCliente;
+                this.correo = this.cliente.correoCliente;
+                this.fechaNacimiento = this.cliente.fechaNacimiento.slice(0,10);
+              }
+            });
+          }
         }
       },
       mounted() {

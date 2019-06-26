@@ -218,7 +218,6 @@ export default {
           serviciosAsociados: [],
           total: 0,
           currency: 'CLP',
-          newCurrency: 'EUR',
         }
     },
     methods: {
@@ -235,17 +234,6 @@ export default {
         } else {
           this.$vs.notify({title:'Debe seleccionar al menos un registro.',color:'danger',position:'bottom-center'});
         }
-      },
-      changeCurrency(){
-        var url = 'https://v2.api.forex/rates/latest.json?beautify=true&key=95a52ac5-c363-4208-a48d-e7b0414d93a3&from=' + this.newCurrency;
-        console.log(url);
-        axios.get(url, { useCredentails: true }).then((data) => {
-          if (data['data']['success']) {
-            var change = data['data']['rates'][this.currency];
-            console.log(change);
-            this.currency = this.newCurrency;
-          }
-        })
       },
       validar(){
         if(this.nroHabitacion && this.registro){
@@ -349,7 +337,6 @@ export default {
     },
     mounted() {
       this.registrosCheckOut = new Array();
-      this.changeCurrency();
       if (!localStorage.getItem('login')) {
         this.$router.push('Login')
       }

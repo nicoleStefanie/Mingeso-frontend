@@ -86,6 +86,7 @@ export default {
       }
       if (localStorage.getItem('role') != 'Administrador') {
         this.isAdmin = false
+        this.$router.push('Rack')
       }
       else {
         this.isAdmin = true

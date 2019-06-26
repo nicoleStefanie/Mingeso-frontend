@@ -134,11 +134,11 @@
                   </vs-td>
 
                   <vs-td :data="tr.registro.precio">
-                    ${{tr.registro.precio}} CLP
+                    ${{tr.registro.precio}} {{currency}}
                   </vs-td>
 
                   <vs-td :data="tr.total">
-                    ${{tr.total}} CLP
+                    ${{tr.total}} {{currency}}
                   </vs-td>
 
                   <template class="expand-user" slot="expand">
@@ -176,7 +176,7 @@
                             </vs-td>
 
                             <vs-td :data="tr.precio">
-                              ${{tr.precio}} CLP
+                              ${{tr.precio}} {{currency}}
                             </vs-td>
                           </vs-tr>
                         </template>
@@ -217,6 +217,9 @@ export default {
           registroServicio: [],
           serviciosAsociados: [],
           total: 0,
+          currency: 'CLP',
+          newCurrency: 'CLP',
+          currencies: [],
         }
     },
     methods: {
@@ -232,6 +235,23 @@ export default {
           this.registrosCheckOut = nuevosRegistrosCheckOut;
         } else {
           this.$vs.notify({title:'Debe seleccionar al menos un registro.',color:'danger',position:'bottom-center'});
+        }
+      },
+      getCurrency(){
+        var url = "http://www.apilayer.net/api/live?access_key=b3d5d44276e36134a7c3fc415ec35502&format=1";
+        axios.get(url).then((data) => {
+          if (data['data']['source'] === 'USD' && data['data']['success']) {
+            this.currencies = data['data']['quotes'];
+            console.log(this.currencies[0]);
+          }
+        })
+      },
+      changeCurrency(){
+        if (this.currency === 'CLP') {
+          if (this.newCurrency === 'EUR') {
+            this.currency = 'EUR';
+
+          }
         }
       },
       validar(){
@@ -336,6 +356,7 @@ export default {
     },
     mounted() {
       this.registrosCheckOut = new Array();
+      getCurrency();
       if (!localStorage.getItem('login')) {
         this.$router.push('Login')
       }

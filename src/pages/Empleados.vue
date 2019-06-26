@@ -15,16 +15,16 @@
                     :data="items"
                     class="text-center">
                     <template slot="thead">
-                      <vs-th style="max-width: 25%;">
+                      <vs-th style="width: 25%;">
                         Nombre
                       </vs-th>
-                      <vs-th style="max-width: 25%;">
+                      <vs-th style="width: 25%;">
                         Rol
                       </vs-th>
-                      <vs-th style="max-width: 25%;">
+                      <vs-th style="width: 25%;">
                         Correo
                       </vs-th>
-                      <vs-th style="max-width: 25%;">
+                      <vs-th style="width: 25%;">
                         Rut
                       </vs-th>
                     </template>

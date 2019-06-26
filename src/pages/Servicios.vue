@@ -15,16 +15,16 @@
                     :data="items"
                     class="text-center">
                     <template slot="thead">
-                      <vs-th style="max-width: 20%;">
+                      <vs-th style="width: 20%;">
                         Servicio
                       </vs-th>
-                      <vs-th style="max-width: 50%;position: relative;">
+                      <vs-th style="width: 50%;position: relative;">
                         Descripción
                       </vs-th>
-                      <vs-th style="max-width: 15%;">
+                      <vs-th style="width: 15%;">
                         Categoría
                       </vs-th>
-                      <vs-th style="max-width: 15%;">
+                      <vs-th style="width: 15%;">
                         Precio
                       </vs-th>
                     </template>

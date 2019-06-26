@@ -12,16 +12,16 @@
                     :data="items"
                     class="text-center">
                     <template slot="thead">
-                      <vs-th style="max-width: 15%;">
+                      <vs-th style="width: 15%;">
                         Empleado
                       </vs-th>
-                      <vs-th style="max-width: 15%;">
+                      <vs-th style="width: 15%;">
                         correo
                       </vs-th>
-                      <vs-th style="max-width: 55%;">
+                      <vs-th style="width: 55%;">
                         Descripción
                       </vs-th>
-                      <vs-th style="max-width: 15%;">
+                      <vs-th style="width: 15%;">
                         Fecha
                       </vs-th>
                     </template>

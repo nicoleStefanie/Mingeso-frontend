@@ -15,19 +15,19 @@
                     :data="items"
                     class="text-center">
                     <template slot="thead">
-                      <vs-th style="max-width: 20%;">
+                      <vs-th style="width: 20%;">
                         Número de habitación
                       </vs-th>
-                      <vs-th style="max-width: 20%;">
+                      <vs-th style="width: 20%;">
                         Capacidad Adultos
                       </vs-th>
-                      <vs-th style="max-width: 20%;">
+                      <vs-th style="width: 20%;">
                         Capacidad Niños
                       </vs-th>
-                      <vs-th style="max-width: 20%;">
+                      <vs-th style="width: 20%;">
                         Precio por Noche
                       </vs-th>
-                      <vs-th style="max-width: 20%;">
+                      <vs-th style="width: 20%;">
                         Tipo de habitación
                       </vs-th>
                     </template>

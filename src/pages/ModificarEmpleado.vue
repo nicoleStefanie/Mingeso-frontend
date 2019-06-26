@@ -13,7 +13,7 @@
                             <md-input v-model="nombre_usuario" type="text"></md-input>
                         </md-field>
                     </div>
-                    <div class="md-layout-item md-small-size-100 md-size-50">
+                    <div class="md-layout-item md-small-size-100 md-size-30">
                         <md-field>
                             <label>Rut - Sin Guión</label>
                             <md-input v-model="rut_usuario" type="number"></md-input>
@@ -21,7 +21,7 @@
                     </div>
                     <div class="md-layout-item md-small-size-100 md-size-30">
                         <md-field>
-                          <vs-select v-model="rol_usuario" placeholder="Seleccione un rol de usuario">
+                          <vs-select width=100% v-model="rol_usuario" placeholder="Seleccione un rol de usuario">
                             <vs-select-item value="Operario" text="Operario"/>
                             <vs-select-item value="Administrador" text="Administrador"/>
                           </vs-select>

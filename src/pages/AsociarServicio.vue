@@ -1,7 +1,7 @@
 <template>
   <div class="container">
       <md-card>
-        <md-card-header data-background-color="green" style="position: relative;">
+        <md-card-header data-background-color="purple" style="position: relative;">
           <h3 class="title">Asociar Servicio</h3>
         </md-card-header>
         <md-card-content v-show="step1">

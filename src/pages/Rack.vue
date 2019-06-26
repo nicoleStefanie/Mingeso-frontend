@@ -1,8 +1,8 @@
 <template>
   <div class="container">
         <md-card>
-          <md-card-header data-background-color="green" style="position: relative;">
-            <h3 class="title">Visualizar el Rack (2019 - DIINF USACH)</h3>
+          <md-card-header data-background-color="purple" style="position: relative;">
+            <h3 class="title md-size-70" align="center">Rack Hotel</h3>
           </md-card-header>
             <md-card-content>
               <div class="md-layout">
@@ -142,11 +142,12 @@ export default {
                     "event": "clickGraphItem",
                     "method": function(e) {
                       var ventana = window.open( "", "nombrePop-Up", "width=380,height=300, top=85,left=50");
-                      ventana.document.write("Información de la reserva: <br><br> Código: " + e.graph.segmentData.codigoReserva +
+                      ventana.document.write("Información de la reserva: <br><br>" +
+                      "<br>Cliente: " + e.graph.segmentData.cliente +
                       "<br>Fecha inicio: " + e.graph.segmentData.start +
                       "<br>Fecha término: " + e.graph.segmentData.end +
-                      "<br>Estado: " + e.graph.segmentData.tipo +
-                      "<br>Cliente: " + e.graph.segmentData.cliente + "<br><br>");
+                      "<br>Estado Reserva: " + e.graph.segmentData.tipo +
+                      "<br><br>");
 
                     }
                   }],

@@ -9,13 +9,13 @@
                 <div class="md-layout">
                     <div class="md-layout-item md-small-size-100 md-size-40">
                         <md-field>
-                            <label>N° de habitacion</label>
+                            <label>&nbsp;&nbsp;N° de habitacion</label>
                             <md-input v-model="nroHabitacion" type="number" min="1"></md-input>
                         </md-field>
                     </div>
-                    <div class="md-layout-item md-small-size-100 md-size-60">
-                        <md-field>
-                          <vs-select v-model="tipo" placeholder="Seleccione un tipo de habitación">
+                    <div class="md-layout-item md-small-size-100 md-size-40">
+                      <md-field>
+                          <vs-select width=100% v-model="tipo" placeholder="Seleccione un tipo de habitación">
                             <vs-select-item value="Simple" text="Simple"/>
                             <vs-select-item value="Doble" text="Doble"/>
                             <vs-select-item value="Triple" text="Triple"/>
@@ -23,7 +23,7 @@
                             <vs-select-item value="Matrimonial" text="Matrimonial"/>
                             <vs-select-item value="Inhabilitada" text="Inhabilitada"/>
                           </vs-select>
-                        </md-field>
+                      </md-field>    
                     </div>
                     <div class="md-layout-item md-small-size-100 md-size-40">
                         <md-field>

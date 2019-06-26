@@ -3,6 +3,7 @@
     <div class="logo">
       <a href="#" class="simple-text logo-mini">
         <div class="logo-img">
+          <img :src="imgLogo" alt="">
         </div>
       </a>
 
@@ -38,7 +39,7 @@ export default{
   props: {
     title: {
       type: String,
-      default: 'Hotel'
+      default: 'Hotel Mingeso'
     },
     backgroundImage: {
       type: String,
@@ -46,7 +47,7 @@ export default{
     },
     imgLogo: {
       type: String,
-      //default: require('@/assets/img/twitter-logo.png')
+      default: require('@/assets/img/descarga.png')
     },
     activeColor: {
       type: String,
@@ -73,7 +74,6 @@ export default{
   computed: {
     sidebarStyle () {
       return {
-        backgroundImage: `url(${this.backgroundImage})`
       }
     }
   }

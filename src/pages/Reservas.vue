@@ -1,32 +1,23 @@
 <template>
   <div class="container">
     <md-card>
-      <md-card-header>
+      <md-card-header data-background-color="purple" style="position: relative;">
         <div class="md-title">Realizar Reserva</div>
       </md-card-header>
       <md-card-content>
+        Elija el tipo de reserva que quiere realizar.<br>
          <div class="md-layout-item md-size-100">
            <div class="places-buttons text-center">
-                  <md-button type="button"  :href="'#/filtrarReserva'" class=" md-primary md-wd md-sm md-theme-default">
-                    <div class="md-ripple">
-                      <div class="md-button-content"><b>Simple</b></div>
-                        <span></span>
-                    </div>
-                   </md-button>
+                  <md-button class="md-raised md-danger" :href="'#/filtrarReserva'">Simple</md-button>
                    <br>
-                   <md-button type="button" :href="'#/filtrarReserva'" class="md-primary md-wd md-sm md-theme-default">
-                      <div class="md-ripple">
-                         <div class="md-button-content"><b>Múltiple</b></div>
-                         <span></span>
-                      </div>
-                  </md-button>
+                  <md-button class="md-raised md-warning" :href="'#/filtrarReserva'">Múltiple</md-button>
                   <br>
               </div>
           </div>
       </md-card-content>
     </md-card>
     <md-card>
-        <md-card-header>
+        <md-card-header data-background-color="purple" style="position: relative;">
           <div class="md-title">Gestión de Reserva</div>
         </md-card-header>
         <md-card-content>
@@ -37,7 +28,7 @@
         </div>
         </md-card-content>
         <md-card-actions>
-          <md-button type="button" :href="'#/vistaModificar'">Gestionar Reserva</md-button>
+          <md-button class="md-raised md-success" type="button" :href="'#/vistaModificar'">Gestionar Reserva</md-button>
         </md-card-actions>
     </md-card>
   </div>

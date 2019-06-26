@@ -7,7 +7,7 @@
             </md-card-header>
             <md-card-content>
                 <div class="md-layout">
-                    <div class="md-layout-item md-small-size-100 md-size-50">
+                    <div class="md-layout-item md-small-size-100 md-size-40">
                         <md-field>
                             <label>N° de habitacion</label>
                             <md-input  v-model="nroHabitacion" type="number"></md-input>
@@ -15,7 +15,7 @@
                     </div>
                     <div class="md-layout-item md-small-size-100 md-size-40">
                         <md-field>
-                          <vs-select v-model="tipo" placeholder="Seleccione un tipo de habitación">
+                          <vs-select width=100% v-model="tipo" placeholder="Seleccione un tipo de habitación">
                             <vs-select-item value="Simple" text="Simple"/>
                             <vs-select-item value="Doble" text="Doble"/>
                             <vs-select-item value="Triple" text="Triple"/>
@@ -25,13 +25,13 @@
                           </vs-select>
                         </md-field>
                     </div>
-                    <div class="md-layout-item md-small-size-100 md-size-50">
+                    <div class="md-layout-item md-small-size-100 md-size-40">
                         <md-field>
                             <label>Capacidad niños</label>
                             <md-input v-model="capacidadNinos" type="number"></md-input>
                         </md-field>
                     </div>
-                    <div class="md-layout-item md-small-size-100 md-size-50">
+                    <div class="md-layout-item md-small-size-100 md-size-40">
                         <md-field>
                             <label>Capacidad Adultos</label>
                             <md-input v-model="capacidadAdultos" type="number"></md-input>

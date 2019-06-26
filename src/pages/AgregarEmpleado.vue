@@ -21,7 +21,7 @@
                     </div>
                     <div class="md-layout-item md-small-size-100 md-size-30">
                         <md-field>
-                          <vs-select v-model="rol_usuario" placeholder="Seleccione un rol de usuario">
+                          <vs-select width=100% v-model="rol_usuario" placeholder="Seleccione un rol de usuario">
                             <vs-select-item value="Operario" text="Operario"/>
                             <vs-select-item value="Administrador" text="Administrador"/>
                           </vs-select>

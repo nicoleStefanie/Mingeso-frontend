@@ -356,7 +356,7 @@ export default {
     },
     mounted() {
       this.registrosCheckOut = new Array();
-      getCurrency();
+      this.getCurrency();
       if (!localStorage.getItem('login')) {
         this.$router.push('Login')
       }

@@ -238,7 +238,8 @@ export default {
       },
       changeCurrency(){
         var url = 'https://v2.api.forex/rates/latest.json?beautify=true&key=95a52ac5-c363-4208-a48d-e7b0414d93a3&from=' + this.newCurrency;
-        axios.get(url).then((data) => {
+        console.log(url);
+        axios.get(url, { useCredentails: true }).then((data) => {
           if (data['data']['success']) {
             var change = data['data']['rates'][this.currency];
             console.log(change);

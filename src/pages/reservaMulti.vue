@@ -111,7 +111,7 @@
           correo:this.correo,
           fechaInicio:this.$route.params.fechaInicio,
           fechaTermino:this.$route.params.fechaTermino,
-          IdHab:this.$route.params.idHab,
+          id:this.$route.params.idHab,
           estado:'1',
           descuento:this.descuento,
         }, { useCredentails: true })
@@ -124,7 +124,7 @@
           this.correo = "";
           this.fechaInicio = "";
           this.fechaTermino = "";
-          this.IdHab= "";
+          this.id= "";
           this.estado="";
           this.descuento="";
           alert(response.data[0].message);

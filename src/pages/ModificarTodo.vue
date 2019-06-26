@@ -8,35 +8,53 @@
       <md-card-content>
         <br>
         <div class="md-layout">
-          <div class="md-layout-item md-small-size-100 md-size-80">
-                <b-form-input @keyup="validarNombre" v-model="nombre" placeholder="Nombre Completo"></b-form-input>
-                <p class="error" v-if="vatError1">{{vatErrorMsg1}}</p>
-          </div>
-          <br><br><br>
+
           <div class="md-layout-item md-small-size-100 md-size-40">
-                <b-form-input @keyup="validarRut" v-model="rut" placeholder="Rut"></b-form-input>
+            <md-field>
+              <label>Nombre completo</label>
+              <md-input @keyup="validarNombre" v-model="nombre" type="text"></md-input>
+              <br>
+              <p class="error" v-if="vatError1">{{vatErrorMsg1}}</p>
+            </md-field>
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-40">
+              <md-field>
+                  <label>Rut</label>
+                  <md-input @keyup="validarRut" v-model="rut" type="text"></md-input>
                   <p class="error" v-if="vatError2">{{vatErrorMsg2}}</p>
+              </md-field>
           </div>
-          <br><br><br>
-          <div class="md-layout-item md-small-size-100 md-size-33">
-              <datepicker  v-model="fechaNacimiento" type="date"  placeholder=" Fecha Nacimiento"></datepicker>
-                <p v-if="fechaNacimiento">{{ dateFormat(fechaNacimiento) }}</p>
+          <div class="md-layout-item md-small-size-100 md-size-40">
+              <md-field>
+                  <label>Fecha de nacimiento</label>
+                  <datepicker v-model="fechaNacimiento" type="date"></datepicker>
+              </md-field>
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-30">
-                <b-form-input @keyup="validarTelefono" v-model="telefono" placeholder="Teléfono"></b-form-input>
+          <div class="md-layout-item md-small-size-100 md-size-40">
+              <md-field>
+                  <label>Teléfono</label>
+                  <md-input @keyup="validarTelefono" v-model="telefono" type="text"></md-input>
                   <p class="error" v-if="vatError3">{{vatErrorMsg3}}</p>
-          </div>
-          <br><br><br>
-          <div class="md-layout-item md-small-size-100 md-size-50">
-                <b-form-input @keyup="validarEmail" v-model="correo" placeholder="Correo"></b-form-input>
-                  <p class="error" v-if="vatError4">{{vatErrorMsg4}}</p>
+              </md-field>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-40">
-                <b-form-input v-model="estado" placeholder="Estado de la reserva"></b-form-input>
+            <md-field>
+              <label>Correo</label>
+              <md-input @keyup="validarEmail" v-model="correo" type="text"></md-input>
+              <p class="error" v-if="vatError4">{{vatErrorMsg4}}</p>
+            </md-field>
           </div>
-          <br><br><br>
           <div class="md-layout-item md-small-size-100 md-size-40">
-                <b-form-input v-model="descuento" placeholder="Descuento de la reserva"></b-form-input>
+              <md-field>
+                  <label>Estado de la reserva</label>
+                  <md-input v-model="estado" type="text"></md-input>
+              </md-field>
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-40">
+              <md-field>
+                  <label>Descuento de la reserva</label>
+                  <md-input v-model="descuento" type="text"></md-input>
+              </md-field>
           </div>
           <div class="md-layout-item md-size-100 text-right">
               <md-button class="md-raised md-success"  @click="validar" >Modificar datos</md-button>
@@ -85,39 +103,45 @@ export default {
         vatErrorMsg5:'',
         y:[],
         errors : [],
+        reserva: [],
       }
   },
   methods:{
     putReserva() {
       var url = localhost + '/reservas/update/'+ this.$route.params.codigoReserva;
-      axios.post(url, {
-
-        rut : this.rut,
-        nombre : this.nombre,
-        correo: this.correo,
-        telefono: this.telefono,
-        fechaNacimiento: this.fechaNacimiento,
-        estado: this.estado,
-        descuento: this.descuento
-      })
-      .then(response => {
-
-        this.rut = '';
-        this.nombre = '';
-        this.correo = '';
-        this.telefono = '';
-        this.fechaNacimiento = '';
-        this.estado = '';
-        this.descuento = '';
-        alert(response.data[0].message);
-        console.log(response.data.message);
-        if(response.data[0].message == 'OK'){
-          location.href = "http://159.203.94.72/#/";
-        }
-      })
-      .catch(e => {
-        this.errors.push(e)
-      });
+      if(this.estado == "Vigente" || this.estado == "Cancelada"){
+        if(this.estado == "Vigente"){this.estado = 1;}
+        else{this.estado = 0;}
+        axios.post(url, {
+          rut : this.rut,
+          nombre : this.nombre,
+          correo: this.correo,
+          telefono: this.telefono,
+          fechaNacimiento: this.fechaNacimiento,
+          estado: this.estado,
+          descuento: this.descuento
+        })
+        .then(response => {
+          if(response.data[0].message == 'OK'){
+            this.rut = '';
+            this.nombre = '';
+            this.correo = '';
+            this.telefono = '';
+            this.fechaNacimiento = '';
+            this.estado = '';
+            this.descuento = '';
+            this.$vs.notify({title:'Se modificó la reserva correctamente.',color:'success',position:'bottom-center'});
+            location.href = "http://159.203.94.72/#/";
+          } else {
+            this.$vs.notify({title:'No se pudo modificar la reserva.',color:'danger',position:'bottom-center'});
+          }
+        })
+        .catch(e => {
+          this.errors.push(e)
+        });
+      } else {
+        this.$vs.notify({title:'El estado de la reserva debe ser Vigente o Cancelada.',color:'danger',position:'bottom-center'});
+      }
     },
     dateFormat: function(date) {
       //return date.getFullYear() + '-' + (date.getMonth() +1) + '-' + date.getDate();
@@ -202,8 +226,24 @@ export default {
           this.vatErrorMsg4 = "Ingrese un correo válido."
         }
     },
+    getReserva(){
+      var idString = '' + this.$route.params.codigoReserva;
+      const url = localhost + '/reservas/codigoReserva/' + idString;
+      axios.get(url).then((data) => {
+        this.reserva = data.data;
+        this.rut = this.reserva.cliente.rut;
+        this.nombre = this.reserva.cliente.nombreCliente;
+        this.correo = this.reserva.cliente.correoCliente;
+        this.telefono = this.reserva.cliente.telefonoCliente;
+        this.fechaNacimiento = this.reserva.cliente.fechaNacimiento.split("T")[0];
+        if(this.reserva.estado == 0){this.estado = "Cancelada";}
+        else{this.estado = "Vigente";}
+        this.descuento = this.reserva.descuento;
+      });
+    },
   },
   mounted () {
+    this.getReserva();
     if (!localStorage.getItem('login')) {
       this.$router.push('Login')
     }

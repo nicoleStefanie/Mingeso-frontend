@@ -218,8 +218,7 @@ export default {
           serviciosAsociados: [],
           total: 0,
           currency: 'CLP',
-          newCurrency: 'CLP',
-          currencies: [],
+          newCurrency: 'EUR',
         }
     },
     methods: {
@@ -237,22 +236,15 @@ export default {
           this.$vs.notify({title:'Debe seleccionar al menos un registro.',color:'danger',position:'bottom-center'});
         }
       },
-      getCurrency(){
-        var url = "http://www.apilayer.net/api/live?access_key=b3d5d44276e36134a7c3fc415ec35502&format=1";
+      changeCurrency(){
+        var url = `https://v2.api.forex/rates/latest.json?beautify=true&key=95a52ac5-c363-4208-a48d-e7b0414d93a3&from=${this.newCurrency}`;
         axios.get(url).then((data) => {
-          if (data['data']['source'] === 'USD' && data['data']['success']) {
-            this.currencies = data['data']['quotes'];
-            console.log(this.currencies[0]);
+          if (data['data']['success']) {
+            var change = data['data']['rates'][this.currency];
+            console.log(change);
+            this.currency = this.newCurrency;
           }
         })
-      },
-      changeCurrency(){
-        if (this.currency === 'CLP') {
-          if (this.newCurrency === 'EUR') {
-            this.currency = 'EUR';
-
-          }
-        }
       },
       validar(){
         if(this.nroHabitacion && this.registro){
@@ -356,7 +348,7 @@ export default {
     },
     mounted() {
       this.registrosCheckOut = new Array();
-      this.getCurrency();
+      this.changeCurrency();
       if (!localStorage.getItem('login')) {
         this.$router.push('Login')
       }

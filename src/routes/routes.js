@@ -34,6 +34,9 @@ import registroSinReserva from "../pages/registroSinReserva";
 import filtrarReserva from "../pages/filtrarReserva";
 import seleccionarReservaSimple from "../pages/seleccionarReservaSimple";
 import reservaSimple from "../pages/reservaSimple";
+import filtrarReservaMulti from "../pages/filtrarReservaMulti";
+import seleccionarReservaMulti from "../pages/seleccionarReservaMulti";
+import reservaMulti from "../pages/reservaMulti";
 /*##############################################################*/
 
 const routes = [
@@ -215,6 +218,21 @@ const routes = [
         path: 'reservaSimple/:idHab/:fechaInicio/:fechaTermino',
         name: 'reservaSimple',
         component: reservaSimple
+      },
+      {
+        path: 'filtrarReservaMulti',
+        name: 'filtrarReservaMulti',
+        component: filtrarReservaMulti
+      },
+      {
+        path: 'seleccionarReservaMulti/:fechaInicio/:fechaTermino',
+        name: 'seleccionarReservaMulti',
+        component: seleccionarReservaMulti
+      },
+      {
+        path: 'reservaMulti/:idHab/:fechaInicio/:fechaTermino',
+        name: 'reservaMulti',
+        component: reservaMulti
       },
     ]
   }

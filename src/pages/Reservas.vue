@@ -10,7 +10,7 @@
            <div class="places-buttons text-center">
                   <md-button class="md-raised md-danger" :href="'#/filtrarReserva'">Simple</md-button>
                    <br>
-                  <md-button class="md-raised md-warning" :href="'#/filtrarReserva'">Múltiple</md-button>
+                  <md-button class="md-raised md-warning" :href="'#/filtrarReservaMulti'">Múltiple</md-button>
                   <br>
               </div>
           </div>

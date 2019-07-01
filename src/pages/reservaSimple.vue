@@ -130,9 +130,9 @@
          this.IdHab= "";
          this.estado="";
          this.descuento="";
-         alert(response.data[1].message);
-         if(response.data[1].message == 'OK'){
-           location.href = "#/filtrarReservaRangos/"+this.$route.params.fechaTermino+'/'+response.data[0].message+'/2';
+         alert(response.data[0].message);
+         if(response.data[0].message == 'OK'){
+           location.href = "#/filtrarReservaRangos/"+this.$route.params.fechaTermino+'/'+response.data[1].message+'/2';
          }
          else{
           console.log(response.data.message);

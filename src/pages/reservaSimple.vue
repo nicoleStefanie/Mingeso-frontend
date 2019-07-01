@@ -104,7 +104,7 @@
         this.rutUsuario = localStorage.getItem('rut');
       },
       addReserva:function(){
-       var url = localhost + 'reservas/create';
+       var url = localhost + 'reservas/createMultiFechas';
        axios.post(url, {
          nombre:this.nombre,
          rut:this.rut,

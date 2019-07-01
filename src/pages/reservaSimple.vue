@@ -41,10 +41,13 @@
             <b-form-input  v-model="descuento" type= "number" placeholder="Descuento"></b-form-input>
           </div>
           <br><br><br><br>
-          <div class="md-layout-item md-size-50 text-left">
-            <md-button class="md-raised md-success" style="text-align: left" @click="$router.go(-1)">Volver</md-button>
+          <div class="md-layout-item md-size-33 text-left">
+            <md-button class="md-raised md-warning" style="text-align: left" @click="$router.go(-1)">Volver</md-button>
           </div>
-          <div class="md-layout-item md-size-50 text-right">
+          <div class="md-layout-item md-size-33 text-center">
+            <md-button class="md-raised md-success" @click="validarAReserva()">Añadir Reserva</md-button>
+          </div>
+          <div class="md-layout-item md-size-33 text-right">
             <md-button class="md-raised md-success" @click="validar()">Reservar</md-button>
           </div>
         </div>
@@ -99,6 +102,47 @@
       },
       getRut(){
         this.rutUsuario = localStorage.getItem('rut');
+      },
+      addReserva:function(){
+       var url = localhost + 'reservas/create';
+       axios.post(url, {
+         nombre:this.nombre,
+         rut:this.rut,
+         fechaNacimiento:this.fechaNacimiento,
+         telefono:this.telefono,
+         rutUsuario:this.rutUsuario,
+         correo:this.correo,
+         fechaInicio:this.$route.params.fechaInicio,
+         fechaTermino:this.$route.params.fechaTermino,
+         IdHab:this.habitacion.idHabitacion,
+         estado:'1',
+         descuento:this.descuento,
+       }, { useCredentails: true })
+       .then(response => {
+         this.nombre = "";
+         this.rut = "";
+         this.fechaNacimiento = "";
+         this.telefono = "";
+         this.rutUsuario= "";
+         this.correo = "";
+         this.fechaInicio = "";
+         this.fechaTermino = "";
+         this.IdHab= "";
+         this.estado="";
+         this.descuento="";
+         alert(response.data[0].message);
+         if(response.data[0].message == 'OK'){
+           location.href = "#/filtrarReservaRangos/"+this.$route.params.fechaTermino+'/'+response.data[1].message+'/2';
+         }
+         else{
+          console.log(response.data.message);
+          alert("Error al agregar reserva a la cola");
+         }
+       })
+       .catch(e => {
+         this.errors.push(e)
+       });
+
       },
       createReserva:function(){
         var url = localhost + 'reservas/create';
@@ -214,6 +258,14 @@
       validar(){
         if(this.descuento != '' && this.rutUsuario != '' && this.nombre != '' && this.rut != '' && this.telefono != '' && this.correo != '' && this.fechaNacimiento != ''){
           this.createReserva();
+        }
+        else{
+          alert("Debes llenar todos los campos")
+        }
+      },
+      validarAReserva(){
+        if(this.descuento != '' && this.rutUsuario != '' && this.nombre != '' && this.rut != '' && this.telefono != '' && this.correo != '' && this.fechaNacimiento != ''){
+          this.addReserva();
         }
         else{
           alert("Debes llenar todos los campos")

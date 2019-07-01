@@ -37,6 +37,8 @@ import reservaSimple from "../pages/reservaSimple";
 import filtrarReservaMulti from "../pages/filtrarReservaMulti";
 import seleccionarReservaMulti from "../pages/seleccionarReservaMulti";
 import reservaMulti from "../pages/reservaMulti";
+import filtrarReservaRangos from "../pages/filtrarReservaRangos";
+import seleccionarReservaRangos from "../pages/seleccionarReservaRangos";
 /*##############################################################*/
 
 const routes = [
@@ -233,6 +235,16 @@ const routes = [
         path: 'reservaMulti/:idHab/:fechaInicio/:fechaTermino',
         name: 'reservaMulti',
         component: reservaMulti
+      },
+      {
+        path: 'filtrarReservaRangos/:fechaTermino/:codigoReserva/:n',
+        name: 'filtrarReservaRangos',
+        component: filtrarReservaRangos
+      },
+      {
+        path: 'seleccionarReservaRangos/:fechaInicio/:fechaTermino/:tipo/:codigoReserva/:n',
+        name: 'seleccionarReservaRangos',
+        component: seleccionarReservaRangos
       },
     ]
   }

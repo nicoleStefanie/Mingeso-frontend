@@ -54,7 +54,7 @@
       methods: {
         enviar(){
           if(this.fechaTermino != '' && this.fechaInicio != ''){
-            location.href = "#/seleccionarReservaRango/"+this.fechaInicio+'/'+this.fechaTermino+'/'+this.tipo+'/'+this.codigoR+'/'+this.rango;
+            location.href = "#/seleccionarReservaRangos/"+this.fechaInicio+'/'+this.fechaTermino+'/'+this.tipo+'/'+this.codigoR+'/'+this.rango;
           }
           else{
             alert("No se han ingresado datos a todos los campos");

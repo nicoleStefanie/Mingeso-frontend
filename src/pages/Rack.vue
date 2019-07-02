@@ -71,7 +71,7 @@ export default {
 
                     for(let j= i+1; j<this.items.length;j++){
                       if(this.items[j].nroHabitacion === this.items[i].nroHabitacion){
-                        segments.push({"codigo": this.items[j].codigo,
+                        segments.push({"codigoReserva": this.items[j].codigo,
                         "start": this.items[j].fechaInicio,
                         "end": this.items[j].fechaTermino,
                       "cliente": this.items[j].nombreCliente,
@@ -142,13 +142,23 @@ export default {
                     "event": "clickGraphItem",
                     "method": function(e) {
                       var ventana = window.open( "", "nombrePop-Up", "width=380,height=300, top=85,left=50");
-                      ventana.document.write("Información de la reserva: <br><br>" +
-                      "<br>Cliente: " + e.graph.segmentData.cliente +
-                      "<br>Fecha inicio: " + e.graph.segmentData.start +
-                      "<br>Fecha término: " + e.graph.segmentData.end +
-                      "<br>Estado Reserva: " + e.graph.segmentData.tipo +
-                      "<br><br>");
-
+                      if(e.graph.segmentData.tipo != "Ocupada"){
+                        ventana.document.write("Información de la reserva: <br><br>" +
+                          "<br>Código Reserva: " + e.graph.segmentData.codigoReserva +
+                          "<br>Cliente: " + e.graph.segmentData.cliente +
+                          "<br>Fecha inicio: " + e.graph.segmentData.start +
+                          "<br>Fecha término: " + e.graph.segmentData.end +
+                          "<br>Estado Habitación: " + e.graph.segmentData.tipo +
+                          "<br><br>");
+                      }
+                      else{
+                        ventana.document.write("Información de la reserva: <br><br>" +
+                          "<br>Cliente: " + e.graph.segmentData.cliente +
+                          "<br>Fecha inicio: " + e.graph.segmentData.start +
+                          "<br>Fecha término: " + e.graph.segmentData.end +
+                          "<br>Estado Habitación: " + e.graph.segmentData.tipo +
+                          "<br><br>");
+                      }
                     }
                   }],
                   "export": {

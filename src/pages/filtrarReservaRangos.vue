@@ -44,7 +44,7 @@
           rango: this.$route.params.n,
           fechaTermino: '',
           fechaInicio: '',
-          tipo: '',
+          tipo: 'Simple',
           today: this.$route.params.fechaTermino,
           codigoR: this.$route.params.codigoReserva,
           minTermino: new Date().toISOString().slice(0,10),
@@ -68,7 +68,6 @@
         }
       },
     }
-
 </script>
 
 <style scoped>

@@ -15,10 +15,11 @@
                     <label>Fecha de término</label>
                     <datepicker :disabled-dates="fechasTermino" v-model="fechaTermino" type="String" placeholder=" Fecha Termino"></datepicker>
               </div>
-
               <div class="md-layout-item md-size-100 text-right">
+                <div v-if="(dateFormat(fechaInicio) == dateFormat(fechaTermino)) && (fechaInicio != '') && (fechaTermino != '')" v-show="mensaje()"> </div>
+                <div v-if="(fechaInicio.getTime() > fechaTermino.getTime()) && (fechaInicio != '') && (fechaTermino != '')" v-show="mensaje2()"> </div>
                 <md-button class="md-raised md-success" @click="volver">Volver</md-button>
-                <md-button class="md-raised md-success" @click="validar">Modificar fechas</md-button>
+                <md-button v-if="(fechaInicio.getTime() < fechaTermino.getTime()) && (fechaInicio != '') && (fechaTermino != '')" class="md-raised md-success" @click="validar">Modificar fechas</md-button>
               </div>
           </div>
       </md-card-content>
@@ -53,7 +54,7 @@ export default {
         errors: [],
 
         fechasInicio: {
-          ranges: [// Rango de fechas desabilitadas hasta el dia presente
+          ranges: [
             {
               from: new Date(2019, 0, 1),
               to: new Date()
@@ -61,7 +62,7 @@ export default {
           ],
         },
         fechasTermino: {
-            ranges: [// Rango de fechas desabilitadas hasta el dia presente
+            ranges: [
               {
                 from: new Date(2019, 0, 1),
                 to: new Date()
@@ -71,8 +72,13 @@ export default {
       }
   },
   methods:{
+     mensaje(){
+      this.$vs.notify({title:'Las fechas son iguales. <br> Ingresarlas nuevamente.',color:'danger',position:'bottom-center'});
+    },
+    mensaje2(){
+      this.$vs.notify({title:'Fecha inicio no tiene sentido con la fecha término. Ingresarlas nuevamente.',color:'danger',position:'bottom-center'});
+    },
     dateFormat: function(date) {
-      //return date.getFullYear() + '-' + (date.getMonth() +1) + '-' + date.getDate();
       if(date.getMonth()< 10 && date.getDate() < 10)
       {
         return date.getFullYear() + '-0' + (date.getMonth() +1) + '-0' + date.getDate();

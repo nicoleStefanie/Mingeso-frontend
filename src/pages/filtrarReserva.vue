@@ -27,7 +27,9 @@
           </div>
           <br><br>
           <div class="md-layout-item md-small-size-100 md-size-100 text-center" style="margin-top: 2%">
-            <md-button class="md-raised md-success" style="width: 20%; font-size:20px" @click="enviar">Buscar</md-button>
+            <md-button v-if="(fechaInicio != fechaTermino) && (fechaInicio != '') && (fechaTermino != '')" class="md-raised md-success" style="width: 20%; font-size:20px" @click="enviar">Buscar</md-button>
+            <div v-if="(fechaInicio == fechaTermino) && (fechaInicio != '') && (fechaTermino != '')" v-show="mensaje()"> </div>
+            <div v-if="(fechaInicio > fechaTermino) && (fechaInicio != '') && (fechaTermino != '')" v-show="mensaje2()"> </div>
           </div>
         </div>
       </md-card-content>
@@ -49,7 +51,7 @@
           maxInicio: '',
         }
       },
-      methods: {
+      methods:{
         enviar(){
           if(this.fechaTermino != '' && this.fechaInicio != ''){
             location.href = "#/seleccionarReservaSimple/"+this.fechaInicio+'/'+this.fechaTermino+'/'+this.tipo;
@@ -57,6 +59,12 @@
           else{
             alert("No se han ingresado datos a todos los campos");
           }
+        },
+        mensaje(){
+          this.$vs.notify({title:'Las fechas son iguales. <br> Ingresarlas nuevamente.',color:'danger',position:'bottom-center'});
+        },
+        mensaje2(){
+          this.$vs.notify({title:'Fecha inicio no tiene sentido con la fecha término. Ingresarlas nuevamente.',color:'danger',position:'bottom-center'});
         },
         maximo(){
           this.minTermino= this.fechaInicio;

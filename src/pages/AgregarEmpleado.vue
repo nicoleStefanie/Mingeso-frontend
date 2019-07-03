@@ -95,7 +95,7 @@ export default {
         this.rut_usuario = "";
         this.pass_usuario = "";
         if(response.data[0].message == 'OK'){
-          location.href = "http://159.203.94.72/#/usuarios";
+          this.$router.push('usuarios')
           this.$vs.notify({title:'El usuario ha sido creado correctamente.',color:'success',position:'bottom-center'});
         } else{
           this.$vs.notify({title:'El usuario no se ha podido crear.',color:'danger',position:'bottom-center'});
@@ -106,7 +106,7 @@ export default {
       });
     },
     volver(){
-      location.href = "http://159.203.94.72/#/usuarios";
+      this.$router.push('usuarios')
     },
   },
   mounted () {

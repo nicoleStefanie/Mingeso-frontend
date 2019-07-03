@@ -110,14 +110,14 @@ export default {
       .then(response => {
         if(response.data[0].message == 'La Habitacion ha sido editada'){
           this.$vs.notify({title:'La habitación ha sido editada correctamente',color:'success',position:'bottom-center'});
-          location.href = "http://159.203.94.72/#/habitaciones";
+          this.$router.push('Habitaciones')
         } else {
           this.$vs.notify({title:'La habitación no se ha podido editar',color:'danger',position:'bottom-center'});
         }
       })
     },
     volver(){
-      location.href = "http://159.203.94.72/#/habitaciones";
+      this.$router.push('Habitaciones')
     },
   },
   mounted () {

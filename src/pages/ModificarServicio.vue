@@ -101,7 +101,7 @@ export default {
         this.categoriaServicio = "";
         if(response.data[0].message == 'El servicio ha sido editado'){
           this.$vs.notify({title:'El servicio ha sido editado correctamente.',color:'success',position:'bottom-center'});
-          location.href = "http://159.203.94.72/#/servicios";
+          this.$router.push('servicios')
         }
         else{
           this.$vs.notify({title:'El servicio no se ha podido editar.',text:'Porfavor, verifique los datos ingresados.',color:'danger',position:'bottom-center'});
@@ -112,7 +112,7 @@ export default {
       });
     },
     volver(){
-      location.href = "http://159.203.94.72/#/servicios";
+      this.$router.push('servicios')
     },
   },
   mounted(){

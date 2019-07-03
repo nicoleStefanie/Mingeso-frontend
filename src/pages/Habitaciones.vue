@@ -120,7 +120,7 @@ export default {
           })
         },
         habilitar(id){
-          var url = "http://159.203.94.72/#/habilitarHabitacion/" + id;
+          var url = "#/habilitarHabitacion/" + id;
           location.href = url;
         },
       deleteHabitacion(id){

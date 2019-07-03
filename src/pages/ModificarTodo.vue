@@ -131,7 +131,7 @@ export default {
             this.estado = '';
             this.descuento = '';
             this.$vs.notify({title:'Se modificó la reserva correctamente.',color:'success',position:'bottom-center'});
-            location.href = "http://159.203.94.72/#/";
+            this.$router.push('Rack');
           } else {
             this.$vs.notify({title:'No se pudo modificar la reserva.',color:'danger',position:'bottom-center'});
           }

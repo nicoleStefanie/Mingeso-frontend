@@ -60,7 +60,7 @@ export default {
       .then(response => {
         if(response.data[0].message == 'Operación realizada con exito'){
           this.$vs.notify({title:'Se ha habilitado la habitación.',color:'succes',position:'bottom-center'});
-          location.href = "http://159.203.94.72/#/habitaciones";
+          this.$router.push('Habitaciones')
         } else {
           this.$vs.notify({title:'No se pudo habilitar la habitación.',color:'danger',position:'bottom-center'});
         }

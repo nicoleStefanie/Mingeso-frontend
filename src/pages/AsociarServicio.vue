@@ -176,7 +176,7 @@ export default {
             idRegistro: this.registro.idRegistro
           }).then(response => {
             if(response.data[0].message == 'RegistroServicio agregado con exito'){
-              location.href = "http://159.203.94.72/#/rack";
+              this.$router.push('Rack')
               this.$vs.notify({title:'Se incorporó el, o los servicios correctamente.',color:'success',position:'bottom-center'});
             }
           }).catch(e => {

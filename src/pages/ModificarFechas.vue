@@ -113,7 +113,7 @@ export default {
       .then(response => {
         if(response.data[0].message == 'OK'){
           this.$vs.notify({title:'Se modificaron las fechas correctamente.',color:'success',position:'bottom-center'});
-          location.href = "http://159.203.94.72/#/";
+          this.$router.push('Rack')
         } else {
           this.$vs.notify({title:'No se pudieron modificar las fechas.',color:'danger',position:'bottom-center'});
         }
@@ -144,7 +144,7 @@ export default {
       });
     },
     volver(){
-      location.href = "http://159.203.94.72/#/vistaModificar";
+      this.$router.push('VistaModificar')
     },
   },
   mounted () {

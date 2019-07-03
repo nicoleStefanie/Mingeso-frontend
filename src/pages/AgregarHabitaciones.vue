@@ -23,7 +23,7 @@
                             <vs-select-item value="Matrimonial" text="Matrimonial"/>
                             <vs-select-item value="Inhabilitada" text="Inhabilitada"/>
                           </vs-select>
-                      </md-field>    
+                      </md-field>
                     </div>
                     <div class="md-layout-item md-small-size-100 md-size-40">
                         <md-field>
@@ -92,14 +92,14 @@ export default {
       .then(response => {
         if(response.data[0].message == 'Habitacion agregada con exito'){
           this.$vs.notify({title:'La habitación se ha agregado correctamente.',color:'success',position:'bottom-center'});
-          location.href = "http://159.203.94.72/#/habitaciones";
+          this.$router.push('Habitaciones')
         } else {
           this.$vs.notify({title:'No se pudo agregar la habitación.',color:'danger',position:'bottom-center'});
         }
       })
     },
     volver(){
-      location.href = "http://159.203.94.72/#/habitaciones";
+      this.$router.push('Habitaciones')
     },
   },
   mounted () {

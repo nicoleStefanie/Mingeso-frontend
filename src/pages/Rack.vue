@@ -18,7 +18,7 @@
 var hoy = new Date();
 import { existsSync } from 'fs';
 import axios from 'axios';
-const localhost = 'localhost:8080/backend';
+const localhost = 'http://127.0.0.1:8080/backend';
 export default {
         data(){
             return{

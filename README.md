@@ -1,8 +1,10 @@
-## :cloud: Build Setup
+## Front-end para proyecto de Métodos de Ingeniería de Software 
 
-### install dependencies
+### :cloud: Build Setup
+
+### Install dependencies
 `npm install`
-### serve with hot reload at localhost:8080
+### Serve with hot reload at localhost:8080
 `npm run dev`
 
 
